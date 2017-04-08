@@ -57,35 +57,83 @@
             <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
                 <ul class="nav nav-pills flex-column">
                     <li class="nav-item main-menu-item">
-                        <a class="nav-link active" href="#">Shoes</a>
-
-                        <ul class="nav nav-pills flex-column sub-menu-item">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Boots</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Indoor shoes</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Outdoor shoes</a>
-                            </li>
-                        </ul>
+                        <a class="nav-link active" href="#">Обувь</a>
                     </li>
+                    <ul class="nav-pills flex-column sub-menu-item">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Футбольные бутсы</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Обувь для зала</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Шиповки</a>
+                        </li>
+                    </ul>
 
                     <li class="nav-item main-menu-item">
-                        <a class="nav-link" href="#">Balls</a>
-
-                        <ul class="nav nav-pills flex-column sub-menu-item">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Footballs</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Indoor balls</a>
-                            </li>
-                        </ul>
+                        <a class="nav-link" href="#">Мячи</a>
                     </li>
+                    <ul class="nav-pills flex-column sub-menu-item">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Мячи для футбола</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Мячи для зала</a>
+                        </li>
+                    </ul>
+
+                    <li class="nav-item main-menu-item">
+                        <a class="nav-link" href="#">Форма</a>
+                    </li>
+                    <ul class="nav-pills flex-column sub-menu-item">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Майки</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Шорты</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Гетры</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Комплекты формы</a>
+                        </li>
+                    </ul>
+
+                    <li class="nav-item main-menu-item">
+                        <a class="nav-link" href="#">Тренировочная одежда</a>
+                    </li>
+                    <ul class="nav-pills flex-column sub-menu-item">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Майки</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Шорты</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Спортивные костюмы</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Термобелье</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Куртки и ветровки</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Носки</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Шарфы и шапки</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Перчатки</a>
+                        </li>
+                    </ul>
 
                 </ul>
+
+
 
                 <ul class="nav nav-pills flex-column">
                     <li class="nav-item">
