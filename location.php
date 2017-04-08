@@ -9,6 +9,8 @@
 
     <meta name="description" content="">
     <meta name="author" content="">
+
+    <link rel="icon" type="image/png" href="favicon.png">
     <title>Location</title>
 
     <!-- Bootstrap Core CSS -->
@@ -21,6 +23,7 @@
 
     <!-- Custom CSS -->
     <link href="css/shop-homepage.css" rel="stylesheet">
+    <link href="css/contacts.css" rel="stylesheet">
 
     <!-- Temporary fix for navbar responsiveness -->
     <style>
@@ -55,26 +58,37 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse" role="navigation">
+
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="container">
 
-            <div class="navbar-brand">
+            <!--<div class="navbar-brand">
                 <img src="images/logo/logo.png">
-            </div>
+            </div>-->
 
             <div class="collapse navbar-collapse" id="navbarExample">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="indexExample.php">Обувь</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="#">Мячи</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
+                        <a class="nav-link" href="#">Форма</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Форма</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Тренировочная одежда</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Вратарская экипировка</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="location.php">Наш адрес</a>
@@ -82,31 +96,28 @@
                 </ul>
             </div>
         </div>
+
     </nav>
 
     <!-- Page Content -->
     <div class="container">
 
-        <div class="my-4">
+        <div class="row my-4">
 
-            <table class = "table">
-                <tbody>
-                    <tr>
-                        <td width="40%">
-                            <p>Магазин Football City в г. Минске</p>
-                            <p>Проспект Независимости 58, второй этаж,  13 место</p>
-                            <p>Режим работы : ежедневно с 11 до 20</p>
-                            <p><a href="tel:+375291707577">+375 29 170 75 77</a></p>
-                            <p><a href="tel:+375296286741">+375 29 628 67 41</a></p>
-                            <p><a href="tel:+375257918880">+375 25 791 88 80</a></p>
-                            <p>Email: <a href="mailto:ftblcity.by@gmail.com">ftblcity.by@gmail.com</a></p>
-                        </td>
-                        <td>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1036.9046079587044!2d27.588732761825078!3d53.91768004342265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x6622282dabf5ccb7!2sFootballcity!5e0!3m2!1sru!2sby!4v1490899779874" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="col-lg-4">
+                <p>Магазин Football City в г. Минске</p>
+                <p>Проспект Независимости 58, второй этаж,  13 место</p>
+                <p>Режим работы : ежедневно с 11 до 20</p>
+                <p><a href="tel:+375291707577">+375 29 170 75 77</a></p>
+                <p><a href="tel:+375296286741">+375 29 628 67 41</a></p>
+                <p><a href="tel:+375257918880">+375 25 791 88 80</a></p>
+                <p>Email: <a href="mailto:ftblcity.by@gmail.com">ftblcity.by@gmail.com</a></p>
+            </div>
+
+            <div class="col-lg-8">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1036.9046079587044!2d27.588732761825078!3d53.91768004342265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x6622282dabf5ccb7!2sFootballcity!5e0!3m2!1sru!2sby!4v1490899779874" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+
 
             <!--<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
