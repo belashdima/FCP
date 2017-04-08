@@ -10,11 +10,16 @@
 require_once "Brand.php";
 require_once "GroundType.php";
 require_once "ShoeSize.php";
+require_once "BootsPair.php";
+require_once "Model.php";
 
 DatabaseHandler::getConnection();
 print_r(DatabaseHandler::getBrands());
 print_r(DatabaseHandler::getGroundTypes());
 print_r(DatabaseHandler::getShoeSizes());
+print_r(DatabaseHandler::getBoots());
+print_r(DatabaseHandler::getModelById(1));
+print_r(DatabaseHandler::getImagesByModelId(1));
 
 class DatabaseHandler
 {
@@ -82,5 +87,43 @@ class DatabaseHandler
         }
 
         return $sizesList;
+    }
+
+    static public function getBoots() {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM boots_table ");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        while ($row = $result->fetch()) {
+            $bootsList[] = new BootsPair($row["boots_id"], $row["boots_size"], $row["boots_model"], $row["boots_price"]);
+        }
+
+        return $bootsList;
+    }
+
+    public static function getImagesByModelId($modelId)
+    {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM images_table WHERE images_table.model=$modelId");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        while ($row = $result->fetch()) {
+            $imagesList[] = $row["image_path"];
+        }
+
+        return $imagesList;
+    }
+
+    public static function getModelById($modelId)
+    {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM models_table WHERE models_table.model_id=$modelId");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        while ($row = $result->fetch()) {
+            $modelsList[] = new Model($row["model_id"], $row["model_name"], $row["model_brand"], $row["model_price"], $row["model_description"]);
+        }
+
+        return $modelsList;
     }
 }
