@@ -1,10 +1,12 @@
 /**
- * Created by belashdima on 08.04.17.
+ * Created by belashdima on 09.04.17.
  */
 
 $(document).ready(function() {
     // do stuff when DOM is ready
-    $('.main-menu-item').click(function () {
-        $(this).next().toggle('.sub-menu-item');
+
+    $('.sub-menu-item').click(function () {
+        //$('#page-wrapper').load("contentPane/res.php?value="+encodeURI($(this).attr('id')));
+        $('.container-fluid').load("contentPane/res.php?value="+encodeURI($(this).attr('id')));
     });
 });

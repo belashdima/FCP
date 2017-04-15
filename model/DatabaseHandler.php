@@ -13,13 +13,13 @@ require_once "ShoeSize.php";
 require_once "BootsPair.php";
 require_once "Model.php";
 
-DatabaseHandler::getConnection();
+/*DatabaseHandler::getConnection();
 print_r(DatabaseHandler::getBrands());
 print_r(DatabaseHandler::getGroundTypes());
 print_r(DatabaseHandler::getShoeSizes());
 print_r(DatabaseHandler::getBoots());
 print_r(DatabaseHandler::getModelById(1));
-print_r(DatabaseHandler::getImagesByModelId(1));
+print_r(DatabaseHandler::getImagesByModelId(1));*/
 
 class DatabaseHandler
 {
@@ -41,12 +41,12 @@ class DatabaseHandler
                 $conn = new PDO("mysql:host=$servername;dbname=$databaseName", $username, $password);
                 // set the PDO error mode to exception
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                echo "Connected successfully";
+                //echo "Connected successfully";
                 return $conn;
             }
             catch(PDOException $e)
             {
-                echo "Connection failed: " . $e->getMessage();
+                //echo "Connection failed: " . $e->getMessage();
             }
         } else {
             return self::$connection;
@@ -63,6 +63,18 @@ class DatabaseHandler
         }
 
         return $brandsList;
+    }
+
+    static public function getBrandById($brandId) {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM brands_table WHERE brands_table.brand_id=$brandId");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        while ($row = $result->fetch()) {
+            $brand = new Brand($row["brand_id"], $row["brand_name"]);
+        }
+
+        return $brand;
     }
 
     static public function getGroundTypes() {
@@ -121,9 +133,9 @@ class DatabaseHandler
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
         while ($row = $result->fetch()) {
-            $modelsList[] = new Model($row["model_id"], $row["model_name"], $row["model_brand"], $row["model_price"], $row["model_description"]);
+            $model = new Model($row["model_id"], $row["model_name"], $row["model_brand"], $row["model_price"], $row["model_description"]);
         }
 
-        return $modelsList;
+        return $model;
     }
 }

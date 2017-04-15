@@ -1,12 +1,5 @@
 <?php
 
-/**
- * @package     ${NAMESPACE}
- * @subpackage
- *
- * @copyright   A copyright
- * @license     A "Slug" license name e.g. GPL2
- */
 class BootsPair
 {
     private $bootsId;
@@ -21,5 +14,54 @@ class BootsPair
         $this->bootsSize = $bootsSize;
         $this->bootsModel = $bootsModel;
         $this->bootsPrice = $bootsPrice;
+    }
+
+    public function getBootsId()
+    {
+        return $this->bootsId;
+    }
+
+    public function setBootsId($bootsId)
+    {
+        $this->bootsId = $bootsId;
+    }
+
+    public function getBootsSize()
+    {
+        return $this->bootsSize;
+    }
+
+    public function setBootsSize($bootsSize)
+    {
+        $this->bootsSize = $bootsSize;
+    }
+
+    public function getBootsModel()
+    {
+        return $this->bootsModel;
+    }
+
+    public function setBootsModel($bootsModel)
+    {
+        $this->bootsModel = $bootsModel;
+    }
+
+    public function getBootsPrice()
+    {
+        return $this->bootsPrice;
+    }
+
+    public function setBootsPrice($bootsPrice)
+    {
+        $this->bootsPrice = $bootsPrice;
+    }
+
+    public function init() {
+        // upload size
+        //$this->bootsSize = DatabaseHandler::getShoeSizeById();
+
+        // upload model
+        $this->bootsModel = DatabaseHandler::getModelById($this->bootsModel);
+        $this->bootsModel->init();
     }
 }
