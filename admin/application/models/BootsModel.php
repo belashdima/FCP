@@ -1,6 +1,6 @@
 <?php
 
-class Model
+class BootsModel
 {
     private $modelId;
     private $modelName;

@@ -11,7 +11,7 @@ require_once "Brand.php";
 require_once "GroundType.php";
 require_once "ShoeSize.php";
 require_once "BootsPair.php";
-require_once "Model.php";
+require_once "BootsModel.php";
 
 /*DatabaseHandler::getConnection();
 print_r(DatabaseHandler::getBrands());
@@ -133,9 +133,48 @@ class DatabaseHandler
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
         while ($row = $result->fetch()) {
-            $model = new Model($row["model_id"], $row["model_name"], $row["model_brand"], $row["model_price"], $row["model_description"]);
+            $model = new BootsModel($row["model_id"], $row["model_name"], $row["model_brand"], $row["model_price"], $row["model_description"]);
         }
 
         return $model;
+    }
+
+    public static function setBrandToModel($modelId, $brandId) {
+        $databaseConnection = self::getConnection();
+
+        //$databaseConnection->query("SELECT * FROM models_table WHERE models_table.model_id=$modelId");
+        $databaseConnection->query("UPDATE models_table SET models_table.model_brand=$brandId WHERE models_table.model_id=$modelId");
+
+        return true;
+    }
+
+    public static function getBrandByName($brandName) {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM brands_table WHERE brands_table.brand_name='".$brandName."'");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        while ($row = $result->fetch()) {
+            $brand = new Brand($row["brand_id"], $row["brand_name"]);
+        }
+
+        return $brand;
+    }
+
+    public static function setNameToModel($modelId, $modelName) {
+        $databaseConnection = self::getConnection();
+
+        //$databaseConnection->query("SELECT * FROM models_table WHERE models_table.model_id=$modelId");
+        $databaseConnection->query("UPDATE models_table SET models_table.model_name='".$modelName."' WHERE models_table.model_id=$modelId");
+
+        return true;
+    }
+
+    public static function setPriceToModel($modelId, $modelPrice) {
+        $databaseConnection = self::getConnection();
+
+        //$databaseConnection->query("SELECT * FROM models_table WHERE models_table.model_id=$modelId");
+        $databaseConnection->query("UPDATE models_table SET models_table.model_price='".$modelPrice."' WHERE models_table.model_id=$modelId");
+
+        return true;
     }
 }

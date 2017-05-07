@@ -13,14 +13,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="../css/sb-admin.css">
-    <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
+    <!--<link rel="stylesheet" type="text/css" href="../css/sb-admin.css">-->
+    <link rel="stylesheet" type="text/css" href="http://localhost/Footballcity_Project/css/sb-admin.css">
+    <!--<link rel="stylesheet" type="text/css" href="../css/dashboard.css">-->
+    <link rel="stylesheet" type="text/css" href="http://localhost/Footballcity_Project/css/dashboard.css">
 
     <!-- Morris Charts CSS -->
     <!--<link href="css/plugins/morris.css" rel="stylesheet">-->
 
     <!-- Custom Fonts -->
-    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+    <!--<link rel="stylesheet" type="text/css" href="http://localhost/Footballcity_Project/font-awesome/css/font-awesome.min.css">-->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -43,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="indexGood.php">SB Admin</a>
+                <a class="navbar-brand" href="http://localhost/Footballcity_Project/admin">SB Admin</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -145,15 +147,16 @@
                     </li>-->
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Обувь <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a id="football_boots" class="sub-menu-item" href="boots">Футбольные бутсы</a>
+                        <ul id="demo" class="expand">
+                        <!--<ul id="demo" class="collapse">-->
+                            <li id="li_football_boots">
+                                <a id="football_boots" class="sub-menu-item active" href="http://localhost/Footballcity_Project/admin/boots">Футбольные бутсы</a>
                             </li>
                             <li>
-                                <a id="indoor_boots" class="sub-menu-item" href="indoor_boots">Обувь для зала</a>
+                                <a id="indoor_boots" class="sub-menu-item" href="http://localhost/Footballcity_Project/admin/indoor_boots">Обувь для зала</a>
                             </li>
                             <li>
-                                <a id="outdoor_boots" class="sub-menu-item" href="outdoor_boots">Шиповки</a>
+                                <a id="outdoor_boots" class="sub-menu-item" href="http://localhost/Footballcity_Project/admin/outdoor_boots">Шиповки</a>
                             </li>
                         </ul>
                     </li>
@@ -177,19 +180,7 @@
         </nav>
 
         <div id="page-wrapper" class="container">
-
-            <div class="container-fluid">
-
-                <div id="mainContent" class="row">
-                    <div class="col-lg-12">
-
-                        <?php include '../admin/application/views/'.$contentView; ?>
-
-                    </div>
-                </div>
-
-            </div>
-
+            <?php include '../admin/application/views/'.$contentView; ?>
         </div>
         <!-- /#page-wrapper -->
 
@@ -203,6 +194,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <!--My scripts-->
-    <script src="js/leftMenu.js"></script>
+    <!--<script src="js/leftMenu.js"></script>-->
+    <script src="http://localhost/Footballcity_Project/js/leftMenu.js"></script>
 </body>
 </html>

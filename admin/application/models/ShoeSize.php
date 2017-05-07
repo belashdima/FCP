@@ -25,4 +25,24 @@ class ShoeSize
     private function fillSizesBySizeId($sizeId) {
         // connect to db and fill
     }
+
+    public function getSizeId()
+    {
+        return $this->sizeID;
+    }
+
+    public function getSizeEu()
+    {
+        return $this->sizeEu;
+    }
+
+    public function getSizeUk()
+    {
+        return $this->sizeUk;
+    }
+
+    public function getSizeUs()
+    {
+        return $this->sizeUs;
+    }
 }

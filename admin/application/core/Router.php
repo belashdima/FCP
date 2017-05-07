@@ -10,6 +10,8 @@ class Router
 
         $routes = explode('/', $_SERVER['REQUEST_URI']);
 
+        //print_r($routes);
+
         // get controller name
         if ( !empty($routes[3]) )
         {
@@ -23,8 +25,9 @@ class Router
         }
 
         // add prefixes
-        $modelName = 'Model'.ucfirst($controllerName);
+        $modelName = 'BootsModel' .ucfirst($controllerName);
         $controllerName = ucfirst($controllerName).'Controller';
+        $actionName = explode('.', $actionName)[0];// used to separate from get params
         $actionName = ucfirst($actionName).'Action';
 
         // pick up model file (can not exist)
@@ -55,9 +58,6 @@ class Router
         $controller = new $controllerName;
         $action = lcfirst($actionName);
 
-        echo $controllerName;
-        echo $actionName;
-
         if(method_exists($controller, $action))
         {
             // вызываем действие контроллера
@@ -65,11 +65,15 @@ class Router
         }
         else
         {
-            echo 'no method';
-            // здесь также разумнее было бы кинуть исключение
-            Router::ErrorPage404();
+            //echo $routes[4];
+            if(is_numeric($routes[4])) {
+                $controller->itemAction($routes[4]);
+            } else {
+                echo 'no method';
+                // здесь также разумнее было бы кинуть исключение
+                Router::ErrorPage404();
+            }
         }
-
     }
 
     function ErrorPage404()
