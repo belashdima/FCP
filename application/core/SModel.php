@@ -7,7 +7,9 @@
  * @copyright   A copyright
  * @license     A "Slug" license name e.g. GPL2
  */
-class ModelBoots
+class SModel
 {
+    public function getData() {
 
+    }
 }

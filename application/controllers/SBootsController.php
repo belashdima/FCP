@@ -3,15 +3,11 @@
 require_once '../admin/application/core/Controller.php';
 require_once '../admin/application/models/DatabaseHandler.php';
 
-class BootsController extends Controller
+class SBootsController extends Controller
 {
     public function indexAction() {
-        $this->view->generate('ModelsView.php', 'CommonMarkupView.php');
+        $this->view->generate('BootsListView.php', 'CommonMarkupView.php');
     }
-
-    /*public function modelsAction() {
-        $this->view->generate('ModelsView.php', 'CommonMarkupView.php');
-    }*/
 
     public function itemAction($itemId) {
         $this->view->generate('BootsView.php', 'CommonMarkupView.php', $itemId);

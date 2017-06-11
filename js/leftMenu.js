@@ -62,3 +62,20 @@ $('.useModelPrice').change(function() {
 });
 
 $('.sizeQuantity[value=0]').closest('[data-sizeId]').addClass('danger');
+
+$('#add_new_item_button').click(function() {
+    //alert('jirle');
+    window.location.href="http://localhost/Footballcity_Project/admin/new";
+});
+
+$('.wareTypeNames').click(function() {
+    var wareTypeName = $(this).text().trim();
+
+    $.get("http://localhost/Footballcity_Project/admin/new/properties?ware_type_name="+wareTypeName)
+        .done(function(data) {
+            $(this).val(data);
+
+            $('#propertiesContainer').append(data);
+
+        });
+});

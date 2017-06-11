@@ -1,6 +1,6 @@
 <?php
 
-class Router
+class SRouter
 {
     static function start()
     {
@@ -9,24 +9,22 @@ class Router
         $actionName = 'index';
 
         $routes = explode('/', $_SERVER['REQUEST_URI']);
-        $routes[4] = explode('?', $routes[4])[0];
 
-        //print_r($routes);
+        print_r($routes);
 
         // get controller name
-        if ( !empty($routes[3]) )
+        if ( !empty($routes[2]) )
         {
-            $controllerName = $routes[3];
+            $controllerName = $routes[2];
         }
 
         // get action name
-        if ( !empty($routes[4]) )
+        if ( !empty($routes[3]) )
         {
-            $actionName = $routes[4];
+            $actionName = $routes[3];
         }
 
         // add prefixes
-        $modelName = 'BootsModel' .ucfirst($controllerName);
         $controllerName = ucfirst($controllerName).'Controller';
         $actionName = explode('.', $actionName)[0];// used to separate from get params
         $actionName = ucfirst($actionName).'Action';
@@ -41,7 +39,7 @@ class Router
         }*/
 
         // pick up controller file
-        $controllerFileName = $controllerName.'.php';
+        $controllerFileName = 'S'.$controllerName.'.php';
         $controllerPath = 'application/controllers/'.$controllerFileName;
         if(file_exists($controllerPath))
         {
@@ -52,10 +50,11 @@ class Router
             echo "no file";
             //правильно было бы кинуть здесь исключение,
             //но для упрощения сразу сделаем редирект на страницу 404
-            Router::ErrorPage404();
+            SRouter::ErrorPage404();
         }
 
         // create controller
+        $controllerName = "S".$controllerName;
         $controller = new $controllerName;
         $action = lcfirst($actionName);
 
@@ -67,12 +66,12 @@ class Router
         else
         {
             //echo $routes[4];
-            if(is_numeric($routes[4])) {
-                $controller->itemAction($routes[4]);
+            if(is_numeric($routes[3])) {
+                $controller->itemAction($routes[3]);
             } else {
                 echo 'no method';
                 // здесь также разумнее было бы кинуть исключение
-                Router::ErrorPage404();
+                SRouter::ErrorPage404();
             }
         }
     }
