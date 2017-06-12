@@ -146,7 +146,7 @@
                         <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Обувь</a>
                     </li>-->
                     <li>
-                        <a href="javascript:;" data-toggle="collapse">
+                        <a href="http://localhost/Footballcity_Project/admin/wares">
                             <i class="fa fa-fw fa-arrows-v"></i>Wares<i class="fa fa-fw fa-caret-down"></i>
                         </a>
                     </li>

@@ -25,4 +25,14 @@ class NewController extends Controller
 
         //$this->view->generate('PropertiesView.php', 'CommonMarkupView.php');;
     }
+
+    public function add_newAction() {
+        echo $_GET;
+        echo $wareTypeName = $_GET['brand'];
+        //echo $wareTypeName = $_GET['brand'];
+
+        //echo DatabaseHandler::getJSONPropertiesForWareTypes($wareTypeName);
+
+        //$this->view->generate('PropertiesView.php', 'CommonMarkupView.php');;
+    }
 }

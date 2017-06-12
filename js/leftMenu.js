@@ -64,6 +64,5 @@ $('.useModelPrice').change(function() {
 $('.sizeQuantity[value=0]').closest('[data-sizeId]').addClass('danger');
 
 $('#add_new_item_button').click(function() {
-    //alert('jirle');
     window.location.href="http://localhost/Footballcity_Project/admin/new";
 });

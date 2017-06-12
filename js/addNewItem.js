@@ -1,10 +1,12 @@
 $('.wareTypeNames').click(function() {
-    var wareTypeName = $(this).text().trim();
+    angular.element($('#newItemDiv')).scope().wareTypeName = $(this).text().trim();
 
-    //alert(wareTypeName);
-    angular.element($('#newItemDiv')).scope().getPropertiesForWareType(wareTypeName);
+    angular.element($('#newItemDiv')).scope().getPropertiesForWareType();
 });
 
 $('#addNewItemSubmitButton').click(function () {
-    window.location.href="http://localhost/Footballcity_Project/admin/boots";
+
+    //var wareTypeName = $('#bbb').text().trim();
+    //alert(wareTypeName);
+    angular.element($('#newItemDiv')).scope().alertValues();
 });

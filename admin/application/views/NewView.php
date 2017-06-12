@@ -13,7 +13,7 @@ $wareTypes = DatabaseHandler::getAllWareTypes();
 
     <div id="wareTypeSelector" class="btn-group">
         <button type="button" class="btn btn-default dropdown-toggle brand" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            None
+            {{wareTypeName}}
             <span class="caret">
             </span>
         </button>
@@ -33,7 +33,7 @@ $wareTypes = DatabaseHandler::getAllWareTypes();
     <form>
         <div class="form-group" ng-repeat="property in properties">
             <label for="exampleInputEmail1">{{property.property_name}}</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter {{property.property_name.toLowerCase()}}">
+            <input class="form-control" id="exampleInputEmail1" ng-model="property.property_value" placeholder="Enter {{property.property_name.toLowerCase()}}">
         </div>
 
         <button id="addNewItemSubmitButton" type="submit" class="btn btn-primary">Submit</button>
