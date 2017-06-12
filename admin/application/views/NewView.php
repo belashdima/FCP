@@ -7,25 +7,7 @@ $wareTypes = DatabaseHandler::getAllWareTypes();
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 
-<div ng-app="new_item_angular_app" ng-controller="new_item_angular_controller">
-
-    <script>
-        angular.module("new_item_angular_app", [])
-            .controller("new_item_angular_controller", function($scope, $http) {
-                //$scope.properties = [{'property_id':'name1','property_name':'value1'}, {'property_id':'name2','property_name':'value2'}];
-
-                var url = "http://localhost/Footballcity_Project/admin/new/properties_json?ware_type_name=Shoes";
-
-                $http.get(url).then(function(response) {
-                    //alert(response);
-                    $scope.properties = response.data;
-                    //alert($scope.properties.length)
-                    //alert(response);*/
-                });
-
-                //$scope.properties =
-            });
-    </script>
+<div id="newItemDiv" ng-app="newItemAngularApp" ng-controller="newItemAngularController">
 
     <h4>Ware type</h4>
 
@@ -46,14 +28,17 @@ $wareTypes = DatabaseHandler::getAllWareTypes();
         </ul>
     </div>
 
-    <div id="propertiesContainer">
-        <?php /*echo require 'TextPropertyView.php'; */?>
+    <hr>
 
-        <div class="input-group" ng-repeat="property in properties">
-            <hr>
-            <h4>{{property.property_name}}</h4>
-            <input id="nameInput" type="text" class="form-control" ng-model="" aria-describedby="basic-addon1">
+    <form>
+        <div class="form-group" ng-repeat="property in properties">
+            <label for="exampleInputEmail1">{{property.property_name}}</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter {{property.property_name.toLowerCase()}}">
         </div>
-    </div>
+
+        <button id="addNewItemSubmitButton" type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <script src="http://localhost/Footballcity_Project/js/newItemAngularController.js"></script>
 
 </div>

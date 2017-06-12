@@ -146,11 +146,19 @@
                         <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Обувь</a>
                     </li>-->
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Обувь <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="expand">
-                        <!--<ul id="demo" class="collapse">-->
+                        <a href="javascript:;" data-toggle="collapse">
+                            <i class="fa fa-fw fa-arrows-v"></i>Wares<i class="fa fa-fw fa-caret-down"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo">
+                            <i class="fa fa-fw fa-arrows-v"></i>Обувь<i class="fa fa-fw fa-caret-down"></i>
+                        </a>
+                        <!--<ul id="demo" class="expand">-->
+                        <ul id="demo" class="collapse">
                             <li id="li_football_boots">
-                                <a id="football_boots" class="sub-menu-item active" href="http://localhost/Footballcity_Project/admin/boots">Футбольные бутсы</a>
+                                <!--<a id="football_boots" class="sub-menu-item active" href="http://localhost/Footballcity_Project/admin/boots">Футбольные бутсы</a>-->
+                                <a id="football_boots" class="sub-menu-item" href="http://localhost/Footballcity_Project/admin/boots">Футбольные бутсы</a>
                             </li>
                             <li>
                                 <a id="indoor_boots" class="sub-menu-item" href="http://localhost/Footballcity_Project/admin/indoor_boots">Обувь для зала</a>
@@ -196,5 +204,6 @@
     <!--My scripts-->
     <!--<script src="js/leftMenu.js"></script>-->
     <script src="http://localhost/Footballcity_Project/js/leftMenu.js"></script>
+    <script src="http://localhost/Footballcity_Project/js/addNewItem.js"></script>
 </body>
 </html>
