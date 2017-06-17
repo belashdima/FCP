@@ -1,18 +1,18 @@
 
-angular.module("newItemAngularApp", []).controller("newItemAngularController", function($scope, $http) {
+angular.module("modifyItemAngularApp", []).controller("modifyItemAngularController", function($scope, $http) {
     //$scope.properties = [{'property_id':'name1','property_name':'value1'}, {'property_id':'name2','property_name':'value2'}];
 
-    $scope.wareTypeName = "None";
+    //$scope.wareTypeName = "None";
 
-    $scope.getPropertiesForWareType = function getPropertiesForWareType() {
-        var url = "http://localhost/Footballcity_Project/admin/new/properties_json?ware_type_name=" + $scope.wareTypeName;
+    $scope.getPropertiesForWare = function getPropertiesForWare(wareId) {
+        var url = "http://localhost/Footballcity_Project/admin/wares/ware_json?ware_id=" + wareId;
 
         $http.get(url).then(function(response) {
-            $scope.properties = response.data;
+            $scope.ware = response.data;
         });
     };
 
-    $scope.alertValues = function () {
+    /*$scope.alertValues = function () {
         //alert($scope.properties.length);
         var url = "http://localhost/Footballcity_Project/admin/new/add_new?ware_type_name=" + $scope.wareTypeName + "&"
             + createGetParamsFromProperties();
@@ -21,19 +21,19 @@ angular.module("newItemAngularApp", []).controller("newItemAngularController", f
         //$http.get(url);
 
         //window.location.href="http://localhost/Footballcity_Project/admin/wares";
-    };
+    };*/
 
-    function createGetParamsFromProperties() {
+    /*function createGetParamsFromProperties() {
         var result = "";
         $scope.properties.forEach(function(item, i, arr) {
             result = result + item.property_name.toLowerCase() + "=" + item.property_value + "&";
         });
         result = result.slice(0, -1);// removes last '&' sign
         return result;
-    }
+    }*/
 
-    $scope.saveNewItem = function () {
-        var url = "http://localhost/Footballcity_Project/admin/new/add_new?ware_type_name=" + $scope.wareTypeName;
+    /*$scope.modifyItem = function () {
+        var url = "http://localhost/Footballcity_Project/admin/wares/modify?ware_type_name=" + $scope.wareTypeName;
         var properties = JSON.stringify($scope.properties);
         $http.post(url, properties).then(function () {
             // success
@@ -42,5 +42,5 @@ angular.module("newItemAngularApp", []).controller("newItemAngularController", f
             // error
             alert('Something went wrong');
         });
-    };
+    };*/
 });

@@ -2,9 +2,9 @@
 
 class WareType
 {
-    private $id;
-    private $name;
-    private $parentType;
+    public $id;
+    public $name;
+    public $parentType;
 
     /**
      * WareType constructor.

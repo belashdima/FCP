@@ -14,6 +14,9 @@ require_once "BootsPair.php";
 require_once "BootsModel.php";
 require_once "WareType.php";
 require_once "Property.php";
+require_once "Ware.php";
+require_once "Value.php";
+require_once "PropertyValue.php";
 
 /*DatabaseHandler::getConnection();
 print_r(DatabaseHandler::getBrands());
@@ -206,7 +209,7 @@ class DatabaseHandler
 
     public static function getPropertiesForWareType($wareTypeName)
     {
-        $wareTypesIds = self::getAllWareTypesForWareType($wareTypeName);
+        $wareTypesIds = self::getAllWareTypesForWareTypeByName($wareTypeName);
 
         if (!empty($wareTypesIds)) {
             self::getPropertiesForWareTypes($wareTypesIds);
@@ -215,10 +218,9 @@ class DatabaseHandler
         }
     }
 
-    public static function getAllWareTypesForWareType($wareTypeName)
+    public static function getAllWareTypesForWareTypeById($wareTypeId)
     {
         $parentsIds = array();
-        $wareTypeId = self::getWareTypeForWareTypeByName($wareTypeName);
         while ($wareTypeId != null) {
             array_push($parentsIds, $wareTypeId);
             $wareTypeId = self::getParentTypeForWareTypeById($wareTypeId);
@@ -227,7 +229,19 @@ class DatabaseHandler
         return $parentsIds;
     }
 
-    public static function getWareTypeForWareTypeByName($wareTypeName)
+    public static function getAllWareTypesForWareTypeByName($wareTypeName)
+    {
+        $parentsIds = array();
+        $wareTypeId = self::getWareTypeIdForWareTypeByName($wareTypeName);
+        while ($wareTypeId != null) {
+            array_push($parentsIds, $wareTypeId);
+            $wareTypeId = self::getParentTypeForWareTypeById($wareTypeId);
+        }
+
+        return $parentsIds;
+    }
+
+    public static function getWareTypeIdForWareTypeByName($wareTypeName)
     {
         $databaseConnection = self::getConnection();
         $result = $databaseConnection->query("SELECT * FROM ware_types WHERE ware_type_name='$wareTypeName'");
@@ -287,7 +301,7 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
 
     public static function getJSONPropertiesForWareTypes($wareTypeName)
     {
-        $wareTypesIds = self::getAllWareTypesForWareType($wareTypeName);
+        $wareTypesIds = self::getAllWareTypesForWareTypeByName($wareTypeName);
 
         $inClause= implode(",", $wareTypesIds);
 
@@ -301,5 +315,157 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         }
 
         return json_encode($propertiesList);
+    }
+
+    public static function saveJSONPropertiesForWareType($wareTypeName, $properties)
+    {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM ware_types WHERE ware_types.ware_type_name='".$wareTypeName."';");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        while ($row = $result->fetch()) {
+            $wareTypeId = $row["ware_type_id"];
+        }
+
+        // insert into wares
+        $databaseConnection->query("INSERT INTO wares (type) VALUES ('".$wareTypeId."');");
+
+        // get wareId
+        $result = $databaseConnection->query("SELECT LAST_INSERT_ID();");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        while ($row = $result->fetch()) {
+            $wareId = $row["LAST_INSERT_ID()"];
+        }
+
+        echo $wareId;
+
+        foreach ($properties as $property) {
+            self::savePropertyWithValue($property, $wareId);
+        }
+    }
+
+    private static function savePropertyWithValue($property, $wareId)
+    {
+        //echo '='.$property->property_value;
+        $databaseConnection = self::getConnection();
+        //$databaseConnection->query("UPDATE values_table SET values_table.value_v='".$property->property_value."';");
+        $databaseConnection->query("INSERT INTO values_table (value_v) VALUES ('".$property->property_value."');");
+        $databaseConnection->query("INSERT INTO ware_property_value (ware, property, value_v) VALUES ('".$wareId."','".$property->property_id."', (SELECT LAST_INSERT_ID()));");
+    }
+
+    public static function getAllForWare($wareId)
+    {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM wares WHERE wares.ware_id='".$wareId."';");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        while ($row = $result->fetch()) {
+            $wareTypeId = $row["type"];
+        }
+        $wareTypes = self::getAllWareTypesForWareTypeById($wareTypeId);
+        //print_r( $wareTypes);
+
+        $properties = self::getPropertyToValueForWare($wareId);
+
+        $ware = new Ware($wareId, $wareTypes, $properties);
+
+        return $ware;
+    }
+
+    private static function getPropertyToValueForWare($wareId)
+    {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM ware_property_value WHERE ware_property_value.ware='".$wareId."';");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        $properties = array();
+        while ($row = $result->fetch()) {
+            $propertyId = $row["property"];
+            $property = self::getPropertyById($propertyId);
+            $valueId = $row["value_v"];
+            $value = self::getValueById($valueId);
+
+            $properties[] = new PropertyValue($property, $value);
+        }
+
+        return $properties;
+    }
+
+    private static function getPropertyById($propertyId)
+    {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM properties WHERE properties.property_id='".$propertyId."';");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        while ($row = $result->fetch()) {
+            $propertyName = $row["property_name"];
+            return new Property($propertyId, $propertyName);
+        }
+    }
+
+    private static function getValueById($valueId)
+    {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM values_table WHERE values_table.value_id='".$valueId."';");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        while ($row = $result->fetch()) {
+            $value = $row["value_v"];
+            return new Value($valueId, $value);
+        }
+    }
+
+    public static function getWares() {
+        // wareId, wareTypeId, wareTypeName, array({property_id, property_name, valueId, value_v});
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM wares");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        while ($row = $result->fetch()) {
+            $waresIds[] = $row["ware_id"];
+        }
+
+        $wares = array();
+        if (count($waresIds)>0) {
+            foreach ($waresIds as $wareId) {
+                $wares[] = DatabaseHandler::getAllForWare($wareId);
+            }
+        } else {
+            return null;
+        }
+
+        return $wares;
+    }
+
+    public static function getWaresOfType($wareTypeId)
+    {
+        // MUST CONSIDER ALL THE SUCCESSORS!!!
+        //$wareTypesIds = self::getSuccessorWareTypes($wareTypeId);
+
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM wares WHERE wares.type='".$wareTypeId."';");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        while ($row = $result->fetch()) {
+            $waresIds[] = $row["ware_id"];
+        }
+
+        $wares = array();
+        if (count($waresIds)>0) {
+            foreach ($waresIds as $wareId) {
+                $wares[] = DatabaseHandler::getAllForWare($wareId);
+            }
+        } else {
+            return null;
+        }
+
+
+        return $wares;
+    }
+
+    private static function getSuccessorWareTypes($wareTypeId)
+    {
+        //
     }
 }

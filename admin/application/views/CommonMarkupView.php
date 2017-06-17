@@ -24,6 +24,16 @@
     <!-- Custom Fonts -->
     <!--<link rel="stylesheet" type="text/css" href="http://localhost/Footballcity_Project/font-awesome/css/font-awesome.min.css">-->
 
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!--My scripts-->
+    <!--<script src="js/leftMenu.js"></script>-->
+    <script src="http://localhost/Footballcity_Project/js/leftMenu.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -146,7 +156,7 @@
                         <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Обувь</a>
                     </li>-->
                     <li>
-                        <a href="http://localhost/Footballcity_Project/admin/wares">
+                        <a href="http://localhost/Footballcity_Project/admin/wares"">
                             <i class="fa fa-fw fa-arrows-v"></i>Wares<i class="fa fa-fw fa-caret-down"></i>
                         </a>
                     </li>
@@ -172,10 +182,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo2"><i class="fa fa-fw fa-arrows-v"></i> Мячи <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo2" class="collapse">
                             <li>
-                                <a class="sub-menu-item" href="#">Мячи для футбола</a>
+                                <a id="football_balls" class="sub-menu-item" href="http://localhost/Footballcity_Project/admin/wares/football_balls">Мячи для футбола</a>
                             </li>
                             <li>
-                                <a class="sub-menu-item" href="#">Мячи для зала</a>
+                                <a class="sub-menu-item" href="http://localhost/Footballcity_Project/admin/wares/indoor_balls">Мячи для зала</a>
                             </li>
                         </ul>
                     </li>
@@ -194,16 +204,5 @@
 
     </div>
     <!-- /#wrapper -->
-
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-    <!--My scripts-->
-    <!--<script src="js/leftMenu.js"></script>-->
-    <script src="http://localhost/Footballcity_Project/js/leftMenu.js"></script>
-    <script src="http://localhost/Footballcity_Project/js/addNewItem.js"></script>
 </body>
 </html>

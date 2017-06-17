@@ -27,11 +27,12 @@ class NewController extends Controller
     }
 
     public function add_newAction() {
-        echo $_GET;
-        echo $wareTypeName = $_GET['brand'];
-        //echo $wareTypeName = $_GET['brand'];
+        //echo $_GET;
+        $wareTypeName = $_GET['ware_type_name'];
+        $json = file_get_contents('php://input');
+        $properties = json_decode($json);
 
-        //echo DatabaseHandler::getJSONPropertiesForWareTypes($wareTypeName);
+        DatabaseHandler::saveJSONPropertiesForWareType($wareTypeName, $properties);
 
         //$this->view->generate('PropertiesView.php', 'CommonMarkupView.php');;
     }

@@ -1,12 +1,13 @@
-$('.wareTypeNames').click(function() {
-    angular.element($('#newItemDiv')).scope().wareTypeName = $(this).text().trim();
+$(document).ready(function () {
+    $('.wareTypeNames').click(function() {
+        angular.element($('#newItemDiv')).scope().wareTypeName = $(this).text().trim();
 
-    angular.element($('#newItemDiv')).scope().getPropertiesForWareType();
+        angular.element($('#newItemDiv')).scope().getPropertiesForWareType();
+    });
+
+    $('#addNewItemSubmitButton').click(function () {
+        //angular.element($('#newItemDiv')).scope().alertValues();
+        angular.element($('#newItemDiv')).scope().saveNewItem();
+    });
 });
 
-$('#addNewItemSubmitButton').click(function () {
-
-    //var wareTypeName = $('#bbb').text().trim();
-    //alert(wareTypeName);
-    angular.element($('#newItemDiv')).scope().alertValues();
-});

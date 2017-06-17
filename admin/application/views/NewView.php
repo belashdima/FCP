@@ -6,6 +6,8 @@ $wareTypes = DatabaseHandler::getAllWareTypes();
 ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="http://localhost/Footballcity_Project/js/newItemAngularController.js"></script>
+<script src="http://localhost/Footballcity_Project/js/addNewItem.js"></script>
 
 <div id="newItemDiv" ng-app="newItemAngularApp" ng-controller="newItemAngularController">
 
@@ -38,7 +40,4 @@ $wareTypes = DatabaseHandler::getAllWareTypes();
 
         <button id="addNewItemSubmitButton" type="submit" class="btn btn-primary">Submit</button>
     </form>
-
-    <script src="http://localhost/Footballcity_Project/js/newItemAngularController.js"></script>
-
 </div>

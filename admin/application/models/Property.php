@@ -2,8 +2,8 @@
 
 class Property
 {
-    private $propertyId;
-    private $propertyName;
+    public $propertyId;
+    public $propertyName;
 
     /**
      * Property constructor.
