@@ -6,7 +6,8 @@ require_once '../admin/application/models/DatabaseHandler.php';
 class WaresController extends Controller
 {
     public function indexAction() {
-        $wares = DatabaseHandler::getWares();
+        //$wares = DatabaseHandler::getWares();
+        $wares = DatabaseHandler::getWaresOfType(1);
         $this->view->generate('WaresView.php', 'CommonMarkupView.php', $wares);
     }
 

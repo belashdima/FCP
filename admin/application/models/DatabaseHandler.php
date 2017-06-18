@@ -441,10 +441,13 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
     public static function getWaresOfType($wareTypeId)
     {
         // MUST CONSIDER ALL THE SUCCESSORS!!!
-        //$wareTypesIds = self::getSuccessorWareTypes($wareTypeId);
+        $wareTypesIds = self::getSuccessorWareTypesIds($wareTypeId);
+        array_push($wareTypesIds, $wareTypeId);
+
+        $inClause= implode(",", $wareTypesIds);
 
         $databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("SELECT * FROM wares WHERE wares.type='".$wareTypeId."';");
+        $result = $databaseConnection->query("SELECT * FROM wares WHERE wares.type IN (".$inClause.");");
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
         while ($row = $result->fetch()) {
@@ -464,8 +467,30 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         return $wares;
     }
 
-    private static function getSuccessorWareTypes($wareTypeId)
+    public static function getSuccessorWareTypesIds($wareTypeId)
     {
-        //
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM ware_types WHERE ware_types.parent_type='".$wareTypeId."';");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        $waresTypesIds = array();
+        while ($row = $result->fetch()) {
+            $wareTypeId = $row["ware_type_id"];
+            array_push($waresTypesIds, $wareTypeId);
+        }
+
+        foreach ($waresTypesIds as $wareType) {
+            //echo 'wareType: '.$wareType."\r\n";
+            $childs = self::getSuccessorWareTypesIds($wareType);
+            /*echo 'childs for it: ';
+            echo print_r($childs);
+            echo "\r\n";*/
+            $waresTypesIds = array_merge($waresTypesIds, $childs);
+            /*echo 'Result array : ';
+            echo print_r($waresTypesIds);
+            echo "\r\n";*/
+        }
+
+        return $waresTypesIds;
     }
 }
