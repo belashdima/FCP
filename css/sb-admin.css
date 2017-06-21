@@ -281,3 +281,8 @@ div.myInline { float:left; }
     display: none;
 }
 
+.wareName {
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}

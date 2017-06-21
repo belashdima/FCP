@@ -30,8 +30,8 @@ class NewController extends Controller
         $json = file_get_contents('php://input');
         $properties = json_decode($json);
 
-        echo print_r($properties);
+        //echo print_r($properties);
 
-        //DatabaseHandler::saveJSONPropertiesForWareType($wareTypeName, $properties);
+        DatabaseHandler::saveJSONPropertiesForWareType($wareTypeName, $properties);
     }
 }

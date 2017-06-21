@@ -328,7 +328,7 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         }
 
         // insert into wares
-        $databaseConnection->query("INSERT INTO wares (type) VALUES ('".$wareTypeId."');");
+        $databaseConnection->query("INSERT INTO wares (ware_type) VALUES ('".$wareTypeId."');");
 
         // get wareId
         $result = $databaseConnection->query("SELECT LAST_INSERT_ID();");
