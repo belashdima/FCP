@@ -20,7 +20,7 @@ $wares = $data;?>
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                         <div class="card h-100">
                             <a href="http://localhost/Footballcity_Project/admin/wares/ware?id=<?php echo $ware->getWareId(); ?>">
-                                <img class="card-img-top img-fluid imageItem" src="http://localhost/Footballcity_Project/images/adidas_x.jpg" alt="">
+                                <img class="card-img-top img-fluid imageItem" src="<?php echo $ware->getMainImage(); ?>" alt="">
                             </a>
                             <div class="card-block">
                                 <h4 class="card-title">

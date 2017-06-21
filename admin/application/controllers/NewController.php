@@ -22,8 +22,6 @@ class NewController extends Controller
         $wareTypeName = $_GET['ware_type_name'];
 
         echo DatabaseHandler::getJSONPropertiesForWareTypes($wareTypeName);
-
-        //$this->view->generate('PropertiesView.php', 'CommonMarkupView.php');;
     }
 
     public function add_newAction() {
@@ -32,8 +30,8 @@ class NewController extends Controller
         $json = file_get_contents('php://input');
         $properties = json_decode($json);
 
-        DatabaseHandler::saveJSONPropertiesForWareType($wareTypeName, $properties);
+        echo print_r($properties);
 
-        //$this->view->generate('PropertiesView.php', 'CommonMarkupView.php');;
+        //DatabaseHandler::saveJSONPropertiesForWareType($wareTypeName, $properties);
     }
 }

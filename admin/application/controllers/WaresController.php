@@ -51,4 +51,15 @@ class WaresController extends Controller
 
         //$this->view->generate('PropertiesView.php', 'CommonMarkupView.php');;
     }
+
+    public function modifyAction() {
+        $json = file_get_contents('php://input');
+        $ware = json_decode($json);
+
+        //echo DatabaseHandler::getJSONPropertiesForWare($wareId);
+        print_r($ware);
+        DatabaseHandler::setPropertiesForWare($ware);
+
+        //$this->view->generate('PropertiesView.php', 'CommonMarkupView.php');;
+    }
 }

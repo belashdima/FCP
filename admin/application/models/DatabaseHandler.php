@@ -361,7 +361,7 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
         while ($row = $result->fetch()) {
-            $wareTypeId = $row["type"];
+            $wareTypeId = $row["ware_type"];
         }
         $wareTypes = self::getAllWareTypesForWareTypeById($wareTypeId);
         //print_r( $wareTypes);
@@ -447,7 +447,7 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         $inClause= implode(",", $wareTypesIds);
 
         $databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("SELECT * FROM wares WHERE wares.type IN (".$inClause.");");
+        $result = $databaseConnection->query("SELECT * FROM wares WHERE wares.ware_type IN (".$inClause.");");
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
         while ($row = $result->fetch()) {
@@ -492,5 +492,42 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         }
 
         return $waresTypesIds;
+    }
+
+    public static function setPropertiesForWare($ware)
+    {
+        foreach ($ware->properties as $prop) {
+            self::setPropertyValueForWare($ware->wareId,
+                new Property($prop->property->propertyId, $prop->property->propertyName),
+                new Value($prop->value->valueId, $prop->value->value));
+        }
+    }
+
+    public static function getValueIdByValue($value_v) {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM values_table WHERE values_table.value_v='".$value_v."';");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        while ($row = $result->fetch()) {
+            $valueId = $row["value_id"];
+        }
+
+        return $valueId;
+    }
+
+    private static function setPropertyValueForWare($wareId, $property, $value)
+    {
+        $databaseConnection = self::getConnection();
+
+        //print_r($value);
+        $valueId = self::getValueIdByValue($value->getValue());
+        if ($valueId == null) {
+            $databaseConnection->query("INSERT INTO values_table (value_v) VALUES ('".$value->getValue()."');");
+            $valueId = self::getValueIdByValue($value->getValue());
+        }
+
+        $databaseConnection->query("UPDATE ware_property_value SET ware_property_value.value_v=".$valueId." WHERE ware_property_value.ware=".$wareId." AND ware_property_value.property=".$property->getPropertyId().";");
+
+        return true;
     }
 }

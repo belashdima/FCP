@@ -97,4 +97,12 @@ class Ware
 
         return null;
     }
+
+    public function getMainImage() {
+        if (strpos($this->getPropertyValueByName('Image'), 'http') !== false) {
+            return $this->getPropertyValueByName('Image');
+        } else {
+            return 'http://localhost/Footballcity_Project/images/adidas_x.jpg';
+        }
+    }
 }

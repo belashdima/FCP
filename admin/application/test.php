@@ -5,6 +5,6 @@ if (is_numeric('-+2'))
 else echo 'nein';*/
 require_once '../application/models/DatabaseHandler.php';
 
-$wareTypes = DatabaseHandler::getSuccessorWareTypesIds(12);
+$wares = DatabaseHandler::getWaresOfType(1);
 
-print_r($wareTypes);
+print_r(count($wares));

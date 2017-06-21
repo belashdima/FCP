@@ -69,7 +69,7 @@ $(document).ready(function() {
 
 
     $('#football_balls').click(function() {
-        window.location.href="http://localhost/Footballcity_Project/admin/wares/wares_json?ware_type_id=7";
+        //window.location.href="http://localhost/Footballcity_Project/admin/wares/wares_json?ware_type_id=7";
     });
 
 });
