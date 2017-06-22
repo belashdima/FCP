@@ -179,13 +179,109 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo2"><i class="fa fa-fw fa-arrows-v"></i> Мячи <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo2">
+                            <i class="fa fa-fw fa-arrows-v"></i> Мячи <i class="fa fa-fw fa-caret-down"></i>
+                        </a>
                         <ul id="demo2" class="collapse">
                             <li>
                                 <a id="football_balls" class="sub-menu-item" href="http://localhost/Footballcity_Project/admin/wares/football_balls">Мячи для футбола</a>
                             </li>
                             <li>
                                 <a class="sub-menu-item" href="http://localhost/Footballcity_Project/admin/wares/indoor_balls">Мячи для зала</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo3">
+                            <i class="fa fa-fw fa-arrows-v"></i> Форма <i class="fa fa-fw fa-caret-down"></i>
+                        </a>
+                        <ul id="demo3" class="collapse">
+                            <li>
+                                <a class="sub-menu-item" href="#">Майки</a>
+                            </li>
+                            <li>
+                                <a class="sub-menu-item" href="#">Шорты</a>
+                            </li>
+                            <li>
+                                <a class="sub-menu-item" href="#">Гетры</a>
+                            </li>
+                            <li>
+                                <a class="sub-menu-item" href="#">Комплекты</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo4">
+                            <i class="fa fa-fw fa-arrows-v"></i> Тренировочная одежда <i class="fa fa-fw fa-caret-down"></i>
+                        </a>
+                        <ul id="demo4" class="collapse">
+                            <li>
+                                <a class="sub-menu-item" href="#">Майки</a>
+                            </li>
+                            <li>
+                                <a class="sub-menu-item" href="#">Шорты</a>
+                            </li>
+                            <li>
+                                <a class="sub-menu-item" href="#">Термобелье</a>
+                            </li>
+                            <li>
+                                <a class="sub-menu-item" href="#">Куртки и ветровки</a>
+                            </li>
+                            <li>
+                                <a class="sub-menu-item" href="#">Носки</a>
+                            </li>
+                            <li>
+                                <a class="sub-menu-item" href="#">Шарфы и шапки</a>
+                            </li>
+                            <li>
+                                <a class="sub-menu-item" href="#">Перчатки</a>
+                            </li>
+                            <li>
+                                <a class="sub-menu-item" href="#">Спортивные костюмы</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="fa fa-fw fa-arrows-v"></i> Сумки и рюкзаки <i class="fa fa-fw fa-caret-down"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo5">
+                            <i class="fa fa-fw fa-arrows-v"></i> Вратарская экипировка <i class="fa fa-fw fa-caret-down"></i>
+                        </a>
+                        <ul id="demo5" class="collapse">
+                            <li>
+                                <a class="sub-menu-item" href="#">Перчатки</a>
+                            </li>
+                            <li>
+                                <a class="sub-menu-item" href="#">Свитера</a>
+                            </li>
+                            <li>
+                                <a class="sub-menu-item" href="#">Майки</a>
+                            </li>
+                            <li>
+                                <a class="sub-menu-item" href="#">Брюки и шорты</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo6">
+                            <i class="fa fa-fw fa-arrows-v"></i> Защита <i class="fa fa-fw fa-caret-down"></i>
+                        </a>
+                        <ul id="demo6" class="collapse">
+                            <li>
+                                <a class="sub-menu-item" href="#">Щитки</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo7">
+                            <i class="fa fa-fw fa-arrows-v"></i> Прочее <i class="fa fa-fw fa-caret-down"></i>
+                        </a>
+                        <ul id="demo7" class="collapse">
+                            <li>
+                                <a class="sub-menu-item" href="#">Насосы</a>
                             </li>
                         </ul>
                     </li>
