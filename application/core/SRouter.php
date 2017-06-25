@@ -18,6 +18,12 @@ class SRouter
             return;
         }
 
+        if (strcmp($_SERVER['REQUEST_URI'], '/Footballcity_Project/football_boots') == 0) {
+            include 'application/controllers/SWaresController.php';
+            (new SWaresController())->football_bootsAction();
+            return;
+        }
+
         /*
         // get controller name
         if ( !empty($routes[2]) )

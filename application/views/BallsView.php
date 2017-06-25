@@ -2,10 +2,6 @@
 <div class="row">
     <div class="col-md-3">
 
-        <?php $filters = DatabaseHandler::getFiltersForWareType('Football ball');
-
-        //print_r($properties); ?>
-
         <?php
             foreach ($filters as $filter) {
                 if (!strcmp($filter->getProperty()->getPropertyName(), 'Image') == 0 && !strcmp($filter->getProperty()->getPropertyName(), 'Description') == 0) {?>

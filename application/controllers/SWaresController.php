@@ -10,6 +10,17 @@ class SWaresController extends SController
         //echo 'fvadkslr';
         //$wares = DatabaseHandler::getWares();
         $balls = DatabaseHandler::getWaresOfType(7);
-        $this->view->generate('BallsView.php', 'SCommonMarkupView.php', $balls);
+        $filters = DatabaseHandler::getFiltersForWareType('Football ball');
+
+        $this->view->generate('BallsView.php', 'SCommonMarkupView.php', $balls, $filters);
+    }
+
+    public function football_bootsAction() {
+        //echo 'fvadkslr';
+        //$wares = DatabaseHandler::getWares();
+        $footballBoots = DatabaseHandler::getWaresOfType(4);
+        $filters = DatabaseHandler::getFiltersForWareType('Football boots');
+
+        $this->view->generate('BallsView.php', 'SCommonMarkupView.php', $footballBoots, $filters);
     }
 }

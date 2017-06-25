@@ -43,7 +43,7 @@
         <div class="collapse navbar-collapse" id="navbarExample">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="http://localhost/Footballcity_Project/">Обувь</span></a>
+                    <a class="nav-link" href="http://localhost/Footballcity_Project/football_boots">Обувь</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="http://localhost/Footballcity_Project/balls">Мячи</a>
