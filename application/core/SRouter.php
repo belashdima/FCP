@@ -12,7 +12,7 @@ class SRouter
 
         //print_r($routes);
 
-        if (strcmp($_SERVER['REQUEST_URI'], '/Footballcity_Project/balls') == 0) {
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/balls') !== false) {
             include 'application/controllers/SWaresController.php';
             (new SWaresController())->ballsAction();
             return;
@@ -21,6 +21,12 @@ class SRouter
         if (strcmp($_SERVER['REQUEST_URI'], '/Footballcity_Project/football_boots') == 0) {
             include 'application/controllers/SWaresController.php';
             (new SWaresController())->football_bootsAction();
+            return;
+        }
+
+        if (strcmp($_SERVER['REQUEST_URI'], '/Footballcity_Project/location') == 0) {
+            include 'application/controllers/SLocationController.php';
+            (new SLocationController())->indexAction();
             return;
         }
 

@@ -11,3 +11,14 @@
     background-color: #5cb85c;
     border-color: #5cb85c;
 }
+
+.filterItem {
+    margin-bottom: .5rem;
+}
+
+.black {
+    background-color: #242627;
+    color: white;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+}

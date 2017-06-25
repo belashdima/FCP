@@ -2,19 +2,22 @@
 <div class="row">
     <div class="col-md-3">
 
+
+
         <?php
             foreach ($filters as $filter) {
                 if (!strcmp($filter->getProperty()->getPropertyName(), 'Image') == 0 && !strcmp($filter->getProperty()->getPropertyName(), 'Description') == 0) {?>
-                <h4><?php echo $filter->getProperty()->getPropertyName(); ?></h4>
-                <ul class="list-group">
+                <h4><?php //echo $filter->getProperty()->getPropertyName(); ?></h4>
+                <div class="list-group-item black dropdown"><?php echo $filter->getProperty()->getPropertyName(); ?></div>
 
+                <ul class="list-group filterItem">
                 <?php
                 foreach ($filter->getPossibleValues() as $possibleValue) { ?>
                     <li class="list-group-item"><?php echo $possibleValue; ?></li>
                 <?php }
                 ?>
-
                 </ul>
+
             <?php }
             }
         ?>
