@@ -1,0 +1,13 @@
+#footer {
+    position: relative;
+    bottom: 0px;
+}
+
+#content {
+    margin-top: 80px;
+}
+
+.list-group-item.active {
+    background-color: #5cb85c;
+    border-color: #5cb85c;
+}

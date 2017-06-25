@@ -5,6 +5,7 @@ if (is_numeric('-+2'))
 else echo 'nein';*/
 require_once '../application/models/DatabaseHandler.php';
 
-$wares = DatabaseHandler::getWaresOfType(1);
+//$wares = DatabaseHandler::getPossibleValuesForPropertyById(2);
+$wares = DatabaseHandler::getFiltersForWareType('Football ball');
 
-print_r(count($wares));
+print_r($wares);

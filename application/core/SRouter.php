@@ -10,12 +10,23 @@ class SRouter
 
         $routes = explode('/', $_SERVER['REQUEST_URI']);
 
-        print_r($routes);
+        //print_r($routes);
 
+        if (strcmp($_SERVER['REQUEST_URI'], '/Footballcity_Project/balls') == 0) {
+            include 'application/controllers/SWaresController.php';
+            (new SWaresController())->ballsAction();
+            return;
+        }
+
+        /*
         // get controller name
         if ( !empty($routes[2]) )
         {
             $controllerName = $routes[2];
+
+            //if ($routes[2] == 'balls') {
+            //    $controllerName = 'Wares';
+            //}
         }
 
         // get action name
@@ -24,19 +35,15 @@ class SRouter
             $actionName = $routes[3];
         }
 
+        //if ($actionName == 'index' && $routes[2] == 'balls') {
+        //    $actionName = 'balls';
+        //}
+
         // add prefixes
         $controllerName = ucfirst($controllerName).'Controller';
         $actionName = explode('.', $actionName)[0];// used to separate from get params
         $actionName = ucfirst($actionName).'Action';
 
-        // pick up model file (can not exist)
-
-        /*$modelFileName = $modelName.'.php';
-        $modelPath = ROOT.'/application/models/'.$modelFileName;
-        if(file_exists($modelPath))
-        {
-            ROOT.'/application/models/'.$modelFileName;
-        }*/
 
         // pick up controller file
         $controllerFileName = 'S'.$controllerName.'.php';
@@ -47,6 +54,7 @@ class SRouter
         }
         else
         {
+            echo $controllerPath;
             echo "no file";
             //правильно было бы кинуть здесь исключение,
             //но для упрощения сразу сделаем редирект на страницу 404
@@ -73,7 +81,7 @@ class SRouter
                 // здесь также разумнее было бы кинуть исключение
                 SRouter::ErrorPage404();
             }
-        }
+        }*/
     }
 
     function ErrorPage404()

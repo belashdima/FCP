@@ -21,6 +21,8 @@
 
     <!-- Custom CSS -->
 
+    <link rel="stylesheet" href="http://localhost/Footballcity_Project/css/site.css">
+
 </head>
 
 <body>
@@ -41,10 +43,10 @@
         <div class="collapse navbar-collapse" id="navbarExample">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="http://localhost/Footballcity_Project">Обувь</span></a>
+                    <a class="nav-link" href="http://localhost/Footballcity_Project/">Обувь</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Мячи</a>
+                    <a class="nav-link" href="http://localhost/Footballcity_Project/balls">Мячи</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Форма</a>
@@ -68,7 +70,7 @@
 </nav>
 
     <!-- Page Content -->
-    <div class="container" style="margin-top: 50px">
+    <div id="content" class="container">
         <?php include 'application/views/'.$contentView; ?>
     </div>
     <!-- /.container -->

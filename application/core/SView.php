@@ -13,7 +13,7 @@ class SView
         }
         */
 
-        echo $templateView;
+        //echo $templateView;
         include 'application/views/'.$templateView;
     }
 }

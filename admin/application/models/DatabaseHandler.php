@@ -17,6 +17,7 @@ require_once "Property.php";
 require_once "Ware.php";
 require_once "Value.php";
 require_once "PropertyValue.php";
+require_once "Filter.php";
 
 /*DatabaseHandler::getConnection();
 print_r(DatabaseHandler::getBrands());
@@ -212,7 +213,7 @@ class DatabaseHandler
         $wareTypesIds = self::getAllWareTypesForWareTypeByName($wareTypeName);
 
         if (!empty($wareTypesIds)) {
-            self::getPropertiesForWareTypes($wareTypesIds);
+            return self::getPropertiesForWareTypes($wareTypesIds);
         } else {
             throw new Exception('EMPTY WARE TYPES ARRAY!!!');
         }
@@ -277,10 +278,12 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
         while ($row = $result->fetch()) {
-            $propertiesList[] = $row["property_id"];
+            $propertyId = $row["property_id"];
+            $propertyName = $row["property_name"];
+            $properties[] = new Property($propertyId, $propertyName);
         }
 
-        return $propertiesList;
+        return $properties;
     }
 
     public static function getPropertiesNamesForWareTypes($wareTypesIds)
@@ -529,5 +532,43 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         $databaseConnection->query("UPDATE ware_property_value SET ware_property_value.value_v=".$valueId." WHERE ware_property_value.ware=".$wareId." AND ware_property_value.property=".$property->getPropertyId().";");
 
         return true;
+    }
+
+    public static function getFiltersForWareType($wareTypeName) {
+        $filters = array();
+
+        $wareTypesIds = self::getAllWareTypesForWareTypeByName($wareTypeName);
+
+        if (!empty($wareTypesIds)) {
+            $properties = self::getPropertiesForWareTypes($wareTypesIds);
+
+            foreach ($properties as $property) {
+                $possibleValuesOfProperty = self::getPossibleValuesForProperty($property);
+                $filter = new Filter($property, $possibleValuesOfProperty);
+                $filters[] = $filter;
+            }
+
+            return $filters;
+        } else {
+            throw new Exception('EMPTY WARE TYPES ARRAY!!!');
+        }
+    }
+
+    public static function getPossibleValuesForProperty($property)
+    {
+        $values = array();
+
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT DISTINCT values_table.value_v FROM ware_property_value JOIN values_table ON ware_property_value.value_v=values_table.value_id WHERE ware_property_value.property='".$property->getPropertyId()."';");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        while ($row = $result->fetch()) {
+            //$valueId = $row["value_id"];
+            $value = $row["value_v"];
+            //$values[] = new Value($valueId, $value);
+            $values[] = $value;
+        }
+
+        return $values;
     }
 }
