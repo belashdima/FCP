@@ -23,6 +23,13 @@
 
     <link rel="stylesheet" href="http://localhost/Footballcity_Project/css/site.css">
 
+
+
+
+    <!-- jQuery Version 3.1.1 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--<script src="js/jquery.js"></script>-->
+
 </head>
 
 <body>
@@ -81,10 +88,6 @@
         <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
     </div>
 </footer>
-
-<!-- jQuery Version 3.1.1 -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!--<script src="js/jquery.js"></script>-->
 
 <!-- Tether -->
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>-->
