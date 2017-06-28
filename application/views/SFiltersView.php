@@ -1,10 +1,11 @@
 <?php
+$filterNumber = 0;
 foreach ($filters as $filter) {
     if (!strcmp($filter->getProperty()->getPropertyName(), 'Image') == 0 && !strcmp($filter->getProperty()->getPropertyName(), 'Description') == 0) {?>
         <h4><?php //echo $filter->getProperty()->getPropertyName(); ?></h4>
-        <div class="list-group-item black dropdown"><?php echo $filter->getProperty()->getPropertyName(); ?></div>
+        <div class="list-group-item black" data-toggle="collapse" data-target="#<?php echo $filterNumber; ?>"><?php echo $filter->getProperty()->getPropertyName(); ?></div>
 
-        <ul class="list-group filterItem">
+        <ul id="<?php echo $filterNumber; ?>" class="filterItem collapse">
             <?php
             foreach ($filter->getPossibleValues() as $possibleValue) { ?>
                 <li class="list-group-item"><?php echo $possibleValue; ?></li>
@@ -13,6 +14,7 @@ foreach ($filters as $filter) {
         </ul>
 
     <?php }
+    $filterNumber++;
 }
 ?>
 
