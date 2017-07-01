@@ -4,16 +4,19 @@ class Property
 {
     public $propertyId;
     public $propertyName;
+    public $urlPresentation;
 
     /**
      * Property constructor.
      * @param $propertyId
      * @param $propertyName
+     * @param $urlPresentation
      */
-    public function __construct($propertyId, $propertyName)
+    public function __construct($propertyId, $propertyName, $urlPresentation)
     {
         $this->propertyId = $propertyId;
         $this->propertyName = $propertyName;
+        $this->urlPresentation = $urlPresentation;
     }
 
 
@@ -47,6 +50,22 @@ class Property
     public function setPropertyName($propertyName)
     {
         $this->propertyName = $propertyName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUrlPresentation()
+    {
+        return $this->urlPresentation;
+    }
+
+    /**
+     * @param mixed $urlPresentation
+     */
+    public function setUrlPresentation($urlPresentation)
+    {
+        $this->urlPresentation = $urlPresentation;
     }
 
 

@@ -280,7 +280,8 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         while ($row = $result->fetch()) {
             $propertyId = $row["property_id"];
             $propertyName = $row["property_name"];
-            $properties[] = new Property($propertyId, $propertyName);
+            $urlPresentation = $row["url_presentation"];
+            $properties[] = new Property($propertyId, $propertyName, $urlPresentation);
         }
 
         return $properties;
@@ -403,7 +404,8 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
 
         while ($row = $result->fetch()) {
             $propertyName = $row["property_name"];
-            return new Property($propertyId, $propertyName);
+            $urlPresentation = $row["url_presentation"];
+            return new Property($propertyId, $propertyName, $urlPresentation);
         }
     }
 
@@ -501,7 +503,7 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
     {
         foreach ($ware->properties as $prop) {
             self::setPropertyValueForWare($ware->wareId,
-                new Property($prop->property->propertyId, $prop->property->propertyName),
+                new Property($prop->property->propertyId, $prop->property->propertyName, $prop->property->urlPresentation),
                 new Value($prop->value->valueId, $prop->value->value));
         }
     }
@@ -534,10 +536,10 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         return true;
     }
 
-    public static function getFiltersForWareType($wareTypeName) {
+    public static function getFiltersForWareType($wareTypeId) {
         $filters = array();
 
-        $wareTypesIds = self::getAllWareTypesForWareTypeByName($wareTypeName);
+        $wareTypesIds = self::getAllWareTypesForWareTypeById($wareTypeId);
 
         if (!empty($wareTypesIds)) {
             $properties = self::getPropertiesForWareTypes($wareTypesIds);

@@ -1,36 +1,46 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/css/bootstrap-slider.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/bootstrap-slider.min.js"></script>
 
-<?php
+<!--Angular-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="http://localhost/Footballcity_Project/js/filtersAngularController.js"></script>
 
-$filterNumber = 0;
-foreach ($filters as $filter) {
-    if (!strcmp($filter->getProperty()->getPropertyName(), 'Image') == 0 && !strcmp($filter->getProperty()->getPropertyName(), 'Description') == 0) {?>
-        <h4><?php //echo $filter->getProperty()->getPropertyName(); ?></h4>
-        <div class="list-group-item black" data-toggle="collapse" data-target="#<?php echo $filterNumber; ?>"><?php echo $filter->getProperty()->getPropertyName(); ?></div>
+<div ng-app="filtersAngularApp" ng-controller="filtersAngularController">
 
-        <ul id="<?php echo $filterNumber; ?>" class="filterItem collapse">
-            <?php
+    <h4>Фильтр</h4>
+    <?php
 
-            if (strcmp($filter->getProperty()->getPropertyName(), "Price") == 0) {?>
+    $filterNumber = 0;
+    foreach ($filters as $filter) {
+        if (!strcmp($filter->getProperty()->getUrlPresentation(), 'image') == 0 && !strcmp($filter->getProperty()->getUrlPresentation(), 'description') == 0) {?>
+            <div class="list-group-item list-group-item-action" data-toggle="collapse" data-target="#<?php echo $filterNumber; ?>"><?php echo $filter->getProperty()->getPropertyName(); ?></div>
+            <div id="<?php echo $filter->getProperty()->getUrlPresentation(); ?>" class="propertyUrlPresentationContainer" hidden="true"><?php echo $filter->getProperty()->getUrlPresentation(); ?></div>
+
+            <ul id="<?php echo $filterNumber; ?>" class="filterItem collapse">
+                <?php
+
+                /*if (strcmp($filter->getProperty()->getPropertyName(), "Price") == 0) {*/?><!--
                 <div>
-                    <span id="lowerPriceLimit"><?php echo min($filter->getPossibleValues()); ?>$</span>
-                    <span id="upperPriceLimit"><?php echo max($filter->getPossibleValues()); ?>$</span>
-                    <input id="priceSlider" type="text" class="span2" value="" data-slider-min="<?php echo min($filter->getPossibleValues()); ?>" data-slider-max="<?php echo max($filter->getPossibleValues()); ?>" data-slider-step="1" data-slider-value="[<?php echo min($filter->getPossibleValues()); ?>,<?php echo max($filter->getPossibleValues()); ?>]"/>
+                    <div>
+                        <span id="lowerPriceLimit"><?php /*echo min($filter->getPossibleValues()); */?>$</span>
+                        <span id="upperPriceLimit"><?php /*echo max($filter->getPossibleValues()); */?>$</span>
+                    </div>
+                    <input id="priceSlider" type="text" class="span2" value="" data-slider-min="<?php /*echo min($filter->getPossibleValues()); */?>" data-slider-max="<?php /*echo max($filter->getPossibleValues()); */?>" data-slider-step="1" data-slider-value="[<?php /*echo min($filter->getPossibleValues()); */?>,<?php /*echo max($filter->getPossibleValues()); */?>]"/>
                 </div>
-            <?php }
+            --><?php /*}
 
-            else
-            foreach ($filter->getPossibleValues() as $possibleValue) { ?>
-                <li class="list-group-item"><?php echo $possibleValue; ?></li>
-            <?php }
-            ?>
-        </ul>
+            else*/
+                foreach ($filter->getPossibleValues() as $possibleValue) { ?>
+                    <li class="list-group-item list-group-item-action filterVariant"><?php echo $possibleValue; ?></li>
+                <?php }
+                ?>
+            </ul>
 
-    <?php }
-    $filterNumber++;
-}
-?>
+        <?php }
+        $filterNumber++;
+    }
+    ?>
+</div>
 
 <script src="http://localhost/Footballcity_Project/js/siteFilters.js"></script>
 

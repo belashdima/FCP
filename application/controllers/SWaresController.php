@@ -7,26 +7,18 @@ require_once 'admin/application/models/DatabaseHandler.php';
 class SWaresController extends SController
 {
     public function ballsAction() {
-        //echo 'fvadkslr';
-        //$wares = DatabaseHandler::getWares();
-        //print_r($wareTypeId = $_GET);
-
         $balls = DatabaseHandler::getWaresOfType(7);
-        //print_r($balls);
         $balls = self::filterUsingParams($balls);
-        //print_r($balls);
 
-        $filters = DatabaseHandler::getFiltersForWareType('Football ball');
+        $filters = DatabaseHandler::getFiltersForWareType(7);
 
 
         $this->view->generate('ContentView.php', 'SCommonMarkupView.php', $balls, $filters);
     }
 
     public function football_bootsAction() {
-        //echo 'fvadkslr';
-        //$wares = DatabaseHandler::getWares();
         $footballBoots = DatabaseHandler::getWaresOfType(4);
-        $filters = DatabaseHandler::getFiltersForWareType('Football boots');
+        $filters = DatabaseHandler::getFiltersForWareType(4);
 
         $this->view->generate('ContentView.php', 'SCommonMarkupView.php', $footballBoots, $filters);
     }
@@ -37,12 +29,21 @@ class SWaresController extends SController
             $filteredWares = array();
 
             foreach ($wares as $ware) {
+                $passesFilter = true;
+
                 $properties = $ware->getProperties();
-                foreach ($properties as $property) {
-                    if (array_key_exists($property->getProperty()->getPropertyName(), $_GET) && //strcmp($property->getProperty()->getPropertyName(), $_GET[$property->getProperty()->getPropertyName()]) == 0 &&
-                        strcmp($property->getValue()->getValue(), $_GET[$property->getProperty()->getPropertyName()]) == 0) {
-                        $filteredWares[] = $ware;
+                foreach ($properties as $propertyValue) {
+                    if (array_key_exists($propertyValue->getProperty()->getUrlPresentation(), $_GET)) {
+                        if (strcmp(strtolower($propertyValue->getValue()->getValue()), strtolower($_GET[$propertyValue->getProperty()->getUrlPresentation()])) == 0) {
+
+                        } else {
+                            $passesFilter = false;
+                        }
                     }
+                }
+
+                if ($passesFilter) {
+                    $filteredWares[] = $ware;
                 }
             }
 
