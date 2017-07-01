@@ -18,6 +18,8 @@ class SWaresController extends SController
 
     public function football_bootsAction() {
         $footballBoots = DatabaseHandler::getWaresOfType(4);
+        $footballBoots = self::filterUsingParams($footballBoots);
+
         $filters = DatabaseHandler::getFiltersForWareType(4);
 
         $this->view->generate('ContentView.php', 'SCommonMarkupView.php', $footballBoots, $filters);

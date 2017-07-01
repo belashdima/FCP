@@ -38,6 +38,7 @@ $(document).ready(function () {
 
         //alert("http://localhost/Footballcity_Project/balls?" + query);
         //$.get("http://localhost/Footballcity_Project/balls?" + query);
-        window.location.href = "http://localhost/Footballcity_Project/balls?" + query;
+        var currentAction = (window.location.href).split('?');
+        window.location.href = currentAction[0] + '?' + query;
     });
 });
