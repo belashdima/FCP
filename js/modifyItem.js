@@ -11,6 +11,13 @@ $(document).ready(function () {
 
     $('#modifyItemSubmitButton').click(function () {
         //angular.element($('#newItemDiv')).scope().alertValues();
-        angular.element($('#modifyItemDiv')).scope().modifyItem();
+        // pass button as argument to set result color and text
+        angular.element($('#modifyItemDiv')).scope().modifyItem($(this));
+    });
+
+    $('#deleteSubmitButton').click(function () {
+        //angular.element($('#newItemDiv')).scope().alertValues();
+        // pass button as argument to set result color and text
+        angular.element($('#modifyItemDiv')).scope().deleteItem();
     });
 });

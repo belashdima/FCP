@@ -247,7 +247,7 @@ class DatabaseHandler
 
     public static function getAllWareTypesIdsForWareTypeByName($wareTypeName)
     {
-        /*$parentsIds = array();
+        $parentsIds = array();
         $wareTypeId = self::getWareTypeIdForWareTypeByName($wareTypeName);
         while ($wareTypeId != null) {
             array_push($parentsIds, $wareTypeId);
@@ -255,7 +255,7 @@ class DatabaseHandler
             $wareTypeId = $wareType->getId();
         }
 
-        return $parentsIds;*/
+        return $parentsIds;
     }
 
     public static function getWareTypeIdForWareTypeByName($wareTypeName)
@@ -635,5 +635,15 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         }
 
         return new WareType($wareTypeId, $wareTypeName, $parentTypeId);
+    }
+
+    public static function deleteWareById($wareId)
+    {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("DELETE FROM wares WHERE ware_id='$wareId'");
+
+        $result = $databaseConnection->query("DELETE FROM ware_property_value WHERE ware='$wareId'");
+
+        return true;
     }
 }

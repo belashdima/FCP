@@ -33,16 +33,89 @@ angular.module("modifyItemAngularApp", []).controller("modifyItemAngularControll
         return result;
     }*/
 
-    $scope.modifyItem = function () {
+    $scope.modifyItem = function (button) {
         var url = "http://localhost/Footballcity_Project/admin/wares/modify";
         var ware = JSON.stringify($scope.ware);
+
+        var originalText = button.text();
+
         $http.post(url, ware).then(function () {
             // success
+
+            // set btn to green to indicate success
+            button.toggleClass('btn-primary');
+            button.toggleClass('btn-success');
+            button.text('Изменения успешно сохранены');
+
+            // set blue back
+            setTimeout(function(){
+                button.toggleClass('btn-primary');
+                button.toggleClass('btn-success');
+                button.text(originalText);
+            }, 500);
             //window.location.href="http://localhost/Footballcity_Project/admin/wares";
         }, function () {
             // error
+
+            button.toggleClass('btn-primary');
+            button.toggleClass('btn-danger');
+
+            // set blue back
+            setTimeout(function(){
+                button.toggleClass('btn-primary');
+                button.toggleClass('btn-danger');
+                button.text(originalText);
+            }, 500);
             alert('Something went wrong');
         });
+    };
+
+    $scope.deleteItem = function () {
+        //alert('deleted');
+        var wareId = $scope.ware.wareId;
+        var url = "http://localhost/Footballcity_Project/admin/wares/delete?ware_id=" + wareId;
+
+        $http.get(url).then(function(response) {
+            if (response.data === 'deleted') {
+                window.history.back();
+            }
+
+            //$scope.ware = response.data;
+        });
+        /*var url = "http://localhost/Footballcity_Project/admin/wares/delete";
+        var ware = JSON.stringify($scope.ware);
+
+        var originalText = button.text();
+
+        $http.post(url, ware).then(function () {
+            // success
+
+            // set btn to green to indicate success
+            button.toggleClass('btn-primary');
+            button.toggleClass('btn-success');
+            button.text('Изменения успешно сохранены');
+
+            // set blue back
+            setTimeout(function(){
+                button.toggleClass('btn-primary');
+                button.toggleClass('btn-success');
+                button.text(originalText);
+            }, 500);
+            //window.location.href="http://localhost/Footballcity_Project/admin/wares";
+        }, function () {
+            // error
+
+            button.toggleClass('btn-primary');
+            button.toggleClass('btn-danger');
+
+            // set blue back
+            setTimeout(function(){
+                button.toggleClass('btn-primary');
+                button.toggleClass('btn-danger');
+                button.text(originalText);
+            }, 500);
+            alert('Something went wrong');
+        });*/
     };
 });
 

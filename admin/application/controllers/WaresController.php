@@ -62,4 +62,14 @@ class WaresController extends Controller
 
         //$this->view->generate('PropertiesView.php', 'CommonMarkupView.php');;
     }
+
+    public function deleteAction() {
+        $wareId = $_GET['ware_id'];
+
+        $result = DatabaseHandler::deleteWareById($wareId);
+
+        if ($result) echo 'deleted';
+
+        //$this->view->generate('PropertiesView.php', 'CommonMarkupView.php');;
+    }
 }
