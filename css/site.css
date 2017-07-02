@@ -31,3 +31,7 @@
 #upperPriceLimit {
     float: right;
 }
+
+body {
+    background-image: url(http://localhost/Footballcity_Project/images/background/1.jpg);
+}

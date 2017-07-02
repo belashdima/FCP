@@ -30,6 +30,12 @@ class SRouter
             return;
         }
 
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/ware') !== false) {
+            include 'application/controllers/SWaresController.php';
+            (new SWaresController())->wareAction();
+            return;
+        }
+
         /*
         // get controller name
         if ( !empty($routes[2]) )

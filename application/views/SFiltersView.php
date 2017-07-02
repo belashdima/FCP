@@ -16,7 +16,7 @@
             <div class="list-group-item list-group-item-action" data-toggle="collapse" data-target="#<?php echo $filterNumber; ?>"><?php echo $filter->getProperty()->getPropertyName(); ?></div>
             <div id="<?php echo $filter->getProperty()->getUrlPresentation(); ?>" class="propertyUrlPresentationContainer" hidden="true"><?php echo $filter->getProperty()->getUrlPresentation(); ?></div>
 
-            <ul id="<?php echo $filterNumber; ?>" class="filterItem collapse">
+            <ul id="<?php echo $filterNumber; ?>" class="filterItem <?php if (array_key_exists($filter->getProperty()->getUrlPresentation(), $_GET)) {echo "expand";} else {echo "collapse";}?>">
                 <?php
 
                 /*if (strcmp($filter->getProperty()->getPropertyName(), "Price") == 0) {*/?><!--

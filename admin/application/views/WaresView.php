@@ -17,7 +17,7 @@ $wares = $data;?>
             //print_r($balls);
             if ($wares != null)
                 foreach ($wares as $ware) {?>
-                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="col-lg-2 col-md-3 col-sm-4 mb-4">
                         <div class="card h-100">
                             <a href="http://localhost/Footballcity_Project/admin/wares/ware?id=<?php echo $ware->getWareId(); ?>">
                                 <img class="card-img-top img-fluid imageItem" src="<?php echo $ware->getMainImage(); ?>" alt="">

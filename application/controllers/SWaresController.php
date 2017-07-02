@@ -7,8 +7,9 @@ require_once 'admin/application/models/DatabaseHandler.php';
 class SWaresController extends SController
 {
     public function ballsAction() {
-        $balls = DatabaseHandler::getWaresOfType(7);
+        $balls = DatabaseHandler::getWaresOfType(7, true);
         $balls = self::filterUsingParams($balls);
+        //$balls = self::filterEqual($balls);
 
         $filters = DatabaseHandler::getFiltersForWareType(7);
 
@@ -23,6 +24,15 @@ class SWaresController extends SController
         $filters = DatabaseHandler::getFiltersForWareType(4);
 
         $this->view->generate('ContentView.php', 'SCommonMarkupView.php', $footballBoots, $filters);
+    }
+
+    public function wareAction() {
+        $wareId = $_GET['id'];
+
+        //echo $wareId;
+        $ware = DatabaseHandler::getAllForWare($wareId);
+
+        $this->view->generate('SWareView.php', 'SCommonMarkupView.php', $ware);
     }
 
     private static function filterUsingParams($wares)
@@ -52,6 +62,31 @@ class SWaresController extends SController
             return $filteredWares;
         } else {
             return $wares;
+        }
+    }
+
+    private static function filterEqual($wares)
+    {
+        //return array_unique($wares, SORT_REGULAR);
+        foreach ($wares as $ware) {
+            if (in_array($ware, $wares)){
+            }
+            $passesFilter = true;
+
+            $properties = $ware->getProperties();
+            foreach ($properties as $propertyValue) {
+                if (array_key_exists($propertyValue->getProperty()->getUrlPresentation(), $_GET)) {
+                    if (strcmp(strtolower($propertyValue->getValue()->getValue()), strtolower($_GET[$propertyValue->getProperty()->getUrlPresentation()])) == 0) {
+
+                    } else {
+                        $passesFilter = false;
+                    }
+                }
+            }
+
+            if ($passesFilter) {
+                $filteredWares[] = $ware;
+            }
         }
     }
 }
