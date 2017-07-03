@@ -14,19 +14,23 @@ class Ware
     public $wareId;
     public $wareTypes;
     public $properties;
+    public $images;
 
     /**
      * Ware constructor.
      * @param $wareId
      * @param $wareTypes
      * @param $properties
+     * @param $images
      */
-    public function __construct($wareId, $wareTypes, $properties)
+    public function __construct($wareId, $wareTypes, $properties, $images)
     {
         $this->wareId = $wareId;
         $this->wareTypes = $wareTypes;
         $this->properties = $properties;
+        $this->images = $images;
     }
+
 
     /**
      * @return mixed
@@ -75,6 +79,24 @@ class Ware
     {
         $this->properties = $properties;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param mixed $images
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+    }
+
+
 
     public function getPropertyValueById($propertyId) {
         foreach ($this->properties as $propertyValue) {

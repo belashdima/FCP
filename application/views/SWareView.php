@@ -39,7 +39,30 @@ $ware = $data;?>
     <div class="col-md-6">
 
         <div>
-            <img src="<?php echo $ware->getPropertyValueByName('Image') ?>" style="width: 100%">
+            <!--<img src="<?php /*echo $ware->getPropertyValueByName('Image') */?>" style="width: 100%">-->
+
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <?php
+                    $active = true;
+                    foreach ($ware->getImages() as $image) { ?>
+                    <div class="carousel-item <?php if($active) echo 'active'?>">
+                        <img class="d-block img-fluid" src="<?php echo $image ?>" alt="First slide">
+                    </div>
+                    <?php
+                        $active = false;
+                    } ?>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
             <?php
 
 

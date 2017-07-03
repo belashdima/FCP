@@ -402,14 +402,16 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         $wareTypes = self::getAllWareTypesForWareTypeById($wareTypeId);
         //print_r( $wareTypes);
 
-        $properties = self::getPropertyToValueForWare($wareId);
+        $properties = self::getPropertiesToValuesForWare($wareId);
+        
+        $images = self::getImagesForWare($wareId);
 
-        $ware = new Ware($wareId, $wareTypes, $properties);
+        $ware = new Ware($wareId, $wareTypes, $properties, $images);
 
         return $ware;
     }
 
-    private static function getPropertyToValueForWare($wareId)
+    private static function getPropertiesToValuesForWare($wareId)
     {
         $databaseConnection = self::getConnection();
         $result = $databaseConnection->query("SELECT * FROM ware_property_value WHERE ware_property_value.ware='".$wareId."';");
@@ -645,5 +647,19 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         $result = $databaseConnection->query("DELETE FROM ware_property_value WHERE ware='$wareId'");
 
         return true;
+    }
+
+    private static function getImagesForWare($wareId)
+    {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT DISTINCT values_table.value_v FROM ware_property_value JOIN values_table ON ware_property_value.value_v=values_table.value_id WHERE ware_property_value.property=8 AND ware_property_value.ware='$wareId'");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        $images = array();
+        while ($row = $result->fetch()) {
+            $images[] = $row["value_v"];
+        }
+
+        return $images;
     }
 }
