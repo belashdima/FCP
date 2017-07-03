@@ -648,9 +648,11 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
     public static function deleteWareById($wareId)
     {
         $databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("DELETE FROM wares WHERE ware_id='$wareId'");
+        $result = $databaseConnection->query("DELETE FROM wares WHERE wares.ware_id='$wareId'");
 
-        $result = $databaseConnection->query("DELETE FROM ware_property_value WHERE ware='$wareId'");
+        $result = $databaseConnection->query("DELETE FROM ware_property_value WHERE ware_property_value.ware='$wareId'");
+
+        $result = $databaseConnection->query("DELETE FROM image_to_ware WHERE image_to_ware.ware='$wareId'");
 
         return true;
     }
