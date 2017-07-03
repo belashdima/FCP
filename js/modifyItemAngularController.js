@@ -5,11 +5,14 @@ angular.module("modifyItemAngularApp", []).controller("modifyItemAngularControll
     //$scope.wareTypeName = "None";
     $scope.wareId = getUrlParameter("id");
 
+    $scope.images = [];
+
     $scope.getPropertiesForWare = function getPropertiesForWare() {
         var url = "http://localhost/Footballcity_Project/admin/wares/ware_json?ware_id=" + $scope.wareId;
 
         $http.get(url).then(function(response) {
             $scope.ware = response.data;
+            $scope.images = toObjectsArray($scope.ware.images);
         });
     };
 
@@ -35,6 +38,9 @@ angular.module("modifyItemAngularApp", []).controller("modifyItemAngularControll
 
     $scope.modifyItem = function (button) {
         var url = "http://localhost/Footballcity_Project/admin/wares/modify";
+
+        $scope.ware.images = toArray($scope.images);
+
         var ware = JSON.stringify($scope.ware);
 
         var originalText = button.text();
@@ -119,13 +125,7 @@ angular.module("modifyItemAngularApp", []).controller("modifyItemAngularControll
     };
 
     $scope.addNewImage = function () {
-        /*var newProperty = {};
-        newProperty.propertyId = 8;
-        newProperty.propertyName = 'Image';
-        newProperty.urlPresentation = 'image';
-        var newValue = {};
-        newValue.valueId =
-        $scope.ware.properties.push({property_id: "8", property_name: "Image"});*/
+        $scope.images.push({path: ''});
     };
 });
 
@@ -143,3 +143,23 @@ var getUrlParameter = function getUrlParameter(sParam) {
         }
     }
 };
+
+function toArray(images) {
+    imagesArr = [];
+
+    images.forEach(function(item, i, images) {
+        imagesArr.push(item.path);
+    });
+
+    return imagesArr;
+}
+
+function toObjectsArray(images) {
+    imagesArr = [];
+
+    images.forEach(function(item, i, images) {
+        imagesArr.push({path: item});
+    });
+
+    return imagesArr;
+}

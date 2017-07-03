@@ -12,6 +12,11 @@ $ware = $data;?>
             <input class="form-control" id="{{prop.property.propertyName}}Id" ng-model="prop.value.value" placeholder="Enter {{prop.value.value.toLowerCase()}}">
         </div>
 
+        <label for="exampleInputEmail1">Ware images</label>
+        <div class="form-group" ng-repeat="image in images">
+            <input class="form-control" id="exampleInputEmail1" ng-model="image.path" placeholder="New image">
+        </div>
+
         <div class="form-group">
             <button id="addNewImageButton" class="btn btn-primary">Добавить новое изображение</button>
         </div>

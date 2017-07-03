@@ -688,20 +688,23 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         $databaseConnection = self::getConnection();
 
         $imageId = self::getImageIdByImagePath($imagePath);
+        echo $imagePath;
         if ($imageId == null) {
             $databaseConnection->query("INSERT INTO images (image_path) VALUES ('".$imagePath."');");
             $imageId = self::getImageIdByImagePath($imagePath);
         }
 
-        //$result = $databaseConnection->query("UPDATE image_to_ware SET image_to_ware.image=".$imageId." WHERE image_to_ware.ware=".$wareId.";");
+        $exists = $databaseConnection->query("SELECT * FROM image_to_ware WHERE image_to_ware.image=".$imageId." AND image_to_ware.ware=".$wareId.";");
+        if ($exists->rowCount() == 0) {
+            $result2 = $databaseConnection->query("INSERT INTO image_to_ware (image, ware) VALUES ('".$imageId."','".$wareId."');");
+        }
 
-        $result2 = $databaseConnection->query("INSERT INTO image_to_ware (image, ware) VALUES ('".$imageId."','".$wareId."');");
+        return true;
 
-
-        if (/*$result != false && */$result2 != false) {
+        /*if ($result2 != false) {
             return true;
         }
-        return false;
+        return false;*/
     }
 
     public static function getImageIdByImagePath($imagePath) {

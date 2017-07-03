@@ -121,10 +121,18 @@ class Ware
     }
 
     public function getMainImage() {
-        if (strpos($this->getPropertyValueByName('Image'), 'http') !== false) {
-            return $this->getPropertyValueByName('Image');
+        if (count($this->getImages()) > 0) {
+            if (strpos($this->getImages()[0], 'http') !== false) {
+                return $this->getImages()[0];
+            } else {
+                return 'http://localhost/Footballcity_Project/images/adidas_x.jpg';
+            }
         } else {
-            return 'http://localhost/Footballcity_Project/images/adidas_x.jpg';
+            if (strpos($this->getPropertyValueByName('Image'), 'http') !== false) {
+                return $this->getPropertyValueByName('Image');
+            } else {
+                return 'http://localhost/Footballcity_Project/images/adidas_x.jpg';
+            }
         }
     }
 }

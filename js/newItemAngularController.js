@@ -47,7 +47,7 @@ angular.module("newItemAngularApp", []).controller("newItemAngularController", f
             return imagesArr;
         }
 
-        imagesArray = toArray($scope.images);
+        var imagesArray = toArray($scope.images);
 
         var wareData = {properties: $scope.properties, images: imagesArray};
 
@@ -62,9 +62,6 @@ angular.module("newItemAngularApp", []).controller("newItemAngularController", f
     };
 
     $scope.addNewImage = function () {
-        //$scope.properties.push({property_id: "8", property_name: "Image"});
-        //$scope.images.push($scope.lastImage);
-        //if (Array.indexOf())
         $scope.images.push({path: ''});
     };
 });
