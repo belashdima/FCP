@@ -16,14 +16,14 @@ $wares = $data;?>
                                 <img class="card-img-top img-fluid imageItem" src="<?php echo $ware->getMainImage(); ?>" alt="">
                             </a>
                             <div class="card-block">
-                                <h4 class="card-title">
-                                    <a class="wareName" href="http://localhost/Footballcity_Project/ware?id=<?php echo $ware->getWareId(); ?>">
+                                <h6 class="card-title wareName">
+                                    <a href="http://localhost/Footballcity_Project/ware?id=<?php echo $ware->getWareId(); ?>">
                                         <?php echo $ware->getPropertyValueByName('Brand').' '.$ware->getPropertyValueByName('Model');?>
                                     </a>
-                                </h4>
-                                <h5>
+                                </h6>
+                                <h6>
                                     <?php echo $ware->getPropertyValueByName('Price').'$';?>
-                                </h5>
+                                </h6>
                                 <p class="card-text">
                                     <?php /*echo $ware->getPropertyValueByName('Description');*/?>
                                 </p>

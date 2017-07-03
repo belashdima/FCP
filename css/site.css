@@ -4,7 +4,9 @@
 }
 
 #content {
-    margin-top: 80px;
+    margin-top: 60px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .list-group-item.active {
@@ -34,4 +36,25 @@
 
 body {
     background-image: url(http://localhost/Footballcity_Project/images/background/1.jpg);
+}
+
+.wareName {
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.card {
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.card:hover {
+    background-color: #f3f3f3;
+}
+
+.card-block {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
 }

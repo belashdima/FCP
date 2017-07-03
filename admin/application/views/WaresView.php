@@ -23,8 +23,8 @@ $wares = $data;?>
                                 <img class="card-img-top img-fluid imageItem" src="<?php echo $ware->getMainImage(); ?>" alt="">
                             </a>
                             <div class="card-block">
-                                <h4 class="card-title">
-                                    <a class="wareName" href="http://localhost/Footballcity_Project/admin/wares/ware?id=<?php echo $ware->getWareId(); ?>">
+                                <h4 class="card-title wareName">
+                                    <a href="http://localhost/Footballcity_Project/admin/wares/ware?id=<?php echo $ware->getWareId(); ?>">
                                         <?php echo $ware->getPropertyValueByName('Brand').' '.$ware->getPropertyValueByName('Model');?>
                                     </a>
                                 </h4>
