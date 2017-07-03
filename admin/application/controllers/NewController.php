@@ -28,10 +28,12 @@ class NewController extends Controller
         //echo $_GET;
         $wareTypeName = $_GET['ware_type_name'];
         $json = file_get_contents('php://input');
-        $properties = json_decode($json);
+        $wareData = json_decode($json);
+        $properties = $wareData->properties;
+        $images = $wareData->images;
 
         //echo print_r($properties);
 
-        DatabaseHandler::saveJSONPropertiesForWareType($wareTypeName, $properties);
+        DatabaseHandler::saveJSONPropertiesForWareType($wareTypeName, $properties, $images);
     }
 }

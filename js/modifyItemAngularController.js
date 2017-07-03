@@ -117,6 +117,16 @@ angular.module("modifyItemAngularApp", []).controller("modifyItemAngularControll
             alert('Something went wrong');
         });*/
     };
+
+    $scope.addNewImage = function () {
+        /*var newProperty = {};
+        newProperty.propertyId = 8;
+        newProperty.propertyName = 'Image';
+        newProperty.urlPresentation = 'image';
+        var newValue = {};
+        newValue.valueId =
+        $scope.ware.properties.push({property_id: "8", property_name: "Image"});*/
+    };
 });
 
 var getUrlParameter = function getUrlParameter(sParam) {

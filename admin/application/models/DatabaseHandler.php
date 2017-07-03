@@ -349,7 +349,7 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         return json_encode($propertiesList);
     }
 
-    public static function saveJSONPropertiesForWareType($wareTypeName, $properties)
+    public static function saveJSONPropertiesForWareType($wareTypeName, $properties, $images)
     {
         $databaseConnection = self::getConnection();
         $result = $databaseConnection->query("SELECT * FROM ware_types WHERE ware_types.ware_type_name='".$wareTypeName."';");
@@ -370,11 +370,13 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
             $wareId = $row["LAST_INSERT_ID()"];
         }
 
-        echo $wareId;
-
+        // save properties
         foreach ($properties as $property) {
             self::savePropertyWithValue($property, $wareId);
         }
+
+        // save images
+        self::setImagesForWare($images, $wareId);
     }
 
     private static function savePropertyWithValue($property, $wareId)
@@ -404,7 +406,7 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
 
         $properties = self::getPropertiesToValuesForWare($wareId);
         
-        $images = self::getImagesForWare($wareId);
+        $images = self::getImagesForWareById($wareId);
 
         $ware = new Ware($wareId, $wareTypes, $properties, $images);
 
@@ -546,6 +548,10 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
                 new Property($prop->property->propertyId, $prop->property->propertyName, $prop->property->urlPresentation),
                 new Value($prop->value->valueId, $prop->value->value));
         }
+
+        /*foreach ($ware->images as $image) {
+            self::se
+        }*/
     }
 
     public static function getValueIdByValue($value_v) {
@@ -649,17 +655,64 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         return true;
     }
 
-    private static function getImagesForWare($wareId)
+    private static function getImagesForWareById($wareId)
     {
         $databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("SELECT DISTINCT values_table.value_v FROM ware_property_value JOIN values_table ON ware_property_value.value_v=values_table.value_id WHERE ware_property_value.property=8 AND ware_property_value.ware='$wareId'");
+        //$result = $databaseConnection->query("SELECT DISTINCT values_table.value_v FROM ware_property_value JOIN values_table ON ware_property_value.value_v=values_table.value_id WHERE ware_property_value.property=8 AND ware_property_value.ware='$wareId'");
+        $result = $databaseConnection->query("SELECT images.image_path FROM images JOIN image_to_ware ON images.image_id=image_to_ware.image WHERE image_to_ware.ware='$wareId'");
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
         $images = array();
         while ($row = $result->fetch()) {
-            $images[] = $row["value_v"];
+            $images[] = $row["image_path"];
         }
 
         return $images;
+    }
+
+    public static function setImagesForWare($images, $wareId) {
+        foreach ($images as $image) {
+            $result = self::setImageForWare($image, $wareId);
+            if ($result == false) {
+                // failure
+                return false;
+            }
+        }
+
+        // success
+        return true;
+    }
+
+    public static function setImageForWare($imagePath, $wareId)
+    {
+        $databaseConnection = self::getConnection();
+
+        $imageId = self::getImageIdByImagePath($imagePath);
+        if ($imageId == null) {
+            $databaseConnection->query("INSERT INTO images (image_path) VALUES ('".$imagePath."');");
+            $imageId = self::getImageIdByImagePath($imagePath);
+        }
+
+        //$result = $databaseConnection->query("UPDATE image_to_ware SET image_to_ware.image=".$imageId." WHERE image_to_ware.ware=".$wareId.";");
+
+        $result2 = $databaseConnection->query("INSERT INTO image_to_ware (image, ware) VALUES ('".$imageId."','".$wareId."');");
+
+
+        if (/*$result != false && */$result2 != false) {
+            return true;
+        }
+        return false;
+    }
+
+    public static function getImageIdByImagePath($imagePath) {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM images WHERE images.image_path='".$imagePath."';");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        while ($row = $result->fetch()) {
+            $imageId = $row["image_id"];
+        }
+
+        return $imageId;
     }
 }

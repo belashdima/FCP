@@ -56,9 +56,12 @@ class WaresController extends Controller
         $json = file_get_contents('php://input');
         $ware = json_decode($json);
 
+        print_r($ware);
+
         //echo DatabaseHandler::getJSONPropertiesForWare($wareId);
         print_r($ware);
         DatabaseHandler::setPropertiesForWare($ware);
+        DatabaseHandler::setImagesForWare($ware->images, $ware->wareId);
 
         //$this->view->generate('PropertiesView.php', 'CommonMarkupView.php');;
     }

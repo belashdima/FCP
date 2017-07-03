@@ -9,7 +9,11 @@ $ware = $data;?>
     <form>
         <div class="form-group" ng-repeat="prop in ware.properties">
             <label for="exampleInputEmail1">{{prop.property.propertyName}}</label>
-            <input class="form-control" id="exampleInputEmail1" ng-model="prop.value.value" placeholder="Enter {{prop.value.value}}.toLowerCase()">
+            <input class="form-control" id="{{prop.property.propertyName}}Id" ng-model="prop.value.value" placeholder="Enter {{prop.value.value.toLowerCase()}}">
+        </div>
+
+        <div class="form-group">
+            <button id="addNewImageButton" class="btn btn-primary">Добавить новое изображение</button>
         </div>
 
         <button id="modifyItemSubmitButton" type="submit" class="btn btn-primary">Сохранить изменения</button>

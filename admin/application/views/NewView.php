@@ -38,13 +38,16 @@ $wareTypes = DatabaseHandler::getAllWareTypes();
             <input class="form-control" id="exampleInputEmail1" ng-model="property.property_value" placeholder="Enter {{property.property_name.toLowerCase()}}">
         </div>
 
-        <button id="addNewItemSubmitButton" type="submit" class="btn btn-primary">Submit</button>
-    </form>
+        <label for="exampleInputEmail1">Ware images</label>
+        <div class="form-group" ng-repeat="image in images">
+            <input class="form-control" id="exampleInputEmail1" ng-model="image.path" placeholder="New image">
+        </div>
 
-    <form action="upload.php" method="post" enctype="multipart/form-data">
-        Select image to upload:
-        <input type="file" name="fileToUpload" id="fileToUpload">
-        <input type="submit" value="Upload Image" name="submit">
+        <div class="form-group">
+            <button id="addNewImageButton" class="btn btn-primary">Добавить новое изображение</button>
+        </div>
+
+        <button id="addNewItemSubmitButton" type="submit" class="btn btn-primary">Сохранить</button>
     </form>
 
 </div>

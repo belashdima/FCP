@@ -4,6 +4,8 @@ angular.module("newItemAngularApp", []).controller("newItemAngularController", f
 
     $scope.wareTypeName = "None";
 
+    $scope.images = [];
+
     $scope.getPropertiesForWareType = function getPropertiesForWareType() {
         var url = "http://localhost/Footballcity_Project/admin/new/properties_json?ware_type_name=" + $scope.wareTypeName;
 
@@ -34,7 +36,22 @@ angular.module("newItemAngularApp", []).controller("newItemAngularController", f
 
     $scope.saveNewItem = function () {
         var url = "http://localhost/Footballcity_Project/admin/new/add_new?ware_type_name=" + $scope.wareTypeName;
-        var properties = JSON.stringify($scope.properties);
+
+        function toArray(images) {
+            imagesArr = [];
+
+            images.forEach(function(item, i, images) {
+                imagesArr.push(item.path);
+            });
+
+            return imagesArr;
+        }
+
+        imagesArray = toArray($scope.images);
+
+        var wareData = {properties: $scope.properties, images: imagesArray};
+
+        var properties = JSON.stringify(wareData);
         $http.post(url, properties).then(function () {
             // success
             //window.location.href="http://localhost/Footballcity_Project/admin/wares";
@@ -42,5 +59,12 @@ angular.module("newItemAngularApp", []).controller("newItemAngularController", f
             // error
             alert('Something went wrong');
         });
+    };
+
+    $scope.addNewImage = function () {
+        //$scope.properties.push({property_id: "8", property_name: "Image"});
+        //$scope.images.push($scope.lastImage);
+        //if (Array.indexOf())
+        $scope.images.push({path: ''});
     };
 });
