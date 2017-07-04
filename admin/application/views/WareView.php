@@ -14,7 +14,8 @@ $ware = $data;?>
 
         <label for="exampleInputEmail1">Ware images</label>
         <div class="form-group" ng-repeat="image in images">
-            <input class="form-control" id="exampleInputEmail1" ng-model="image.path" placeholder="New image">
+            <!--<button class="btn btn-danger">Удалить изображение</button>-->
+            <input class="form-control imageInput" id="exampleInputEmail1" ng-model="image.path" placeholder="New image">
         </div>
 
         <div class="form-group">

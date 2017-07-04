@@ -673,6 +673,8 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
     }
 
     public static function setImagesForWare($images, $wareId) {
+        self::deleteImagesForWare($wareId);
+
         foreach ($images as $image) {
             $result = self::setImageForWare($image, $wareId);
             if ($result == false) {
@@ -719,5 +721,14 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         }
 
         return $imageId;
+    }
+
+    private static function deleteImagesForWare($wareId)
+    {
+        $databaseConnection = self::getConnection();
+
+        $result = $databaseConnection->query("DELETE FROM image_to_ware WHERE image_to_ware.ware='$wareId'");
+
+        return true;
     }
 }

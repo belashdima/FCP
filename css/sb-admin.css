@@ -286,3 +286,8 @@ div.myInline { float:left; }
     overflow:hidden;
     text-overflow:ellipsis;
 }
+
+.imageInput {
+    /*display: inline-flex;
+    width: 50%;*/
+}

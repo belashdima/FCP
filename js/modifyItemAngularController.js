@@ -148,7 +148,9 @@ function toArray(images) {
     imagesArr = [];
 
     images.forEach(function(item, i, images) {
-        imagesArr.push(item.path);
+        if (item.path.indexOf('http') !== -1) {
+            imagesArr.push(item.path);
+        }
     });
 
     return imagesArr;
