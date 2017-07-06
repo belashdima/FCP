@@ -731,4 +731,16 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
 
         return true;
     }
+
+    public static function getSame($wareId) {
+        /*$databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM images WHERE images.image_path='".$imagePath."';");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        while ($row = $result->fetch()) {
+            $imageId = $row["image_id"];
+        }
+
+        return $imageId;*/
+    }
 }
