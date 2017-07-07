@@ -66,9 +66,6 @@
                     <a class="nav-link" href="#">Форма</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Форма</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="#">Тренировочная одежда</a>
                 </li>
                 <li class="nav-item">
