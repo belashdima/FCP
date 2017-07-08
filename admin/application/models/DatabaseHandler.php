@@ -479,7 +479,7 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         return $wares;
     }
 
-    public static function getWaresOfType($wareTypeId, $unique = false)
+    public static function getWaresOfType($wareTypeId, $showOnlyUnique = false)
     {
         // MUST CONSIDER ALL THE SUCCESSORS!!!
         $wareTypesIds = self::getSuccessorWareTypesIds($wareTypeId);
@@ -499,7 +499,7 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         if (count($waresIds)>0) {
             foreach ($waresIds as $wareId) {
                 $ware = DatabaseHandler::getAllForWare($wareId);
-                if ($unique && self::obj_in_array($ware, $wares)) {
+                if ($showOnlyUnique && self::obj_in_array($ware, $wares)) {
 
                 } else {
                     $wares[] = $ware;
@@ -622,12 +622,25 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
 
     private static function obj_in_array($ware, $wares)
     {
-        //stub
-        return false;
-        /*foreach ($wares as $w) {
-            if ()
+        foreach ($wares as $wareItem) {
+            $propertiesAreEqual = true;
+            $checkedProperties = self::getMeaningfullProperties();
+            foreach ($checkedProperties as $checkedProperty) {
+                $value = $ware->getPropertyValueById($checkedProperty);
+                $itemValue = $wareItem->getPropertyValueById($checkedProperty);
+
+                if (strcmp($value, $itemValue) != 0) {
+                    $propertiesAreEqual = false;
+                    break;
+                }
+            }
+
+            if ($propertiesAreEqual) {
+                return true;
+            }
         }
-        $ware->getPropertyValue;*/
+
+        return false;
     }
 
     private static function getWareTypeById($wareTypeId)
@@ -742,5 +755,18 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         }
 
         return $imageId;*/
+    }
+
+    public static function getMeaningfullProperties() {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM properties JOIN property_to_ware_type ON properties.property_id = property_to_ware_type.property WHERE property_to_ware_type.ware_type=1 AND properties.url_presentation<>'price' AND properties.url_presentation<>'description' AND properties.url_presentation<>'image';");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        while ($row = $result->fetch()) {
+            $propertyId = $row["property_id"];
+            $properties[] = $propertyId;
+        }
+
+        return $properties;
     }
 }

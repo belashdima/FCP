@@ -12,12 +12,14 @@ $wares = $data;?>
                 foreach ($wares as $ware) {?>
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                         <div class="card h-100">
-                            <a href="http://localhost/Footballcity_Project/ware?id=<?php echo $ware->getWareId(); ?>">
+                            <!--<a href="http://localhost/Footballcity_Project/ware?id=<?php /*//echo $ware->getWareId(); */?>">-->
+                            <a href="http://localhost/Footballcity_Project/ware?<?php //echo $ware->getWareId(); ?>">
                                 <img class="card-img-top img-fluid imageItem" src="<?php echo $ware->getMainImage(); ?>" alt="">
                             </a>
                             <div class="card-block">
                                 <h6 class="card-title wareName">
-                                    <a href="http://localhost/Footballcity_Project/ware?id=<?php echo $ware->getWareId(); ?>">
+                                    <!--<a href="http://localhost/Footballcity_Project/ware?id=<?php /*//echo $ware->getWareId(); */?>">-->
+                                    <a href="http://localhost/Footballcity_Project/ware?<?php echo $ware->getWareId(); ?>">
                                         <?php echo $ware->getPropertyValueByName('Brand').' '.$ware->getPropertyValueByName('Model');?>
                                     </a>
                                 </h6>

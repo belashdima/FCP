@@ -18,7 +18,7 @@ class SWaresController extends SController
     }
 
     public function football_bootsAction() {
-        $footballBoots = DatabaseHandler::getWaresOfType(4);
+        $footballBoots = DatabaseHandler::getWaresOfType(4, true);
         $footballBoots = self::filterUsingParams($footballBoots);
 
         $filters = DatabaseHandler::getFiltersForWareType(4);
