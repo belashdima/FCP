@@ -135,4 +135,22 @@ class Ware
             }
         }
     }
+
+    public function getLink() {
+        $meaningfulProperties = DatabaseHandler::getMeaningfullProperties();
+        //print_r($this->properties);
+        //print_r($meaningfulProperties);
+        $params = array();
+        foreach ($meaningfulProperties as $meaningfulProperty) {
+            $propertyName = $meaningfulProperty->getUrlPresentation();
+            $propertyValue = $this->getPropertyValueById($meaningfulProperty->getPropertyId());
+            //echo '$'.$this->getPropertyValueById($meaningfulProperty->getPropertyId()).'$';
+
+            //print_r($this->getPropertyValueById($meaningfulProperty));
+
+            $params[] = $propertyName.'='.$propertyValue;
+        }
+
+        return implode('&', $params);
+    }
 }

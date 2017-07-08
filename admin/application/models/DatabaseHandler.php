@@ -626,8 +626,8 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
             $propertiesAreEqual = true;
             $checkedProperties = self::getMeaningfullProperties();
             foreach ($checkedProperties as $checkedProperty) {
-                $value = $ware->getPropertyValueById($checkedProperty);
-                $itemValue = $wareItem->getPropertyValueById($checkedProperty);
+                $value = $ware->getPropertyValueById($checkedProperty->getPropertyId());
+                $itemValue = $wareItem->getPropertyValueById($checkedProperty->getPropertyId());
 
                 if (strcmp($value, $itemValue) != 0) {
                     $propertiesAreEqual = false;
@@ -764,7 +764,9 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
 
         while ($row = $result->fetch()) {
             $propertyId = $row["property_id"];
-            $properties[] = $propertyId;
+            $propertyName = $row["property_name"];
+            $urlPresentation = $row["url_presentation"];
+            $properties[] = new Property($propertyId, $propertyName, $urlPresentation);
         }
 
         return $properties;
