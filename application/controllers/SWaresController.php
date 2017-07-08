@@ -28,9 +28,10 @@ class SWaresController extends SController
 
     public function wareAction() {
         $params = $_GET;
+        $wareTypeId = $params['wareTypeId'];
         unset($params['wareTypeId']);
 
-        $wares = DatabaseHandler::getWaresOfType(7, false);
+        $wares = DatabaseHandler::getWaresOfType($wareTypeId, false);
         $wares = self::filterUsingParams($wares, $params);
         $ware = DatabaseHandler::getAllForWare($wares[0]->getWareId());
 

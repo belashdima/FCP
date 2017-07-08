@@ -76,10 +76,39 @@ $ware = $data;?>
     <div class="col-md-6">
 
         <div style="background-color: white; height: 100%">
-            <h1><?php echo $ware->getPropertyValueByName('Brand') ?></h1>
-            <h2><?php echo $ware->getPropertyValueByName('Model') ?></h2>
-            <h2><?php echo $ware->getPropertyValueByName('Description') ?></h2>
-            <h2><?php echo $ware->getPropertyValueByName('Price') ?></h2>
+            <!--<p>Бренд:</p>
+            <h3><?php /*echo $ware->getPropertyValueByName('Brand') */?></h3>
+            <p>Модель:</p>
+            <h3><?php /*echo $ware->getPropertyValueByName('Model') */?></h3>
+            <p>Краткое описание:</p>
+            <h3><?php /*echo $ware->getPropertyValueByName('Description') */?></h3>
+            <p>Цена:</p>
+            <h3><?php /*echo $ware->getPropertyValueByName('Price') */?></h3>
+            <h3>Размеры:</h3>-->
+
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td>Бренд:</td>
+                    <td><?php echo $ware->getPropertyValueByName('Brand') ?></td>
+                </tr>
+                <tr>
+                    <td>Модель:</td>
+                    <td><?php echo $ware->getPropertyValueByName('Model') ?></td>
+                </tr>
+                <tr>
+                    <td>Краткое описание:</td>
+                    <td><?php echo $ware->getPropertyValueByName('Description') ?></td>
+                </tr>
+                <tr>
+                    <td>Цена:</td>
+                    <td><?php echo $ware->getPropertyValueByName('Price') ?></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Размеры:</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
 
         <?php /*//print_r($data);

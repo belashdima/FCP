@@ -35,7 +35,11 @@
 }
 
 body {
-    background-image: url(http://localhost/Footballcity_Project/images/background/1.jpg);
+    /*background-image: url(http://localhost/Footballcity_Project/images/background/1.jpg);*/
+}
+
+.wareName {
+    color: black;
 }
 
 .wareName {
