@@ -39,7 +39,7 @@ $ware = $data;?>
     <div class="col-md-6">
 
         <div>
-            <!--<img src="<?php /*echo $ware->getPropertyValueByName('Image') */?>" style="width: 100%">-->
+            <img src="<?php echo $ware->getPropertyValueByName('Image') ?>" style="width: 100%">
 
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner" role="listbox">

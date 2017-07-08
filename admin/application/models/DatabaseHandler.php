@@ -771,4 +771,28 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
 
         return $properties;
     }
+
+    public static function getAllForWareByParams($params)
+    {
+        print_r($params);
+
+        $conditions = array();
+        foreach ($params as $param) {
+            $conditions = "properties.property_name='".key($param)."'";
+        }
+        $whereClause = '';
+
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM (properties JOIN ware_property_value ON properties.property_id=ware_property_value.property) JOIN values_table ON values_table.value_id=ware_property_value.value_v WHERE property_to_ware_type.ware_type=1 AND properties.url_presentation<>'price' AND properties.url_presentation<>'description' AND properties.url_presentation<>'image';");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        while ($row = $result->fetch()) {
+            $propertyId = $row["property_id"];
+            $propertyName = $row["property_name"];
+            $urlPresentation = $row["url_presentation"];
+            $properties[] = new Property($propertyId, $propertyName, $urlPresentation);
+        }
+
+        return $properties;
+    }
 }

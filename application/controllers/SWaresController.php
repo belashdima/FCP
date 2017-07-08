@@ -8,7 +8,7 @@ class SWaresController extends SController
 {
     public function ballsAction() {
         $balls = DatabaseHandler::getWaresOfType(7, true);
-        $balls = self::filterUsingParams($balls);
+        $balls = self::filterUsingParams($balls, $_GET);
         //$balls = self::filterEqual($balls);
 
         $filters = DatabaseHandler::getFiltersForWareType(7);
@@ -19,7 +19,7 @@ class SWaresController extends SController
 
     public function football_bootsAction() {
         $footballBoots = DatabaseHandler::getWaresOfType(4, true);
-        $footballBoots = self::filterUsingParams($footballBoots);
+        $footballBoots = self::filterUsingParams($footballBoots, $_GET);
 
         $filters = DatabaseHandler::getFiltersForWareType(4);
 
@@ -27,17 +27,23 @@ class SWaresController extends SController
     }
 
     public function wareAction() {
-        $wareId = $_GET['id'];
+        $params = $_GET;
+        unset($params['wareTypeId']);
+
+        $wares = DatabaseHandler::getWaresOfType(7, false);
+        $wares = self::filterUsingParams($wares, $params);
+        $ware = DatabaseHandler::getAllForWare($wares[0]->getWareId());
 
         //echo $wareId;
-        $ware = DatabaseHandler::getAllForWare($wareId);
+        //$ware = DatabaseHandler::getAllForWare($wareId);
+        //$ware = DatabaseHandler::getAllForWareByParams($params);
 
         $this->view->generate('SWareView.php', 'SCommonMarkupView.php', $ware);
     }
 
-    private static function filterUsingParams($wares)
+    private static function filterUsingParams($wares, $params)
     {
-        if (count($_GET) > 0) {
+        if (count($params) > 0) {
             $filteredWares = array();
 
             foreach ($wares as $ware) {
@@ -45,8 +51,8 @@ class SWaresController extends SController
 
                 $properties = $ware->getProperties();
                 foreach ($properties as $propertyValue) {
-                    if (array_key_exists($propertyValue->getProperty()->getUrlPresentation(), $_GET)) {
-                        if (strcmp(strtolower($propertyValue->getValue()->getValue()), strtolower($_GET[$propertyValue->getProperty()->getUrlPresentation()])) == 0) {
+                    if (array_key_exists($propertyValue->getProperty()->getUrlPresentation(), $params)) {
+                        if (strcmp(strtolower($propertyValue->getValue()->getValue()), strtolower($params[$propertyValue->getProperty()->getUrlPresentation()])) == 0) {
 
                         } else {
                             $passesFilter = false;
