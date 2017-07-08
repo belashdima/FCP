@@ -127,13 +127,9 @@ class Ware
             } else {
                 return 'http://localhost/Footballcity_Project/images/adidas_x.jpg';
             }
-        } else {
-            if (strpos($this->getPropertyValueByName('Image'), 'http') !== false) {
-                return $this->getPropertyValueByName('Image');
-            } else {
-                return 'http://localhost/Footballcity_Project/images/adidas_x.jpg';
-            }
         }
+
+        return 'http://localhost/Footballcity_Project/images/adidas_x.jpg';
     }
 
     public function getLink() {
