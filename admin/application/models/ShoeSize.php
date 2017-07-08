@@ -45,4 +45,9 @@ class ShoeSize
     {
         return $this->sizeUs;
     }
+
+    function __toString()
+    {
+        return "UK: ".$this->sizeUk."   EU: ".$this->sizeEu."   US: ".$this->sizeUs;
+    }
 }

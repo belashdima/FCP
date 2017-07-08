@@ -32,8 +32,6 @@ class NewController extends Controller
         $properties = $wareData->properties;
         $images = $wareData->images;
 
-        //echo print_r($properties);
-
         DatabaseHandler::saveJSONPropertiesForWareType($wareTypeName, $properties, $images);
     }
 }

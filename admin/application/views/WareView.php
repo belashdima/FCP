@@ -9,7 +9,14 @@ $ware = $data;?>
     <form>
         <div class="form-group" ng-repeat="prop in ware.properties">
             <label for="exampleInputEmail1">{{prop.property.propertyName}}</label>
-            <input class="form-control" id="{{prop.property.propertyName}}Id" ng-model="prop.value.value" placeholder="Enter {{prop.value.value.toLowerCase()}}">
+            <input class="form-control" id="{{prop.property.propertyName}}Id" ng-if="prop.property.urlPresentation != 'shoe_size'" ng-model="prop.value.value" placeholder="Enter {{prop.value.value.toLowerCase()}}">
+
+            <select class="form-control" id="{{prop.property.propertyName}}Id" ng-if="prop.property.urlPresentation == 'shoe_size'" ng-model="prop.value.value">
+                <?php $sizes = DatabaseHandler::getShoeSizes();
+                foreach ($sizes as $size) {?>
+                <option><?php echo $size; ?></option>
+                <?php } ?>
+            </select>
         </div>
 
         <label for="exampleInputEmail1">Ware images</label>

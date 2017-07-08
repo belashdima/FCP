@@ -28,7 +28,7 @@ angular.module("newItemAngularApp", []).controller("newItemAngularController", f
     function createGetParamsFromProperties() {
         var result = "";
         $scope.properties.forEach(function(item, i, arr) {
-            result = result + item.property_name.toLowerCase() + "=" + item.property_value + "&";
+            result = result + item.property_name.toLowerCase() + "=" + item.propertyValue + "&";
         });
         result = result.slice(0, -1);// removes last '&' sign
         return result;

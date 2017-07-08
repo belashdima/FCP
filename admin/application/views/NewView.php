@@ -34,8 +34,15 @@ $wareTypes = DatabaseHandler::getAllWareTypes();
 
     <form>
         <div class="form-group" ng-repeat="property in properties">
-            <label for="exampleInputEmail1">{{property.property_name}}</label>
-            <input class="form-control" id="exampleInputEmail1" ng-model="property.property_value" placeholder="Enter {{property.property_name.toLowerCase()}}">
+            <label for="exampleInputEmail1">{{property.propertyName}}</label>
+            <input class="form-control" id="exampleInputEmail1" ng-if="property.urlPresentation != 'shoe_size'" ng-model="property.propertyValue" placeholder="Enter {{property.propertyName.toLowerCase()}}">
+
+            <select class="form-control" ng-if="property.urlPresentation == 'shoe_size'" ng-model="property.propertyValue">
+                <?php $sizes = DatabaseHandler::getShoeSizes();
+                foreach ($sizes as $size) {?>
+                    <option><?php echo $size; ?></option>
+                <?php } ?>
+            </select>
         </div>
 
         <label for="exampleInputEmail1">Ware images</label>

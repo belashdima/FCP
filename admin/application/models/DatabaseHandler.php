@@ -10,8 +10,6 @@
 require_once "Brand.php";
 require_once "GroundType.php";
 require_once "ShoeSize.php";
-require_once "BootsPair.php";
-require_once "BootsModel.php";
 require_once "WareType.php";
 require_once "Property.php";
 require_once "Ware.php";
@@ -59,45 +57,9 @@ class DatabaseHandler
         }
     }
 
-    static public function getBrands() {
-        $databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("SELECT * FROM brands_table");
-        $result->setFetchMode(PDO::FETCH_ASSOC);
-
-        while ($row = $result->fetch()) {
-            $brandsList[] = new Brand($row["brand_id"], $row["brand_name"]);
-        }
-
-        return $brandsList;
-    }
-
-    static public function getBrandById($brandId) {
-        $databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("SELECT * FROM brands_table WHERE brands_table.brand_id=$brandId");
-        $result->setFetchMode(PDO::FETCH_ASSOC);
-
-        while ($row = $result->fetch()) {
-            $brand = new Brand($row["brand_id"], $row["brand_name"]);
-        }
-
-        return $brand;
-    }
-
-    static public function getGroundTypes() {
-        $databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("SELECT * FROM ground_types_table");
-        $result->setFetchMode(PDO::FETCH_ASSOC);
-
-        while ($row = $result->fetch()) {
-            $groundTypesList[] = new GroundType($row["ground_type_id"], $row["ground_type_name"]);
-        }
-
-        return $groundTypesList;
-    }
-
     static public function getShoeSizes() {
         $databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("SELECT * FROM sizes_table");
+        $result = $databaseConnection->query("SELECT * FROM shoe_sizes_table");
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
         while ($row = $result->fetch()) {
@@ -105,95 +67,6 @@ class DatabaseHandler
         }
 
         return $sizesList;
-    }
-
-    static public function getBoots() {
-        $databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("SELECT * FROM boots_table ");
-        $result->setFetchMode(PDO::FETCH_ASSOC);
-
-        while ($row = $result->fetch()) {
-            $bootsList[] = new BootsPair($row["boots_id"], $row["boots_size"], $row["boots_model"], $row["boots_price"]);
-        }
-
-        return $bootsList;
-    }
-
-    static public function getBootsModels() {
-        $databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("SELECT * FROM models_table ");
-        $result->setFetchMode(PDO::FETCH_ASSOC);
-
-        while ($row = $result->fetch()) {
-            $bootsModelsList[] = new BootsModel($row["model_id"], $row["model_name"], $row["model_brand"], $row["model_price"], $row["model_description"]);
-        }
-
-        return $bootsModelsList;
-    }
-
-    public static function getImagesByModelId($modelId)
-    {
-        $databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("SELECT * FROM images_table WHERE images_table.model=$modelId");
-        $result->setFetchMode(PDO::FETCH_ASSOC);
-
-        while ($row = $result->fetch()) {
-            $imagesList[] = $row["image_path"];
-        }
-
-        return $imagesList;
-    }
-
-    public static function getModelById($modelId)
-    {
-        $databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("SELECT * FROM models_table WHERE models_table.model_id=$modelId");
-        $result->setFetchMode(PDO::FETCH_ASSOC);
-
-        while ($row = $result->fetch()) {
-            $model = new BootsModel($row["model_id"], $row["model_name"], $row["model_brand"], $row["model_price"], $row["model_description"]);
-        }
-
-        return $model;
-    }
-
-    public static function setBrandToModel($modelId, $brandId) {
-        $databaseConnection = self::getConnection();
-
-        //$databaseConnection->query("SELECT * FROM models_table WHERE models_table.model_id=$modelId");
-        $databaseConnection->query("UPDATE models_table SET models_table.model_brand=$brandId WHERE models_table.model_id=$modelId");
-
-        return true;
-    }
-
-    public static function getBrandByName($brandName) {
-        $databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("SELECT * FROM brands_table WHERE brands_table.brand_name='".$brandName."'");
-        $result->setFetchMode(PDO::FETCH_ASSOC);
-
-        while ($row = $result->fetch()) {
-            $brand = new Brand($row["brand_id"], $row["brand_name"]);
-        }
-
-        return $brand;
-    }
-
-    public static function setNameToModel($modelId, $modelName) {
-        $databaseConnection = self::getConnection();
-
-        //$databaseConnection->query("SELECT * FROM models_table WHERE models_table.model_id=$modelId");
-        $databaseConnection->query("UPDATE models_table SET models_table.model_name='".$modelName."' WHERE models_table.model_id=$modelId");
-
-        return true;
-    }
-
-    public static function setPriceToModel($modelId, $modelPrice) {
-        $databaseConnection = self::getConnection();
-
-        //$databaseConnection->query("SELECT * FROM models_table WHERE models_table.model_id=$modelId");
-        $databaseConnection->query("UPDATE models_table SET models_table.model_price='".$modelPrice."' WHERE models_table.model_id=$modelId");
-
-        return true;
     }
 
     public static function getAllWareTypes() {
@@ -343,7 +216,7 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
         while ($row = $result->fetch()) {
-            $propertiesList[] = array('property_id'=>$row["property_id"], 'property_name'=>$row["property_name"]);
+            $propertiesList[] = new Property($row["property_id"], $row["property_name"], $row["url_presentation"]);
         }
 
         return json_encode($propertiesList);
@@ -351,6 +224,10 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
 
     public static function saveJSONPropertiesForWareType($wareTypeName, $properties, $images)
     {
+        print_r($wareTypeName);
+        print_r($properties);
+        print_r($images);
+
         $databaseConnection = self::getConnection();
         $result = $databaseConnection->query("SELECT * FROM ware_types WHERE ware_types.ware_type_name='".$wareTypeName."';");
         $result->setFetchMode(PDO::FETCH_ASSOC);
@@ -384,8 +261,8 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         //echo '='.$property->property_value;
         $databaseConnection = self::getConnection();
         //$databaseConnection->query("UPDATE values_table SET values_table.value_v='".$property->property_value."';");
-        $databaseConnection->query("INSERT INTO values_table (value_v) VALUES ('".$property->property_value."');");
-        $databaseConnection->query("INSERT INTO ware_property_value (ware, property, value_v) VALUES ('".$wareId."','".$property->property_id."', (SELECT LAST_INSERT_ID()));");
+        $databaseConnection->query("INSERT INTO values_table (value_v) VALUES ('".$property->propertyValue."');");
+        $databaseConnection->query("INSERT INTO ware_property_value (ware, property, value_v) VALUES ('".$wareId."','".$property->propertyId."', (SELECT LAST_INSERT_ID()));");
     }
 
     public static function getAllForWare($wareId)
