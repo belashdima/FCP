@@ -224,10 +224,6 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
 
     public static function saveJSONPropertiesForWareType($wareTypeName, $properties, $images)
     {
-        print_r($wareTypeName);
-        print_r($properties);
-        print_r($images);
-
         $databaseConnection = self::getConnection();
         $result = $databaseConnection->query("SELECT * FROM ware_types WHERE ware_types.ware_type_name='".$wareTypeName."';");
         $result->setFetchMode(PDO::FETCH_ASSOC);
@@ -249,6 +245,7 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
 
         // save properties
         foreach ($properties as $property) {
+            print_r($property);
             self::savePropertyWithValue($property, $wareId);
         }
 

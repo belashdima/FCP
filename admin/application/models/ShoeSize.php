@@ -22,10 +22,6 @@ class ShoeSize
         $this->sizeUs = $sizeUs;
     }
 
-    private function fillSizesBySizeId($sizeId) {
-        // connect to db and fill
-    }
-
     public function getSizeId()
     {
         return $this->sizeID;
