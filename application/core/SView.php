@@ -10,7 +10,7 @@ class SView
         include 'application/views/'.$templateView;
     }*/
 
-    function generate($contentView, $templateView, $data = null, $filters = null)
+    function generate($contentView, $templateView, $data = null, $filters = null, $sizes = null)
     {
         /*
         if(is_array($data)) {

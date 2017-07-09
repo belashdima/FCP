@@ -34,8 +34,12 @@ class SWaresController extends SController
         $wares = DatabaseHandler::getWaresOfType($wareTypeId, false);
         $wares = self::filterUsingParams($wares, $params);
         $ware = DatabaseHandler::getAllForWare($wares[0]->getWareId());
+        $uniqueSizes = self::getUniqueSizes($wares);
+        sort($uniqueSizes);
 
-        $this->view->generate('SWareView.php', 'SCommonMarkupView.php', $ware);
+        //print_r(count($uniqueSizes));
+
+        $this->view->generate('SWareView.php', 'SCommonMarkupView.php', $ware, bull, $uniqueSizes);
     }
 
     private static function filterUsingParams($wares, $params)
@@ -66,5 +70,19 @@ class SWaresController extends SController
         } else {
             return $wares;
         }
+    }
+
+    private static function getUniqueSizes($wares)
+    {
+        $uniqueSizes = array();
+
+        foreach ($wares as $ware) {
+            $size = $ware->getPropertyValueByName('Shoe size');
+            if (!in_array($size, $uniqueSizes)) {
+                $uniqueSizes[] = $size;
+            }
+        }
+
+        return $uniqueSizes;
     }
 }

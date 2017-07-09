@@ -1,5 +1,6 @@
 <?php
-$ware = $data;?>
+$ware = $data;
+$uniqueSizes = $sizes;?>
 
 <link rel="stylesheet" href="http://localhost/Footballcity_Project/css/breadcrumbStyling.css">
 
@@ -102,9 +103,21 @@ $ware = $data;?>
                     <td>Цена:</td>
                     <td><?php echo $ware->getPropertyValueByName('Price') ?></td>
                 </tr>
-                <tr>
-                    <!--<td colspan="2">Размеры:<?php /*echo $ware->getPropertyValueByName('Shoe size') */?></td>-->
+
+                <?php foreach ($uniqueSizes as $index=>$uniqueSize) { ?>
+                    <tr>
+                        <?php if ($index == 0) echo '<td rowspan="'.count($uniqueSizes).'">Размеры:</td>' ?>
+                        <td><?php echo $uniqueSize; ?></td>
+                    </tr>
+                <?php } ?>
+
+                <!--<tr>
+                    <td rowspan="3">Размеры:</td>
+                    <td><?php /*echo $ware->getPropertyValueByName('Shoe size') */?></td>
                 </tr>
+                <tr>
+                    <td><?php /*echo $ware->getPropertyValueByName('Shoe size') */?></td>
+                </tr>-->
                 </tbody>
             </table>
         </div>
