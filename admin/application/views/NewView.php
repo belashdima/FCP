@@ -54,7 +54,7 @@ $wareTypes = DatabaseHandler::getAllWareTypes();
             <button id="addNewImageButton" class="btn btn-primary">Добавить новое изображение</button>
         </div>
 
-        <button id="addNewItemSubmitButton" type="submit" class="btn btn-primary">Сохранить</button>
+        <button id="addNewItemSubmitButton" type="submit" class="btn btn-primary">Добавить товар</button>
     </form>
 
 </div>

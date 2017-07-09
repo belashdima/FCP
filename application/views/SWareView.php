@@ -103,7 +103,7 @@ $ware = $data;?>
                     <td><?php echo $ware->getPropertyValueByName('Price') ?></td>
                 </tr>
                 <tr>
-                    <td colspan="2">Размеры:</td>
+                    <!--<td colspan="2">Размеры:<?php /*echo $ware->getPropertyValueByName('Shoe size') */?></td>-->
                 </tr>
                 </tbody>
             </table>

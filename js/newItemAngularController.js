@@ -34,7 +34,7 @@ angular.module("newItemAngularApp", []).controller("newItemAngularController", f
         return result;
     }
 
-    $scope.saveNewItem = function () {
+    $scope.saveNewItem = function (button) {
         var url = "http://localhost/Footballcity_Project/admin/new/add_new?ware_type_name=" + $scope.wareTypeName;
 
         function toArray(images) {
@@ -54,12 +54,39 @@ angular.module("newItemAngularApp", []).controller("newItemAngularController", f
         var wareData = {properties: $scope.properties, images: imagesArray};
 
         var properties = JSON.stringify(wareData);
+
+        var originalText = button.text();
+
         $http.post(url, properties).then(function () {
             // success
+            // set btn to green to indicate success
+            button.toggleClass('btn-primary');
+            button.toggleClass('btn-success');
+            button.text('Изменения успешно сохранены');
+            button.prop('disabled', true);
+
+            // set blue back
+            setTimeout(function(){
+                button.toggleClass('btn-primary');
+                button.toggleClass('btn-success');
+                button.text(originalText);
+                button.prop('disabled', false);
+            }, 1000);
             //window.location.href="http://localhost/Footballcity_Project/admin/wares";
         }, function () {
             // error
-            alert('Something went wrong');
+            button.toggleClass('btn-primary');
+            button.toggleClass('btn-danger');
+            button.prop('disabled', true);
+
+            // set blue back
+            setTimeout(function(){
+                button.toggleClass('btn-primary');
+                button.toggleClass('btn-danger');
+                button.text(originalText);
+                button.prop('disabled', false);
+            }, 1000);
+            alert('Ошибка');
         });
     };
 

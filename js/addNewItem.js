@@ -6,7 +6,7 @@ $(document).ready(function () {
     });
 
     $('#addNewItemSubmitButton').click(function () {
-        angular.element($('#newItemDiv')).scope().saveNewItem();
+        angular.element($('#newItemDiv')).scope().saveNewItem($(this));
     });
 
     $('#addNewImageButton').click(function() {

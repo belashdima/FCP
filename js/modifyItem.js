@@ -10,7 +10,6 @@ $(document).ready(function () {
     angular.element($('#modifyItemDiv')).scope().getPropertiesForWare();
 
     $('#modifyItemSubmitButton').click(function () {
-        //angular.element($('#newItemDiv')).scope().alertValues();
         // pass button as argument to set result color and text
         angular.element($('#modifyItemDiv')).scope().modifyItem($(this));
     });

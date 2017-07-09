@@ -52,27 +52,31 @@ angular.module("modifyItemAngularApp", []).controller("modifyItemAngularControll
             button.toggleClass('btn-primary');
             button.toggleClass('btn-success');
             button.text('Изменения успешно сохранены');
+            button.prop('disabled', true);
 
             // set blue back
             setTimeout(function(){
                 button.toggleClass('btn-primary');
                 button.toggleClass('btn-success');
                 button.text(originalText);
-            }, 500);
+                button.prop('disabled', false);
+            }, 1000);
             //window.location.href="http://localhost/Footballcity_Project/admin/wares";
         }, function () {
             // error
 
             button.toggleClass('btn-primary');
             button.toggleClass('btn-danger');
+            button.prop('disabled', true);
 
             // set blue back
             setTimeout(function(){
                 button.toggleClass('btn-primary');
                 button.toggleClass('btn-danger');
                 button.text(originalText);
-            }, 500);
-            alert('Something went wrong');
+                button.prop('disabled', false);
+            }, 1000);
+            alert('Ошибка');
         });
     };
 

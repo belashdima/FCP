@@ -35,11 +35,6 @@ class SWaresController extends SController
         $wares = self::filterUsingParams($wares, $params);
         $ware = DatabaseHandler::getAllForWare($wares[0]->getWareId());
 
-        //echo $wareId;
-        //$ware = DatabaseHandler::getAllForWare($wareId);
-        //$ware = DatabaseHandler::getAllForWareByParams($params);
-        //print_r($ware);
-
         $this->view->generate('SWareView.php', 'SCommonMarkupView.php', $ware);
     }
 
