@@ -77,8 +77,14 @@ class SWaresController extends SController
         $uniqueSizes = array();
 
         foreach ($wares as $ware) {
-            $size = $ware->getPropertyValueByName('Shoe size');
-            if (!in_array($size, $uniqueSizes)) {
+            //print_r($ware);
+            if (in_array(new WareType(2, 'Shoes', 1), $ware->getWareTypes())) {
+                $size = $ware->getPropertyValueByName('Shoe size');
+            } else if (in_array(new WareType(3, 'Ball', 1), $ware->getWareTypes())) {
+                $size = $ware->getPropertyValueByName('Ball size');
+            }
+
+            if (!in_array($size, $uniqueSizes) && $size != null) {
                 $uniqueSizes[] = $size;
             }
         }

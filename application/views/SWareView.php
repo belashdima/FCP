@@ -23,59 +23,63 @@ $uniqueSizes = $sizes;?>
     <li class="active"><span><?php /*echo $ware->getPropertyValueByName('Brand').' '.$ware->getPropertyValueByName('Model') */?></span></li>
 </ol>-->
 
-<ol class="breadcrumb breadcrumb-arrow">
-    <?php
-    $wareTypesUI = $ware->getWareTypes();
-    array_pop($wareTypesUI);
-    $wareTypesUI = array_reverse($wareTypesUI);
+<div class="page-block">
+    <ol class="breadcrumb breadcrumb-arrow">
+        <?php
+        $wareTypesUI = $ware->getWareTypes();
+        array_pop($wareTypesUI);
+        $wareTypesUI = array_reverse($wareTypesUI);
 
-    foreach ($wareTypesUI as $wareType) {?>
-    <li><a href="#"><?php echo $wareType->getName() ?></a></li>
-    <?php } ?>
+        foreach ($wareTypesUI as $wareType) {?>
+            <li><a href="#"><?php echo $wareType->getName() ?></a></li>
+        <?php } ?>
 
-    <li class="active"><span><?php echo $ware->getPropertyValueByName('Brand').' '.$ware->getPropertyValueByName('Model') ?></span></li>
-</ol>
+        <li class="active"><span><?php echo $ware->getPropertyValueByName('Brand').' '.$ware->getPropertyValueByName('Model') ?></span></li>
+    </ol>
+
+</div>
 
 <div class="row">
     <div class="col-md-6">
-
-        <div>
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner" role="listbox">
-                    <?php
-                    $active = true;
-                    foreach ($ware->getImages() as $image) { ?>
-                    <div class="carousel-item <?php if($active) echo 'active'?>">
-                        <img class="d-block img-fluid" src="<?php echo $image ?>" alt="First slide">
+        <div class="page-block">
+            <div>
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                        <?php
+                        $active = true;
+                        foreach ($ware->getImages() as $image) { ?>
+                            <div class="carousel-item <?php if($active) echo 'active'?>">
+                                <img class="d-block img-fluid" src="<?php echo $image ?>" alt="First slide">
+                            </div>
+                            <?php
+                            $active = false;
+                        } ?>
                     </div>
-                    <?php
-                        $active = false;
-                    } ?>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+
+                <?php
+
+
+                //print_r($data);
+                //include_once 'SFiltersView.php';
+                ?>
             </div>
-
-            <?php
-
-
-            //print_r($data);
-            //include_once 'SFiltersView.php';
-            ?>
         </div>
 
     </div>
 
     <div class="col-md-6">
-
-        <div style="background-color: white; height: 100%">
-            <!--<p>Бренд:</p>
+        <div class="page-block">
+            <div style="background-color: white; height: 100%">
+                <!--<p>Бренд:</p>
             <h3><?php /*echo $ware->getPropertyValueByName('Brand') */?></h3>
             <p>Модель:</p>
             <h3><?php /*echo $ware->getPropertyValueByName('Model') */?></h3>
@@ -85,41 +89,42 @@ $uniqueSizes = $sizes;?>
             <h3><?php /*echo $ware->getPropertyValueByName('Price') */?></h3>
             <h3>Размеры:</h3>-->
 
-            <table class="table">
-                <tbody>
-                <tr>
-                    <td>Бренд:</td>
-                    <td><?php echo $ware->getPropertyValueByName('Brand') ?></td>
-                </tr>
-                <tr>
-                    <td>Модель:</td>
-                    <td><?php echo $ware->getPropertyValueByName('Model') ?></td>
-                </tr>
-                <tr>
-                    <td>Краткое описание:</td>
-                    <td><?php echo $ware->getPropertyValueByName('Description') ?></td>
-                </tr>
-                <tr>
-                    <td>Цена:</td>
-                    <td><?php echo $ware->getPropertyValueByName('Price') ?></td>
-                </tr>
-
-                <?php foreach ($uniqueSizes as $index=>$uniqueSize) { ?>
+                <table class="table">
+                    <tbody>
                     <tr>
-                        <?php if ($index == 0) echo '<td rowspan="'.count($uniqueSizes).'">Размеры:</td>' ?>
-                        <td><?php echo $uniqueSize; ?></td>
+                        <td>Бренд:</td>
+                        <td><?php echo $ware->getPropertyValueByName('Brand') ?></td>
                     </tr>
-                <?php } ?>
+                    <tr>
+                        <td>Модель:</td>
+                        <td><?php echo $ware->getPropertyValueByName('Model') ?></td>
+                    </tr>
+                    <tr>
+                        <td>Краткое описание:</td>
+                        <td><?php echo $ware->getPropertyValueByName('Description') ?></td>
+                    </tr>
+                    <tr>
+                        <td>Цена:</td>
+                        <td><?php echo $ware->getPropertyValueByName('Price') ?></td>
+                    </tr>
 
-                <!--<tr>
+                    <?php foreach ($uniqueSizes as $index=>$uniqueSize) { ?>
+                        <tr>
+                            <?php if ($index == 0) echo '<td rowspan="'.count($uniqueSizes).'">Размеры:</td>' ?>
+                            <td><?php echo $uniqueSize; ?></td>
+                        </tr>
+                    <?php } ?>
+
+                    <!--<tr>
                     <td rowspan="3">Размеры:</td>
                     <td><?php /*echo $ware->getPropertyValueByName('Shoe size') */?></td>
                 </tr>
                 <tr>
                     <td><?php /*echo $ware->getPropertyValueByName('Shoe size') */?></td>
                 </tr>-->
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <?php /*//print_r($data);

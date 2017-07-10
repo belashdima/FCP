@@ -1,3 +1,6 @@
+.navbar {
+}
+
 #footer {
     position: relative;
     bottom: 0px;
@@ -36,6 +39,14 @@
 
 body {
     /*background-image: url(http://localhost/Footballcity_Project/images/background/1.jpg);*/
+    background-color: #edeef0;
+}
+
+.page-block {
+    border-radius: 2px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    padding: 0px;
+    margin: 15px;
 }
 
 .wareName {
