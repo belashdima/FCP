@@ -23,23 +23,25 @@ $uniqueSizes = $sizes;?>
     <li class="active"><span><?php /*echo $ware->getPropertyValueByName('Brand').' '.$ware->getPropertyValueByName('Model') */?></span></li>
 </ol>-->
 
-<div class="page-block">
-    <ol class="breadcrumb breadcrumb-arrow">
-        <?php
-        $wareTypesUI = $ware->getWareTypes();
-        array_pop($wareTypesUI);
-        $wareTypesUI = array_reverse($wareTypesUI);
-
-        foreach ($wareTypesUI as $wareType) {?>
-            <li><a href="#"><?php echo $wareType->getName() ?></a></li>
-        <?php } ?>
-
-        <li class="active"><span><?php echo $ware->getPropertyValueByName('Brand').' '.$ware->getPropertyValueByName('Model') ?></span></li>
-    </ol>
-
-</div>
-
 <div class="row">
+    <div class="col-12">
+        <div class="page-block">
+            <ol class="breadcrumb breadcrumb-arrow">
+                <?php
+                $wareTypesUI = $ware->getWareTypes();
+                array_pop($wareTypesUI);
+                $wareTypesUI = array_reverse($wareTypesUI);
+
+                foreach ($wareTypesUI as $wareType) {?>
+                    <li><a href="#"><?php echo $wareType->getName() ?></a></li>
+                <?php } ?>
+
+                <li class="active"><span><?php echo $ware->getPropertyValueByName('Brand').' '.$ware->getPropertyValueByName('Model') ?></span></li>
+            </ol>
+
+        </div>
+    </div>
+
     <div class="col-md-6">
         <div class="page-block">
             <div>
@@ -78,53 +80,41 @@ $uniqueSizes = $sizes;?>
 
     <div class="col-md-6">
         <div class="page-block">
-            <div style="background-color: white; height: 100%">
-                <!--<p>Бренд:</p>
-            <h3><?php /*echo $ware->getPropertyValueByName('Brand') */?></h3>
-            <p>Модель:</p>
-            <h3><?php /*echo $ware->getPropertyValueByName('Model') */?></h3>
-            <p>Краткое описание:</p>
-            <h3><?php /*echo $ware->getPropertyValueByName('Description') */?></h3>
-            <p>Цена:</p>
-            <h3><?php /*echo $ware->getPropertyValueByName('Price') */?></h3>
-            <h3>Размеры:</h3>-->
-
-                <table class="table">
-                    <tbody>
-                    <tr>
-                        <td>Бренд:</td>
-                        <td><?php echo $ware->getPropertyValueByName('Brand') ?></td>
-                    </tr>
-                    <tr>
-                        <td>Модель:</td>
-                        <td><?php echo $ware->getPropertyValueByName('Model') ?></td>
-                    </tr>
-                    <tr>
-                        <td>Краткое описание:</td>
-                        <td><?php echo $ware->getPropertyValueByName('Description') ?></td>
-                    </tr>
-                    <tr>
-                        <td>Цена:</td>
-                        <td><?php echo $ware->getPropertyValueByName('Price') ?></td>
-                    </tr>
-
-                    <?php foreach ($uniqueSizes as $index=>$uniqueSize) { ?>
-                        <tr>
-                            <?php if ($index == 0) echo '<td rowspan="'.count($uniqueSizes).'">Размеры:</td>' ?>
-                            <td><?php echo $uniqueSize; ?></td>
-                        </tr>
-                    <?php } ?>
-
-                    <!--<tr>
-                    <td rowspan="3">Размеры:</td>
-                    <td><?php /*echo $ware->getPropertyValueByName('Shoe size') */?></td>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td>Бренд:</td>
+                    <td><?php echo $ware->getPropertyValueByName('Brand') ?></td>
                 </tr>
                 <tr>
-                    <td><?php /*echo $ware->getPropertyValueByName('Shoe size') */?></td>
-                </tr>-->
-                    </tbody>
-                </table>
-            </div>
+                    <td>Модель:</td>
+                    <td><?php echo $ware->getPropertyValueByName('Model') ?></td>
+                </tr>
+                <tr>
+                    <td>Краткое описание:</td>
+                    <td><?php echo $ware->getPropertyValueByName('Description') ?></td>
+                </tr>
+                <tr>
+                    <td>Цена:</td>
+                    <td><?php echo $ware->getPropertyValueByName('Price') ?></td>
+                </tr>
+
+                <?php foreach ($uniqueSizes as $index=>$uniqueSize) { ?>
+                    <tr>
+                        <?php if ($index == 0) echo '<td rowspan="'.count($uniqueSizes).'">Размеры:</td>' ?>
+                        <td><?php echo $uniqueSize; ?></td>
+                    </tr>
+                <?php } ?>
+
+                <!--<tr>
+                <td rowspan="3">Размеры:</td>
+                <td><?php /*echo $ware->getPropertyValueByName('Shoe size') */?></td>
+            </tr>
+            <tr>
+                <td><?php /*echo $ware->getPropertyValueByName('Shoe size') */?></td>
+            </tr>-->
+                </tbody>
+            </table>
         </div>
 
         <?php /*//print_r($data);

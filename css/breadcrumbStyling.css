@@ -81,3 +81,11 @@
 .breadcrumb-arrow li span {
     color: #434a54
 }
+
+.breadcrumb {
+    margin-bottom: 0px;
+}
+
+.breadcrumb-arrow {
+    background-color: #edeef0;
+}

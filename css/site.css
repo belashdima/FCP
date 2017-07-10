@@ -45,8 +45,11 @@ body {
 .page-block {
     border-radius: 2px;
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
-    padding: 0px;
-    margin: 15px;
+    background-color: white;
+    padding: 15px;
+    /*margin-top: 15px;
+    margin-bottom: 15px;*/
+    margin: 8px;
 }
 
 .wareName {
@@ -77,4 +80,16 @@ body {
 .img-fluid {
     height: 100%;
     width: 100%;
+}
+
+.row {
+    padding: 7px;
+}
+
+.col-md-6 {
+    padding: 0px;
+}
+
+.col-12 {
+    padding: 0px;
 }
