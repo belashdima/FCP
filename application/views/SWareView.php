@@ -23,7 +23,7 @@ $uniqueSizes = $sizes;?>
     <li class="active"><span><?php /*echo $ware->getPropertyValueByName('Brand').' '.$ware->getPropertyValueByName('Model') */?></span></li>
 </ol>-->
 
-<div class="row">
+<div class="row main-row">
     <div class="col-12">
         <div class="page-block">
             <ol class="breadcrumb breadcrumb-arrow">
@@ -83,8 +83,8 @@ $uniqueSizes = $sizes;?>
             <table class="table">
                 <tbody>
                 <tr>
-                    <td>Бренд:</td>
-                    <td><?php echo $ware->getPropertyValueByName('Brand') ?></td>
+                    <td class="borderless">Бренд:</td>
+                    <td class="borderless"><?php echo $ware->getPropertyValueByName('Brand') ?></td>
                 </tr>
                 <tr>
                     <td>Модель:</td>
@@ -105,23 +105,9 @@ $uniqueSizes = $sizes;?>
                         <td><?php echo $uniqueSize; ?></td>
                     </tr>
                 <?php } ?>
-
-                <!--<tr>
-                <td rowspan="3">Размеры:</td>
-                <td><?php /*echo $ware->getPropertyValueByName('Shoe size') */?></td>
-            </tr>
-            <tr>
-                <td><?php /*echo $ware->getPropertyValueByName('Shoe size') */?></td>
-            </tr>-->
                 </tbody>
             </table>
         </div>
-
-        <?php /*//print_r($data);
-        include_once 'SWaresView.php';
-        */?>
-
-
     </div>
 
 </div>

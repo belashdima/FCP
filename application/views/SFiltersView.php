@@ -7,7 +7,7 @@
 
 <div ng-app="filtersAngularApp" ng-controller="filtersAngularController">
 
-    <h4>Фильтр</h4>
+    <h3>Фильтр</h3>
     <?php
 
     $filterNumber = 0;

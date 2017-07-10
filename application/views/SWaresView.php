@@ -2,9 +2,10 @@
 $wares = $data;?>
 
 <div>
-    <div class="container-fluid">
+    <!--<div class="container-fluid">-->
+    <div>
 
-        <div id="mainContent" class="row">
+        <div id="mainContent" class="row main-row">
 
             <?php
             //print_r($balls);
