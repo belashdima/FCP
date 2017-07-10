@@ -5,15 +5,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="http://localhost/Footballcity_Project/js/filtersAngularController.js"></script>
 
-<div ng-app="filtersAngularApp" ng-controller="filtersAngularController">
+<div ng-app="filtersAngularApp" ng-controller="filtersAngularController" class="row simple-row">
 
-    <h3>Фильтр</h3>
+    <!--<h3>Фильтр</h3>-->
     <?php
 
     $filterNumber = 0;
     foreach ($filters as $filter) {
         if (!strcmp($filter->getProperty()->getUrlPresentation(), 'image') == 0 && !strcmp($filter->getProperty()->getUrlPresentation(), 'description') == 0) {?>
-            <div class="list-group-item list-group-item-action" data-toggle="collapse" data-target="#<?php echo $filterNumber; ?>"><?php echo $filter->getProperty()->getPropertyName(); ?></div>
+            <div class="list-group-item list-group-item-action filter-card page-block filter-page-block" data-toggle="collapse" data-target="#<?php echo $filterNumber; ?>"><?php echo $filter->getProperty()->getPropertyName(); ?></div>
             <div id="<?php echo $filter->getProperty()->getUrlPresentation(); ?>" class="propertyUrlPresentationContainer" hidden="true"><?php echo $filter->getProperty()->getUrlPresentation(); ?></div>
 
             <ul id="<?php echo $filterNumber; ?>" class="filterItem <?php if (array_key_exists($filter->getProperty()->getUrlPresentation(), $_GET)) {echo "expand";} else {echo "collapse";}?>">
