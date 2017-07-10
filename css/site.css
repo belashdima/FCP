@@ -1,9 +1,11 @@
 .navbar {
+    background-color: #323232 !important;
 }
 
 #footer {
     position: relative;
     bottom: 0px;
+    background-color: #323232 !important;
 }
 
 #content {
@@ -106,4 +108,28 @@ body {
 
 .container-fluid {
     padding: 15px;
+}
+
+.font-color {
+    color: #323232 !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #323232 !important;
+}
+
+.sub-header {
+    margin: 6px 0 0;
+    padding: 0 0 13px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    cursor: pointer;
+    /*color: #656565;*/
+    color: #323232;
+    font-size: 24px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

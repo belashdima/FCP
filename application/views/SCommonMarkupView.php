@@ -31,7 +31,7 @@
 
 </head>
 
-<body>
+<body class="font-color">
 
 <!-- Navigation -->
 <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse" role="navigation">
