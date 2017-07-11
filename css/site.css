@@ -19,11 +19,6 @@
     border-color: #5cb85c;
 }
 
-.filterItem {
-    margin-bottom: .5rem;
-    padding-left: 0px;
-}
-
 .black {
     background-color: #242627;
     color: white;
@@ -114,8 +109,29 @@ body {
     margin-right: 0px;
 }
 
+.filter-field {
+    margin-top: 0px;
+    width: 100%;
+}
+
 .simple-card {
     margin-bottom: 15px !important;
+}
+
+.form-control {
+    border-radius: 2px;
+}
+
+.input-upper {
+    margin-bottom: 15px;
+}
+
+.input-group-addon {
+    background-color: white;
+}
+
+.borderless {
+    border: none;
 }
 
 .table .borderless {

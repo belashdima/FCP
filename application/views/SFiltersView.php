@@ -7,6 +7,40 @@
 
 <div ng-app="filtersAngularApp" ng-controller="filtersAngularController" class="row simple-row">
 
+    <div class="list-group-item list-group-item-action filter-card page-block filter-page-block" data-toggle="collapse" data-target="#target">SomeFilter</div>
+    <div id="target" class="collapse page-block filter-page-block filter-field">
+        <div class="input-group">
+            <span class="input-group-addon borderless">
+                <input type="checkbox" aria-label="Checkbox for following text input">
+            </span>
+            <!--<span class="input-group-addon">$</span>-->
+            <span type="text" class="form-control borderless">Adidas</span>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon borderless">
+                <input type="checkbox" aria-label="Checkbox for following text input">
+            </span>
+            <!--<span class="input-group-addon">$</span>-->
+            <span type="text" class="form-control borderless">Diadora</span>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon borderless">
+                <input type="checkbox" aria-label="Checkbox for following text input">
+            </span>
+            <!--<span class="input-group-addon">$</span>-->
+            <span type="text" class="form-control borderless">Nike</span>
+        </div>
+        <!--<li class="list-group-item list-group-item-action filterVariant">Filter value 1</li>
+        <li class="list-group-item list-group-item-action filterVariant">Filter value 2</li>-->
+    </div>
+
+    <?php $priceFilter = Filter::getFilterByPropertyUrlPresentation($filters, 'price'); ?>
+    <div class="list-group-item list-group-item-action filter-card page-block filter-page-block" data-toggle="collapse" data-target="#priceCont">Цена</div>
+    <div id="priceCont" class="collapse page-block filter-page-block filter-field">
+        <input type="text" class="form-control input-upper" placeholder="От" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" placeholder="До" aria-describedby="basic-addon1">
+    </div>
+
     <!--<h3>Фильтр</h3>-->
     <?php
 
@@ -16,25 +50,20 @@
             <div class="list-group-item list-group-item-action filter-card page-block filter-page-block" data-toggle="collapse" data-target="#<?php echo $filterNumber; ?>"><?php echo $filter->getProperty()->getPropertyName(); ?></div>
             <div id="<?php echo $filter->getProperty()->getUrlPresentation(); ?>" class="propertyUrlPresentationContainer" hidden="true"><?php echo $filter->getProperty()->getUrlPresentation(); ?></div>
 
-            <ul id="<?php echo $filterNumber; ?>" class="filterItem <?php if (array_key_exists($filter->getProperty()->getUrlPresentation(), $_GET)) {echo "expand";} else {echo "collapse";}?>">
-                <?php
-
-                /*if (strcmp($filter->getProperty()->getPropertyName(), "Price") == 0) {*/?><!--
-                <div>
-                    <div>
-                        <span id="lowerPriceLimit"><?php /*echo min($filter->getPossibleValues()); */?>$</span>
-                        <span id="upperPriceLimit"><?php /*echo max($filter->getPossibleValues()); */?>$</span>
-                    </div>
-                    <input id="priceSlider" type="text" class="span2" value="" data-slider-min="<?php /*echo min($filter->getPossibleValues()); */?>" data-slider-max="<?php /*echo max($filter->getPossibleValues()); */?>" data-slider-step="1" data-slider-value="[<?php /*echo min($filter->getPossibleValues()); */?>,<?php /*echo max($filter->getPossibleValues()); */?>]"/>
-                </div>
-            --><?php /*}
-
-            else*/
+            <div id="<?php echo $filterNumber; ?>" class="page-block filter-page-block filter-field <?php if (array_key_exists($filter->getProperty()->getUrlPresentation(), $_GET)) {echo "expand";} else {echo "collapse";}?>">
+               <?php
                 foreach ($filter->getPossibleValues() as $possibleValue) { ?>
-                    <li class="list-group-item list-group-item-action filterVariant"><?php echo $possibleValue; ?></li>
+                    <div class="input-group">
+                        <span class="input-group-addon borderless">
+                            <input type="checkbox" aria-label="Checkbox for following text input">
+                        </span>
+                        <!--<span class="input-group-addon">$</span>-->
+                        <span type="text" class="form-control borderless"><?php echo $possibleValue; ?></span>
+                    </div>
+                    <!--<li class="list-group-item list-group-item-action filterVariant"><?php /*echo $possibleValue; */?></li>-->
                 <?php }
                 ?>
-            </ul>
+            </div>
 
         <?php }
         $filterNumber++;

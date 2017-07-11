@@ -49,6 +49,11 @@ class Filter
         $this->possibleValues = $possibleValues;
     }
 
-
-
+    public static function getFilterByPropertyUrlPresentation($filters, $urlPresentation) {
+        foreach ($filters as $filter) {
+            if (strcmp($filter->getProperty()->getUrlPresentation(), $urlPresentation) == 0) {
+                return $filter;
+            }
+        }
+    }
 }
