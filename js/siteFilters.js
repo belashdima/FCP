@@ -1,43 +1,30 @@
+jQuery.extend({
+
+    getQueryParameters : function(str) {
+        return (str || document.location.search).replace(/(^\?)/,'').split("&").map(function(n){return n = n.split("="),this[n[0]] = n[1],this}.bind({}))[0];
+    }
+
+});
+
 $(document).ready(function () {
     var params = {};
-    var filters = [];
 
-// With JQuery
-    $("#priceSlider").slider({});
+    params = $.getQueryParameters();
 
 
-// With JQuery
-    $("#priceSlider").on("slide", function(slideEvt) {
-        var values = (this.value).split(',');
-        $("#lowerPriceLimit").text(values[0]+'$');
-        $("#upperPriceLimit").text(values[1]+'$');
+    $('.filter-variant-checkbox').change(function() {
+        var uriRepresentation = $(this).parent().parent().parent().attr('id');
+        params[uriRepresentation] = $(this).parent().parent().find('.filter-variant-name').text();
 
-        var filter = {};
-        //filter.name = 'Price';
-        filter.values = values;
+        if($(this).is(":checked")) {
+            //'checked' event code
+            params[uriRepresentation] = $(this).parent().parent().find('.filter-variant-name').text();
+        } else {
+            //'unchecked' event code
+            delete params[uriRepresentation];
+        }
 
-        //filtersModel.push(filter);
-        //filters.price = values;
-        filters.size = 5;
-
-        var json = JSON.stringify(filters);
-
-        var f;
-
-        /*$.post("demo_test.asp", function ((JSON.stringify(filters)), status) {
-
-         });*/
-    });
-
-    $('.filterVariant').click(function () {
-        $(this).toggleClass("list-group-item-success");
-        $(this).toggleClass("list-group-item-action");
-        var uriRepresentation = $(this).parent().prev().attr('id');
-        params[uriRepresentation] = $(this).text();
         var query = $.param(params);
-
-        //alert("http://localhost/Footballcity_Project/balls?" + query);
-        //$.get("http://localhost/Footballcity_Project/balls?" + query);
         var currentAction = (window.location.href).split('?');
         window.location.href = currentAction[0] + '?' + query;
     });
