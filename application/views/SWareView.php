@@ -77,7 +77,7 @@ $uniqueSizes = $sizes;?>
                 </tr>
                 <tr>
                     <td>Цена:</td>
-                    <td><?php echo $ware->getPropertyValueByUrlPresentation('price') ?></td>
+                    <td><?php echo $ware->getPropertyValueByUrlPresentation('price') ?> бел. руб.</td>
                 </tr>
 
                 <?php foreach ($uniqueSizes as $index=>$uniqueSize) { ?>

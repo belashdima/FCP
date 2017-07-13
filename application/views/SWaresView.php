@@ -20,8 +20,8 @@ $wares = $data;?>
                         <span class="wareName">
                             <?php echo $ware->getPropertyValueByUrlPresentation('brand').' '.$ware->getPropertyValueByUrlPresentation('model');?>
                         </span>
-                        <span class="wareName">
-                            <?php echo $ware->getPropertyValueByUrlPresentation('price').'$';?>
+                        <span class="wareName" style="float: right">
+                            <?php echo $ware->getPropertyValueByUrlPresentation('price').' бел. руб.';?>
                         </span>
                     </div>
                 </div>
