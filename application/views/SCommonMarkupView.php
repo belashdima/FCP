@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="http://localhost/Footballcity_Project/css/bootstrap.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="http://localhost/Footballcity_Project/css/site.css">
+    <link rel="stylesheet" href="http://localhost/Footballcity_Project/css/header.css">
 
     <!--JS-->
     <!-- jQuery Version 3.1.1 -->
@@ -28,13 +29,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="http://localhost/Footballcity_Project/js/header.js"></script>
 
 </head>
 
 <body class="font-color">
 
 <!-- Navigation -->
-<nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse" role="navigation">
+<!--<nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse" role="navigation">
 
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -70,7 +72,54 @@
         </div>
     </div>
 
-</nav>
+</nav>-->
+
+
+
+<header>
+
+    <div id="info_header">
+
+    </div>
+
+    <nav id='cssmenu'>
+        <div class="logo"><a href="index.html">Responsive </a></div>
+        <div id="head-mobile"></div>
+        <div class="button"></div>
+        <ul class="header-ul">
+            <li class='header-active'><a href='#'>Обувь</a></li>
+            <li><a href='#'>Мячи</a></li>
+            <li><a href='#'>Форма</a>
+                <ul>
+                    <li><a href='#'>Product 1</a>
+
+                    </li>
+                    <li><a href='#'>Product 2</a>
+
+                    </li>
+                    <li><a href='#'>Product 3</a>
+
+                    </li>
+                    <li><a href='#'>Product 4</a>
+
+                    </li>
+                    <li><a href='#'>Product 5</a>
+
+                    </li>
+                    <li><a href='#'>Product 6</a>
+
+                    </li>
+                </ul>
+            </li>
+            <li><a href='#'>Тренировочная одежда</a></li>
+            <li><a href='#'>Сумки и рюкзаки</a></li>
+            <li><a href='#'>Вратарская экипировка</a></li>
+            <li><a href='#'>Прочее</a></li>
+        </ul>
+    </nav>
+</header>
+
+
 
     <!-- Page Content -->
     <div id="content" class="container">
