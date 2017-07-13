@@ -24,8 +24,26 @@ $(document).ready(function () {
             delete params[uriRepresentation];
         }
 
+        refresh();
+    });
+
+    $("#lowerPriceLimit").change(function(){
+        updatePrice();
+    });
+    $("#upperPriceLimit").change(function(){
+        updatePrice();
+    });
+
+    function updatePrice () {
+        var lowerPriceLimit = $("#lowerPriceLimit").val();
+        var upperPriceLimit = $("#upperPriceLimit").val();
+
+        //refresh();
+    }
+
+    function refresh () {
         var query = $.param(params);
         var currentAction = (window.location.href).split('?');
         window.location.href = currentAction[0] + '?' + query;
-    });
+    }
 });

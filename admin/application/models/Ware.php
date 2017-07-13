@@ -120,6 +120,17 @@ class Ware
         return null;
     }
 
+    public function getPropertyValueByUrlPresentation($urlPresentation) {
+        foreach ($this->properties as $propertyValue) {
+            $currentUrlPresentation = $propertyValue->getProperty()->getUrlPresentation();
+            if ($currentUrlPresentation == $urlPresentation) {
+                return $propertyValue->getValue()->getValue();
+            }
+        }
+
+        return null;
+    }
+
     public function getMainImage() {
         if (count($this->getImages()) > 0) {
             if (strpos($this->getImages()[0], 'http') !== false) {

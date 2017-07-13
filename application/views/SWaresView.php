@@ -18,14 +18,10 @@ $wares = $data;?>
                     </a>
                     <div class="card-block">
                         <span class="wareName">
-                            <?php echo $ware->getPropertyValueByName('Brand').' '.$ware->getPropertyValueByName('Model');?>
-                            <!--<a href="http://localhost/Footballcity_Project/ware?id=<?php /*//echo $ware->getWareId(); */?>">-->
-                            <!--<a href="http://localhost/Footballcity_Project/ware?<?php /*echo $ware->getLink(); */?>">
-                                <?php /*echo $ware->getPropertyValueByName('Brand').' '.$ware->getPropertyValueByName('Model');*/?>
-                            </a>-->
+                            <?php echo $ware->getPropertyValueByUrlPresentation('brand').' '.$ware->getPropertyValueByUrlPresentation('model');?>
                         </span>
                         <span class="wareName">
-                            <?php echo $ware->getPropertyValueByName('Price').'$';?>
+                            <?php echo $ware->getPropertyValueByUrlPresentation('price').'$';?>
                         </span>
                     </div>
                 </div>

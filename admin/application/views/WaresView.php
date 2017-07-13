@@ -25,14 +25,14 @@ $wares = $data;?>
                             <div class="card-block">
                                 <h4 class="card-title wareName">
                                     <a href="http://localhost/Footballcity_Project/admin/wares/ware?id=<?php echo $ware->getWareId(); ?>">
-                                        <?php echo $ware->getPropertyValueByName('Brand').' '.$ware->getPropertyValueByName('Model');?>
+                                        <?php echo $ware->getPropertyValueByUrlPresentation('brand').' '.$ware->getPropertyValueByUrlPresentation('model');?>
                                     </a>
                                 </h4>
                                 <h5>
-                                    <?php echo $ware->getPropertyValueByName('Price').'$';?>
+                                    <?php echo $ware->getPropertyValueByUrlPresentation('price').'$';?>
                                 </h5>
                                 <p class="card-text">
-                                    <?php /*echo $ware->getPropertyValueByName('Description');*/?>
+                                    <?php /*echo $ware->getPropertyValueByUrlPresentation('description');*/?>
                                 </p>
                             </div>
                         </div>

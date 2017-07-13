@@ -7,44 +7,42 @@
 
 <div ng-app="filtersAngularApp" ng-controller="filtersAngularController" class="row simple-row">
 
-    <div class="list-group-item list-group-item-action filter-card page-block filter-page-block" data-toggle="collapse" data-target="#target">SomeFilter</div>
+    <!--<div class="list-group-item list-group-item-action filter-card page-block filter-page-block" data-toggle="collapse" data-target="#target">SomeFilter</div>
     <div id="target" class="collapse page-block filter-page-block filter-field">
         <div class="input-group">
             <span class="input-group-addon borderless">
                 <input type="checkbox" aria-label="Checkbox for following text input">
             </span>
-            <!--<span class="input-group-addon">$</span>-->
             <span type="text" class="form-control borderless">Adidas</span>
         </div>
         <div class="input-group">
             <span class="input-group-addon borderless">
                 <input type="checkbox" aria-label="Checkbox for following text input">
             </span>
-            <!--<span class="input-group-addon">$</span>-->
             <span type="text" class="form-control borderless">Diadora</span>
         </div>
         <div class="input-group">
             <span class="input-group-addon borderless">
                 <input type="checkbox" aria-label="Checkbox for following text input">
             </span>
-            <!--<span class="input-group-addon">$</span>-->
             <span type="text" class="form-control borderless">Nike</span>
         </div>
-        <!--<li class="list-group-item list-group-item-action filterVariant">Filter value 1</li>
-        <li class="list-group-item list-group-item-action filterVariant">Filter value 2</li>-->
-    </div>
+    </div>-->
 
     <?php $priceFilter = Filter::getFilterByPropertyUrlPresentation($filters, 'price'); ?>
-    <div class="list-group-item list-group-item-action filter-card page-block filter-page-block" data-toggle="collapse" data-target="#priceCont">Цена</div>
-    <div id="priceCont" class="collapse page-block filter-page-block filter-field">
-        <input type="text" class="form-control input-upper" placeholder="От" aria-describedby="basic-addon1">
-        <input type="text" class="form-control" placeholder="До" aria-describedby="basic-addon1">
+    <div class="list-group-item list-group-item-action filter-card page-block filter-page-block" data-toggle="collapse" data-target="#price">Цена</div>
+    <div id="price" class="collapse page-block filter-page-block filter-field">
+        <input id="lowerPriceLimit" type="text" class="form-control input-upper" placeholder="От" aria-describedby="basic-addon1">
+        <input id="upperPriceLimit" type="text" class="form-control" placeholder="До" aria-describedby="basic-addon1">
     </div>
 
     <!--<h3>Фильтр</h3>-->
     <?php
     foreach ($filters as $filter) {
-        if (!strcmp($filter->getProperty()->getUrlPresentation(), 'image') == 0 && !strcmp($filter->getProperty()->getUrlPresentation(), 'description') == 0) {?>
+        if (!strcmp($filter->getProperty()->getUrlPresentation(), 'image') == 0 &&
+            !strcmp($filter->getProperty()->getUrlPresentation(), 'description') == 0 &&
+            !strcmp($filter->getProperty()->getUrlPresentation(), 'color') == 0 &&
+            !strcmp($filter->getProperty()->getUrlPresentation(), 'price') == 0) {?>
             <div class="list-group-item list-group-item-action filter-card page-block filter-page-block" data-toggle="collapse" data-target="#<?php echo $filter->getProperty()->getUrlPresentation(); ?>">
                 <?php echo $filter->getProperty()->getPropertyName(); ?>
             </div>

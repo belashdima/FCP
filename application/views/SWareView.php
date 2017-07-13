@@ -4,25 +4,6 @@ $uniqueSizes = $sizes;?>
 
 <link rel="stylesheet" href="http://localhost/Footballcity_Project/css/breadcrumbStyling.css">
 
-<!--<ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Обувь</a></li>
-    <li class="breadcrumb-item"><a href="http://localhost/Footballcity_Project/admin/boots">Футбольные бутсы</a></li>
-    <li class="breadcrumb-item active">nflejnl</li>
-</ol>-->
-
-<!--<nav class="breadcrumb">
-    <a class="breadcrumb-item" href="#">Обувь</a>
-    <a class="breadcrumb-item" href="http://localhost/Footballcity_Project/">Футбольные бутсы</a>
-    <span class="breadcrumb-item active">Bootstrap</span>
-</nav>-->
-
-<!--<ol class="breadcrumb breadcrumb-arrow">
-    <li><a href="#">Обувь</a></li>
-    <li><a href="#">Футбольные бутсы</a></li>
-    <li><a href="#"><?php /*print_r($ware->getWareTypes()) */?></a></li>
-    <li class="active"><span><?php /*echo $ware->getPropertyValueByName('Brand').' '.$ware->getPropertyValueByName('Model') */?></span></li>
-</ol>-->
-
 <div class="row main-row">
     <div class="col-12">
         <div class="page-block">
@@ -36,7 +17,7 @@ $uniqueSizes = $sizes;?>
                     <li><a href="#"><?php echo $wareType->getName() ?></a></li>
                 <?php } ?>
 
-                <li class="active"><span><?php echo $ware->getPropertyValueByName('Brand').' '.$ware->getPropertyValueByName('Model') ?></span></li>
+                <li class="active"><span><?php echo $ware->getPropertyValueByUrlPresentation('brand').' '.$ware->getPropertyValueByUrlPresentation('model') ?></span></li>
             </ol>
 
         </div>
@@ -84,19 +65,19 @@ $uniqueSizes = $sizes;?>
                 <tbody>
                 <tr>
                     <td class="borderless">Бренд:</td>
-                    <td class="borderless"><?php echo $ware->getPropertyValueByName('Brand') ?></td>
+                    <td class="borderless"><?php echo $ware->getPropertyValueByUrlPresentation('brand') ?></td>
                 </tr>
                 <tr>
                     <td>Модель:</td>
-                    <td><?php echo $ware->getPropertyValueByName('Model') ?></td>
+                    <td><?php echo $ware->getPropertyValueByUrlPresentation('model') ?></td>
                 </tr>
                 <tr>
                     <td>Краткое описание:</td>
-                    <td><?php echo $ware->getPropertyValueByName('Description') ?></td>
+                    <td><?php echo $ware->getPropertyValueByUrlPresentation('description') ?></td>
                 </tr>
                 <tr>
                     <td>Цена:</td>
-                    <td><?php echo $ware->getPropertyValueByName('Price') ?></td>
+                    <td><?php echo $ware->getPropertyValueByUrlPresentation('price') ?></td>
                 </tr>
 
                 <?php foreach ($uniqueSizes as $index=>$uniqueSize) { ?>

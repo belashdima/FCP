@@ -41,7 +41,29 @@ class Property
      */
     public function getPropertyName()
     {
-        return $this->propertyName;
+        //return $this->propertyName;
+
+        if (strcmp($this->getUrlPresentation(), 'price') == 0) {
+            return 'Цена';
+        } else  if (strcmp($this->getUrlPresentation(), 'ball_size') == 0) {
+            return 'Размер';
+        } else  if (strcmp($this->getUrlPresentation(), 'shoe_size') == 0) {
+            return 'Размер';
+        } else  if (strcmp($this->getUrlPresentation(), 'brand') == 0) {
+            return 'Бренд';
+        } else  if (strcmp($this->getUrlPresentation(), 'model') == 0) {
+            return 'Модель';
+        } else  if (strcmp($this->getUrlPresentation(), 'description') == 0) {
+            return 'Описание';
+        } else  if (strcmp($this->getUrlPresentation(), 'color') == 0) {
+            return 'Цвет';
+        } else  if (strcmp($this->getUrlPresentation(), 'ground_type') == 0) {
+            return 'Тип покрытия';
+        } else  if (strcmp($this->getUrlPresentation(), 'clothing_size') == 0) {
+            return 'Размер';
+        } else  if (strcmp($this->getUrlPresentation(), 'price') == 0) {
+            return 'Undefined property';
+        }
     }
 
     /**
@@ -67,6 +89,4 @@ class Property
     {
         $this->urlPresentation = $urlPresentation;
     }
-
-
 }
