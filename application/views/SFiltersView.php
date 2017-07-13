@@ -31,7 +31,7 @@
 
     <?php /*$priceFilter = Filter::getFilterByPropertyUrlPresentation($filters, 'price');*/
     $priceParamValue = $_GET['price'];
-    $priceLimits = explode(',', $priceParamValue);
+    $priceLimits = explode('-', $priceParamValue);
     ?>
     <div class="list-group-item list-group-item-action filter-card page-block filter-page-block" data-toggle="collapse" data-target="#price">Цена</div>
     <div id="price" class="page-block filter-page-block filter-field <?php if (array_key_exists('price', $_GET)) {echo "expand"/*"collapse.in"*/;} else {echo "collapse";}?>">

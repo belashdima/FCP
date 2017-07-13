@@ -56,22 +56,21 @@ class SWaresController extends SController
                         /* price filter */
                         if (strcmp($propertyValue->getProperty()->getUrlPresentation(), 'price') == 0) {
                             $priceParamValue = $params[$propertyValue->getProperty()->getUrlPresentation()];
-                            $limits = explode(',', $priceParamValue);
+                            $limits = explode('-', $priceParamValue);
                             $warePrice = $propertyValue->getValue()->getValue();
                             if ($warePrice > $limits[0] && $warePrice < $limits[1]) {
 
                             } else {
                                 $passesFilter = false;
                             }
-
-                            break;
                         }
                         /* end of price filter */
+                        else {
+                            if (strcmp(strtolower($propertyValue->getValue()->getValue()), strtolower($params[$propertyValue->getProperty()->getUrlPresentation()])) == 0) {
 
-                        if (strcmp(strtolower($propertyValue->getValue()->getValue()), strtolower($params[$propertyValue->getProperty()->getUrlPresentation()])) == 0) {
-
-                        } else {
-                            $passesFilter = false;
+                            } else {
+                                $passesFilter = false;
+                            }
                         }
                     }
                 }

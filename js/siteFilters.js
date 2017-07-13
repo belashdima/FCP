@@ -83,18 +83,18 @@ $(document).ready(function () {
 
         if (!isNaN(lowerPriceLimit) && !isNaN(upperPriceLimit)) {
             // two limits
-            params.price = lowerPriceLimit + ',' + upperPriceLimit;
+            params.price = lowerPriceLimit + '-' + upperPriceLimit;
             refresh();
         } else {
             if (isNaN(lowerPriceLimit) && !isNaN(upperPriceLimit)) {
                 // limited upper
-                params.price = '0,' + upperPriceLimit;
+                params.price = '0-' + upperPriceLimit;
                 //refresh();
             }
 
             if (!isNaN(lowerPriceLimit) && isNaN(upperPriceLimit)) {
                 // limited lower
-                params.price = lowerPriceLimit + ',100500';
+                params.price = lowerPriceLimit + '-100500';
                 //refresh();
             }
 
