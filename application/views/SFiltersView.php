@@ -29,11 +29,14 @@
         </div>
     </div>-->
 
-    <?php $priceFilter = Filter::getFilterByPropertyUrlPresentation($filters, 'price'); ?>
+    <?php /*$priceFilter = Filter::getFilterByPropertyUrlPresentation($filters, 'price');*/
+    $priceParamValue = $_GET['price'];
+    $priceLimits = explode(',', $priceParamValue);
+    ?>
     <div class="list-group-item list-group-item-action filter-card page-block filter-page-block" data-toggle="collapse" data-target="#price">Цена</div>
-    <div id="price" class="collapse page-block filter-page-block filter-field">
-        <input id="lowerPriceLimit" type="text" class="form-control input-upper" placeholder="От" aria-describedby="basic-addon1">
-        <input id="upperPriceLimit" type="text" class="form-control" placeholder="До" aria-describedby="basic-addon1">
+    <div id="price" class="page-block filter-page-block filter-field <?php if (array_key_exists('price', $_GET)) {echo "expand"/*"collapse.in"*/;} else {echo "collapse";}?>">
+        <input id="lowerPriceLimit" type="text" class="form-control input-upper" placeholder="От, бел. руб" aria-describedby="basic-addon1" value="<?php echo $priceLimits[0]; ?>">
+        <input id="upperPriceLimit" type="text" class="form-control" placeholder="До, бел. руб" aria-describedby="basic-addon1" value="<?php echo $priceLimits[1]; ?>">
     </div>
 
     <!--<h3>Фильтр</h3>-->

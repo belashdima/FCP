@@ -75,16 +75,41 @@ $(document).ready(function () {
     });
 
     function updatePrice () {
-        var lowerPriceLimit = $("#lowerPriceLimit").val();
-        var upperPriceLimit = $("#upperPriceLimit").val();
+        var lowerPriceLimitString = $("#lowerPriceLimit").val();
+        var upperPriceLimitString = $("#upperPriceLimit").val();
 
-        params.price = parseInt(lowerPriceLimit) + ',' + parseInt(upperPriceLimit);
+        var lowerPriceLimit = parseInt(lowerPriceLimitString);
+        var upperPriceLimit = parseInt(upperPriceLimitString);
 
-        if (lowerPriceLimit.length == 0 && upperPriceLimit.length == 0) {
+        if (!isNaN(lowerPriceLimit) && !isNaN(upperPriceLimit)) {
+            // two limits
+            params.price = lowerPriceLimit + ',' + upperPriceLimit;
+            refresh();
+        } else {
+            if (isNaN(lowerPriceLimit) && !isNaN(upperPriceLimit)) {
+                // limited upper
+                params.price = '0,' + upperPriceLimit;
+                //refresh();
+            }
+
+            if (!isNaN(lowerPriceLimit) && isNaN(upperPriceLimit)) {
+                // limited lower
+                params.price = lowerPriceLimit + ',100500';
+                //refresh();
+            }
+
+            if (isNaN(lowerPriceLimit) && isNaN(upperPriceLimit)) {
+                // no limits
+                delete params.price;
+            }
+        }
+
+
+        /*if (lowerPriceLimit.length == 0 && upperPriceLimit.length == 0) {
             delete params.price;
         } else {
             refresh();
-        }
+        }*/
     }
 
     function refresh () {
