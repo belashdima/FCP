@@ -211,7 +211,8 @@ nav {
     border-top: 1px solid #333
 }
 
-@media screen and (max-width: 1000px) {
+/*@media screen and (max-width: 1000px) {*/
+@media (max-width: 991px) {
     .logo {
         position: absolute;
         top: 0;
@@ -440,8 +441,42 @@ nav {
     }
 }
 
+/*#cssmenu ul {
+    margin-bottom: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}*/
+
 .header-ul {
     margin-bottom: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+@media (min-width: 992px) {
+    /*#cssmenu ul {
+        margin-bottom: 0px;
+        padding-left: 15px;
+        padding-right: 15px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+    }
+
+    .header-ul {
+        margin-bottom: 0px;
+        padding-left: 15px;
+        padding-right: 15px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+    }*/
 }
 
 #cssmenu > ul {

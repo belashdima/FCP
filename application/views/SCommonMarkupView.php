@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="http://localhost/Footballcity_Project/css/bootstrap.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="http://localhost/Footballcity_Project/css/site.css">
-    <link rel="stylesheet" href="http://localhost/Footballcity_Project/css/header.css">
 
     <!--JS-->
     <!-- jQuery Version 3.1.1 -->
@@ -76,14 +75,24 @@
 
 
 
+<link rel="stylesheet" href="http://localhost/Footballcity_Project/css/header.css">
+
+<div class="">
+    <img src="images/logo/logo.png">
+</div>
+
 <header>
 
     <div id="info_header">
 
+
     </div>
 
     <nav id='cssmenu'>
-        <div class="logo"><a href="index.html">Responsive </a></div>
+        <!--<div class="logo">
+            <a href="index.html">Responsive </a>
+        </div>-->
+
         <div id="head-mobile"></div>
         <div class="button"></div>
         <ul class="header-ul">
