@@ -14,7 +14,6 @@ header {
     position: relative;
     z-index: 123;
     padding: 10px;
-    font: 18px verdana;
     color: #6DDB07;
     float: left;
     width: 15%
@@ -57,7 +56,7 @@ nav {
 }
 
 #cssmenu {
-    font-family: sans-serif;
+    /*font-family: sans-serif;*/
     background-color: #323232 !important;
 }
 
@@ -67,11 +66,13 @@ nav {
 
 #cssmenu > ul > li > a {
     padding: 17px;
-    font-size: 12px;
+    /*font-size: 12px;*/
+    font-size: 16px;
     letter-spacing: 1px;
     text-decoration: none;
     color: #ddd;
-    font-weight: 700;
+    /*font-weight: 700;*/
+    font-weight: normal;
 }
 
 #cssmenu > ul > li:hover > a, #cssmenu ul li.header-active a {
@@ -86,11 +87,11 @@ nav {
     transition: background .3s ease;
 }
 
-#cssmenu > ul > li.has-sub > a {
+/*#cssmenu > ul > li.has-sub > a {
     padding-right: 30px
-}
+}*/
 
-#cssmenu > ul > li.has-sub > a:after {
+/*#cssmenu > ul > li.has-sub > a:after {
     position: absolute;
     top: 22px;
     right: 11px;
@@ -99,9 +100,9 @@ nav {
     display: block;
     background: #ddd;
     content: ''
-}
+}*/
 
-#cssmenu > ul > li.has-sub > a:before {
+/*#cssmenu > ul > li.has-sub > a:before {
     position: absolute;
     top: 19px;
     right: 14px;
@@ -113,12 +114,12 @@ nav {
     -webkit-transition: all .25s ease;
     -ms-transition: all .25s ease;
     transition: all .25s ease
-}
+}*/
 
-#cssmenu > ul > li.has-sub:hover > a:before {
+/*#cssmenu > ul > li.has-sub:hover > a:before {
     top: 23px;
     height: 0
-}
+}*/
 
 #cssmenu ul ul {
     position: absolute;
@@ -153,11 +154,13 @@ nav {
     border-bottom: 1px solid rgba(150, 150, 150, 0.15);
     padding: 11px 15px;
     width: 170px;
-    font-size: 12px;
+    /*font-size: 12px;*/
+    font-size: 16px;
     text-decoration: none;
     /*color: #ddd;*/
     color: #ddd;
-    font-weight: 400;
+    /*font-weight: 400;*/
+    font-weight: normal;
 }
 
 #cssmenu ul ul li:last-child > a, #cssmenu ul ul li.last-item > a {
@@ -169,7 +172,7 @@ nav {
     color: #edeef0
 }
 
-#cssmenu ul ul li.has-sub > a:after {
+/*#cssmenu ul ul li.has-sub > a:after {
     position: absolute;
     top: 16px;
     right: 11px;
@@ -178,9 +181,9 @@ nav {
     display: block;
     background: #ddd;
     content: ''
-}
+}*/
 
-#cssmenu ul ul li.has-sub > a:before {
+/*#cssmenu ul ul li.has-sub > a:before {
     position: absolute;
     top: 13px;
     right: 14px;
@@ -192,12 +195,12 @@ nav {
     -webkit-transition: all .25s ease;
     -ms-transition: all .25s ease;
     transition: all .25s ease
-}
+}*/
 
-#cssmenu ul ul > li.has-sub:hover > a:before {
+/*#cssmenu ul ul > li.has-sub:hover > a:before {
     top: 17px;
     height: 0
-}
+}*/
 
 #cssmenu ul ul li.has-sub:hover, #cssmenu ul li.has-sub ul li.has-sub ul li:hover {
     background: #363636;
@@ -304,8 +307,10 @@ nav {
         display: block;
         padding: 23px;
         color: #ddd;
-        font-size: 12px;
-        font-weight: 700
+        /*font-size: 12px;*/
+        font-size: 16px;
+        /*font-weight: 700*/
+        font-weight: normal;
     }
 
     .button {

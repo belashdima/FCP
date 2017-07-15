@@ -97,8 +97,12 @@
         <div id="head-mobile"></div>
         <div class="button"></div>
         <ul class="header-ul">
-            <li class='header-active'><a href='#'>Обувь</a></li>
-            <li><a href='#'>Мячи</a></li>
+            <li class='header-active'>
+                <a href='#'>Обувь</a>
+            </li>
+            <li>
+                <a href='#'>Мячи</a>
+            </li>
             <li><a href='#'>Форма</a>
                 <ul>
                     <li><a href='#'>Product 1</a>
