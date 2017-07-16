@@ -2,6 +2,12 @@
 
 class SRouter
 {
+    static function showWareType($wareTypeId) {
+        include 'application/controllers/SWaresController.php';
+        (new SWaresController())->ware_typeAction($wareTypeId);
+        return;
+    }
+
     static function start()
     {
         // default controller and action
@@ -12,16 +18,80 @@ class SRouter
 
         //print_r($routes);
 
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/balls') !== false) {
-            include 'application/controllers/SWaresController.php';
-            (new SWaresController())->ballsAction();
-            return;
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/boots') !== false) {
+            SRouter::showWareType(2);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/football_boots') !== false) {
+            SRouter::showWareType(4);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/indoor_boots') !== false) {
+            SRouter::showWareType(5);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/outdoor_boots') !== false) {
+            SRouter::showWareType(6);
         }
 
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/football_boots') !== false) {
-            include 'application/controllers/SWaresController.php';
-            (new SWaresController())->football_bootsAction();
-            return;
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/balls') !== false) {
+            SRouter::showWareType(3);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/football_balls') !== false) {
+            SRouter::showWareType(7);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/futsal_balls') !== false) {
+            SRouter::showWareType(8);
+        }
+
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/game-t-shirts') !== false) {
+            SRouter::showWareType(23);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/game-shorts') !== false) {
+            SRouter::showWareType(27);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/game-socks') !== false) {
+            SRouter::showWareType(21);
+        }
+
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/warm-tops') !== false) {
+            SRouter::showWareType(28);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/warm-pants') !== false) {
+            SRouter::showWareType(29);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/jackets') !== false) {
+            SRouter::showWareType(24);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/socks') !== false) {
+            SRouter::showWareType(20);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/caps_scarfs') !== false) {
+            SRouter::showWareType(30);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/gloves') !== false) {
+            SRouter::showWareType(31);
+        }
+
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/bags') !== false) {
+            SRouter::showWareType(32);
+        }
+
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/goalkeeper_gloves') !== false) {
+            SRouter::showWareType(34);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/goalkeeper_jackets') !== false) {
+            SRouter::showWareType(33);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/goalkeeper_t-shirts') !== false) {
+            SRouter::showWareType(36);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/goalkeeper_shorts') !== false) {
+            SRouter::showWareType(35);
+        }
+
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/shin_pads') !== false) {
+            SRouter::showWareType(37);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/pumps') !== false) {
+            SRouter::showWareType(38);
         }
 
         if (strcmp($_SERVER['REQUEST_URI'], '/Footballcity_Project/location') == 0) {

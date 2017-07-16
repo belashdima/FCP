@@ -81,6 +81,44 @@ class DatabaseHandler
         return $wareTypesList;
     }
 
+    public static function getAllUsedWareTypes() {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM ware_types ");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        $usedWareIds = array();
+        array_push($usedWareIds, 2);
+        array_push($usedWareIds, 3);
+        array_push($usedWareIds, 4);
+        array_push($usedWareIds, 5);
+        array_push($usedWareIds, 6);
+        array_push($usedWareIds, 7);
+        array_push($usedWareIds, 8);
+        array_push($usedWareIds, 23);
+        array_push($usedWareIds, 27);
+        array_push($usedWareIds, 21);
+        array_push($usedWareIds, 28);
+        array_push($usedWareIds, 29);
+        array_push($usedWareIds, 24);
+        array_push($usedWareIds, 30);
+        array_push($usedWareIds, 31);
+        array_push($usedWareIds, 32);
+        array_push($usedWareIds, 33);
+        array_push($usedWareIds, 34);
+        array_push($usedWareIds, 35);
+        array_push($usedWareIds, 36);
+        array_push($usedWareIds, 37);
+        array_push($usedWareIds, 38);
+
+        while ($row = $result->fetch()) {
+            if (in_array($row["ware_type_id"], $usedWareIds)) {
+                $wareTypesList[] = new WareType($row["ware_type_id"], $row["ware_type_name"], $row["parent_type"]);
+            }
+        }
+
+        return $wareTypesList;
+    }
+
     public static function getPropertiesForWareType($wareTypeName)
     {
         $wareTypesIds = self::getAllWareTypesIdsForWareTypeByName($wareTypeName);

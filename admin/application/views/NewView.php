@@ -1,6 +1,6 @@
 <?php
 
-$wareTypes = DatabaseHandler::getAllWareTypes();
+$wareTypes = DatabaseHandler::getAllUsedWareTypes();
 
 //echo $data;
 ?>

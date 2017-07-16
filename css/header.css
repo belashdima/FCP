@@ -153,7 +153,9 @@ nav {
 #cssmenu ul ul li a {
     border-bottom: 1px solid rgba(150, 150, 150, 0.15);
     padding: 11px 15px;
-    width: 170px;
+    /*width: 170px;*/
+    white-space: nowrap;
+    background-color: deeppink;
     /*font-size: 12px;*/
     font-size: 16px;
     text-decoration: none;

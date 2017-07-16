@@ -8,7 +8,7 @@
     background-color: #323232 !important;
 }
 
-#content {
+.container {
     padding-top: 15px;
     padding-bottom: 15px;
 }
@@ -163,4 +163,13 @@ h1, h2, h3, h4, h5, h6 {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.header-left {
+    margin-left: 15px;
+    height: 100%;
+}
+
+.image-container {
+    position: relative;
 }
