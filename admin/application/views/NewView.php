@@ -2,6 +2,10 @@
 
 $wareTypes = DatabaseHandler::getAllUsedWareTypes();
 
+$xmlTranslation = simplexml_load_file('http://localhost/Footballcity_Project/xml/properties.xml');
+
+print_r($xmlTranslation);
+
 //echo $data;
 ?>
 

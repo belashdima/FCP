@@ -1,0 +1,141 @@
+<wareTypes>
+    <wareType>
+        <wareTypeName>Ware</wareTypeName>
+        <rus>Товары</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Shoes</wareTypeName>
+        <rus>Обувь</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Ball</wareTypeName>
+        <rus>Мячи</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Football boots</wareTypeName>
+        <rus>Футбольные бутсы</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Indoor boots</wareTypeName>
+        <rus>Обувь для зала</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Outdoor boots</wareTypeName>
+        <rus>Шиповки</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Football balls</wareTypeName>
+        <rus>Футбольные мячи</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Indoor balls</wareTypeName>
+        <rus>Мячи для футзала</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Clothing</wareTypeName>
+        <rus>Одежда</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>T-shirt</wareTypeName>
+        <rus>Майки</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Shorts</wareTypeName>
+        <rus>Шорты</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Pants</wareTypeName>
+        <rus>Штаны</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Pants</wareTypeName>
+        <rus>Товары</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Pants</wareTypeName>
+        <rus>Товары</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Training pants</wareTypeName>
+        <rus>Товары</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Training shorts</wareTypeName>
+        <rus>Товары</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Socks</wareTypeName>
+        <rus>Товары</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Training socks</wareTypeName>
+        <rus>Товары</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Game socks</wareTypeName>
+        <rus>Гетры</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Training T-shirt</wareTypeName>
+        <rus>Тренировочные майки</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Game T-shirt</wareTypeName>
+        <rus>Игровые майки</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Jacket</wareTypeName>
+        <rus>Куртки и ветровки</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Game shorts</wareTypeName>
+        <rus>Игровые шорты</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Warm tops</wareTypeName>
+        <rus>Термомайки</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Warm pamts</wareTypeName>
+        <rus>Термоштаны</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Caps and scarfs</wareTypeName>
+        <rus>Шапки и перчатки</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Gloves</wareTypeName>
+        <rus>Перчатки</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Bags</wareTypeName>
+        <rus>Сумки</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Goalkeeper jackets</wareTypeName>
+        <rus>Вратарские свитера</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Game gloves</wareTypeName>
+        <rus>Перчатки</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Game shorts</wareTypeName>
+        <rus>Вратарские шорты</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Goalkeeper T-shirt</wareTypeName>
+        <rus>Вратарские майки</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Shin pads</wareTypeName>
+        <rus>Щитки</rus>
+    </wareType>
+    <wareType>
+        <wareTypeName>Pumps</wareTypeName>
+        <rus>Насосы</rus>
+    </wareType>
+
+
+
+</wareTypes>

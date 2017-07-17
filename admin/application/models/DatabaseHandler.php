@@ -88,7 +88,6 @@ class DatabaseHandler
 
         $usedWareIds = array();
         array_push($usedWareIds, 2);
-        array_push($usedWareIds, 3);
         array_push($usedWareIds, 4);
         array_push($usedWareIds, 5);
         array_push($usedWareIds, 6);
