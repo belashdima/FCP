@@ -1,0 +1,39 @@
+<properties>
+    <property>
+        <propertyName>Price</propertyName>
+        <rus>Цена</rus>
+    </property>
+    <property>
+        <propertyName>Ball size</propertyName>
+        <rus>Размер мяча</rus>
+    </property>
+    <property>
+        <propertyName>Shoe size</propertyName>
+        <rus>Размер обуви</rus>
+    </property>
+    <property>
+        <propertyName>Brand</propertyName>
+        <rus>Размер обуви</rus>
+    </property>
+    <property>
+        <propertyName>Model</propertyName>
+        <rus>Модель</rus>
+    </property>
+    <property>
+        <propertyName>Description</propertyName>
+        <rus>Описание</rus>
+    </property>
+    <property>
+        <propertyName>Color</propertyName>
+        <rus>Цвет</rus>
+    </property>
+    <property>
+        <propertyName>Ground type</propertyName>
+        <rus>Тип покрытия</rus>
+    </property>
+    <property>
+        <propertyName>Clothing size</propertyName>
+        <rus>Размер</rus>
+    </property>
+</properties>
+
