@@ -96,7 +96,7 @@
         <rus>Термомайки</rus>
     </wareType>
     <wareType>
-        <wareTypeName>Warm pamts</wareTypeName>
+        <wareTypeName>Warm pants</wareTypeName>
         <rus>Термоштаны</rus>
     </wareType>
     <wareType>
@@ -116,15 +116,15 @@
         <rus>Вратарские свитера</rus>
     </wareType>
     <wareType>
-        <wareTypeName>Game gloves</wareTypeName>
+        <wareTypeName>Goalkeeper gloves</wareTypeName>
         <rus>Перчатки</rus>
     </wareType>
     <wareType>
-        <wareTypeName>Game shorts</wareTypeName>
+        <wareTypeName>Goalkeeper shorts</wareTypeName>
         <rus>Вратарские шорты</rus>
     </wareType>
     <wareType>
-        <wareTypeName>Goalkeeper T-shirt</wareTypeName>
+        <wareTypeName>Goalkeeper T-shirts</wareTypeName>
         <rus>Вратарские майки</rus>
     </wareType>
     <wareType>
@@ -135,7 +135,4 @@
         <wareTypeName>Pumps</wareTypeName>
         <rus>Насосы</rus>
     </wareType>
-
-
-
 </wareTypes>

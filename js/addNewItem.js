@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('.wareTypeNames').click(function() {
-        angular.element($('#newItemDiv')).scope().wareTypeName = $(this).text().trim();
+        angular.element($('#newItemDiv')).scope().wareTypeName = $(this).attr('data-name');//$(this).text().trim();
 
         angular.element($('#newItemDiv')).scope().getPropertiesForWareType();
     });

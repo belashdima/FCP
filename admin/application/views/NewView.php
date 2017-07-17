@@ -1,12 +1,20 @@
 <?php
 
+function toRussian($arr, $string) {
+    foreach ($arr as $entry) {
+        if (strcmp($string, $entry->wareTypeName) == 0) {
+            return strval($entry->rus);
+        }
+    }
+
+    return $string;
+}
+
 $wareTypes = DatabaseHandler::getAllUsedWareTypes();
 
-$xmlTranslation = simplexml_load_file('http://localhost/Footballcity_Project/xml/properties.xml');
+$xmlTranslationWareTypes = simplexml_load_file('http://localhost/Footballcity_Project/xml/wareTypes.xml');
+//$xmlTranslationProperties = simplexml_load_file('http://localhost/Footballcity_Project/xml/properties.xml');
 
-print_r($xmlTranslation);
-
-//echo $data;
 ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
@@ -25,9 +33,9 @@ print_r($xmlTranslation);
         </button>
         <ul class="dropdown-menu">
             <?php foreach ($wareTypes as $wareType) {?>
-                <li class="wareTypeNames">
+                <li class="wareTypeNames" data-name="<?php echo $wareType->getName(); ?>">
                     <a href="">
-                        <?php echo $wareType->getName(); ?>
+                        <?php echo toRussian($xmlTranslationWareTypes, $wareType->getName()); ?>
                     </a>
                 </li>
             <?php } ?>
