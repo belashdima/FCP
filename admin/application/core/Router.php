@@ -2,10 +2,97 @@
 
 class Router
 {
+    static function showWaresOfType($wareTypeId) {
+        include 'application/controllers/WaresController.php';
+        (new WaresController())->showWaresOfTypeAction($wareTypeId);
+        return;
+    }
+
     static function start()
     {
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/wares') !== false) {
+            Router::showWaresOfType(1);
+        }
+
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/boots') !== false) {
+            Router::showWaresOfType(2);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/football_boots') !== false) {
+            Router::showWaresOfType(4);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/indoor_boots') !== false) {
+            Router::showWaresOfType(5);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/outdoor_boots') !== false) {
+            Router::showWaresOfType(6);
+        }
+
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/balls') !== false) {
+            Router::showWaresOfType(3);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/football_balls') !== false) {
+            Router::showWaresOfType(7);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/futsal_balls') !== false) {
+            Router::showWaresOfType(8);
+        }
+
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/game_t-shirts') !== false) {
+            Router::showWaresOfType(23);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/game_shorts') !== false) {
+            Router::showWaresOfType(27);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/game_socks') !== false) {
+            Router::showWaresOfType(21);
+        }
+
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/warm_tops') !== false) {
+            echo 'beetb';
+            Router::showWaresOfType(28);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/warm_pants') !== false) {
+            Router::showWaresOfType(29);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/jackets') !== false) {
+            Router::showWaresOfType(24);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/socks') !== false) {
+            Router::showWaresOfType(20);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/caps_scarfs') !== false) {
+            Router::showWaresOfType(30);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/gloves') !== false) {
+            Router::showWaresOfType(31);
+        }
+
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/bags') !== false) {
+            Router::showWaresOfType(32);
+        }
+
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/goalkeeper_gloves') !== false) {
+            Router::showWaresOfType(34);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/goalkeeper_jackets') !== false) {
+            Router::showWaresOfType(33);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/goalkeeper_t-shirts') !== false) {
+            Router::showWaresOfType(36);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/goalkeeper_shorts') !== false) {
+            Router::showWaresOfType(35);
+        }
+
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/shin_pads') !== false) {
+            Router::showWaresOfType(37);
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/pumps') !== false) {
+            Router::showWaresOfType(38);
+        }
+
         // default controller and action
-        $controllerName = 'Main';
+        /*$controllerName = 'Main';
         $actionName = 'index';
 
         $routes = explode('/', $_SERVER['REQUEST_URI']);
@@ -30,15 +117,6 @@ class Router
         $controllerName = ucfirst($controllerName).'Controller';
         $actionName = explode('.', $actionName)[0];// used to separate from get params
         $actionName = ucfirst($actionName).'Action';
-
-        // pick up model file (can not exist)
-
-        /*$modelFileName = $modelName.'.php';
-        $modelPath = ROOT.'/application/models/'.$modelFileName;
-        if(file_exists($modelPath))
-        {
-            ROOT.'/application/models/'.$modelFileName;
-        }*/
 
         // pick up controller file
         $controllerFileName = $controllerName.'.php';
@@ -74,7 +152,7 @@ class Router
                 // здесь также разумнее было бы кинуть исключение
                 Router::ErrorPage404();
             }
-        }
+        }*/
     }
 
     function ErrorPage404()

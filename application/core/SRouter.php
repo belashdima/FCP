@@ -2,7 +2,7 @@
 
 class SRouter
 {
-    static function showWareType($wareTypeId) {
+    static function showWaresOfType($wareTypeId) {
         include 'application/controllers/SWaresController.php';
         (new SWaresController())->ware_typeAction($wareTypeId);
         return;
@@ -16,82 +16,80 @@ class SRouter
 
         $routes = explode('/', $_SERVER['REQUEST_URI']);
 
-        //print_r($routes);
-
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/boots') !== false) {
-            SRouter::showWareType(2);
+            SRouter::showWaresOfType(2);
         }
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/football_boots') !== false) {
-            SRouter::showWareType(4);
+            SRouter::showWaresOfType(4);
         }
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/indoor_boots') !== false) {
-            SRouter::showWareType(5);
+            SRouter::showWaresOfType(5);
         }
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/outdoor_boots') !== false) {
-            SRouter::showWareType(6);
+            SRouter::showWaresOfType(6);
         }
 
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/balls') !== false) {
-            SRouter::showWareType(3);
+            SRouter::showWaresOfType(3);
         }
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/football_balls') !== false) {
-            SRouter::showWareType(7);
+            SRouter::showWaresOfType(7);
         }
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/futsal_balls') !== false) {
-            SRouter::showWareType(8);
+            SRouter::showWaresOfType(8);
         }
 
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/game-t-shirts') !== false) {
-            SRouter::showWareType(23);
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/game_t-shirts') !== false) {
+            SRouter::showWaresOfType(23);
         }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/game-shorts') !== false) {
-            SRouter::showWareType(27);
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/game_shorts') !== false) {
+            SRouter::showWaresOfType(27);
         }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/game-socks') !== false) {
-            SRouter::showWareType(21);
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/game_socks') !== false) {
+            SRouter::showWaresOfType(21);
         }
 
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/warm-tops') !== false) {
-            SRouter::showWareType(28);
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/warm_tops') !== false) {
+            SRouter::showWaresOfType(28);
         }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/warm-pants') !== false) {
-            SRouter::showWareType(29);
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/warm_pants') !== false) {
+            SRouter::showWaresOfType(29);
         }
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/jackets') !== false) {
-            SRouter::showWareType(24);
+            SRouter::showWaresOfType(24);
         }
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/socks') !== false) {
-            SRouter::showWareType(20);
+            SRouter::showWaresOfType(20);
         }
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/caps_scarfs') !== false) {
-            SRouter::showWareType(30);
+            SRouter::showWaresOfType(30);
         }
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/gloves') !== false) {
-            SRouter::showWareType(31);
+            SRouter::showWaresOfType(31);
         }
 
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/bags') !== false) {
-            SRouter::showWareType(32);
+            SRouter::showWaresOfType(32);
         }
 
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/goalkeeper_gloves') !== false) {
-            SRouter::showWareType(34);
+            SRouter::showWaresOfType(34);
         }
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/goalkeeper_jackets') !== false) {
-            SRouter::showWareType(33);
+            SRouter::showWaresOfType(33);
         }
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/goalkeeper_t-shirts') !== false) {
-            SRouter::showWareType(36);
+            SRouter::showWaresOfType(36);
         }
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/goalkeeper_shorts') !== false) {
-            SRouter::showWareType(35);
+            SRouter::showWaresOfType(35);
         }
 
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/shin_pads') !== false) {
-            SRouter::showWareType(37);
+            SRouter::showWaresOfType(37);
         }
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/pumps') !== false) {
-            SRouter::showWareType(38);
+            SRouter::showWaresOfType(38);
         }
 
         if (strcmp($_SERVER['REQUEST_URI'], '/Footballcity_Project/location') == 0) {
@@ -105,71 +103,6 @@ class SRouter
             (new SWaresController())->wareAction();
             return;
         }
-
-        /*
-        // get controller name
-        if ( !empty($routes[2]) )
-        {
-            $controllerName = $routes[2];
-
-            //if ($routes[2] == 'balls') {
-            //    $controllerName = 'Wares';
-            //}
-        }
-
-        // get action name
-        if ( !empty($routes[3]) )
-        {
-            $actionName = $routes[3];
-        }
-
-        //if ($actionName == 'index' && $routes[2] == 'balls') {
-        //    $actionName = 'balls';
-        //}
-
-        // add prefixes
-        $controllerName = ucfirst($controllerName).'Controller';
-        $actionName = explode('.', $actionName)[0];// used to separate from get params
-        $actionName = ucfirst($actionName).'Action';
-
-
-        // pick up controller file
-        $controllerFileName = 'S'.$controllerName.'.php';
-        $controllerPath = 'application/controllers/'.$controllerFileName;
-        if(file_exists($controllerPath))
-        {
-            include 'application/controllers/'.$controllerFileName;
-        }
-        else
-        {
-            echo $controllerPath;
-            echo "no file";
-            //правильно было бы кинуть здесь исключение,
-            //но для упрощения сразу сделаем редирект на страницу 404
-            SRouter::ErrorPage404();
-        }
-
-        // create controller
-        $controllerName = "S".$controllerName;
-        $controller = new $controllerName;
-        $action = lcfirst($actionName);
-
-        if(method_exists($controller, $action))
-        {
-            // вызываем действие контроллера
-            $controller->$action();
-        }
-        else
-        {
-            //echo $routes[4];
-            if(is_numeric($routes[3])) {
-                $controller->itemAction($routes[3]);
-            } else {
-                echo 'no method';
-                // здесь также разумнее было бы кинуть исключение
-                SRouter::ErrorPage404();
-            }
-        }*/
     }
 
     function ErrorPage404()

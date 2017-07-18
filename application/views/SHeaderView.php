@@ -3,13 +3,11 @@
 <?php
 $xmlMenuItems = simplexml_load_file('http://localhost/Footballcity_Project/xml/menu.xml');
 
-//print_r($xmlMenuItems);
 ?>
 
 <header>
 
     <div id="info_header">
-
 
     </div>
 

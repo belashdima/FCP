@@ -19,14 +19,7 @@ class WaresController extends Controller
         $this->view->generate('WareView.php', 'CommonMarkupView.php', $ware);
     }
 
-    public function football_ballsAction() {
-        $wareTypeId = 7;
-        $balls = DatabaseHandler::getWaresOfType($wareTypeId);
-        $this->view->generate('WaresView.php', 'CommonMarkupView.php', $balls);
-    }
-
-    public function indoor_ballsAction() {
-        $wareTypeId = 8;
+    public function showWaresOfTypeAction($wareTypeId) {
         $balls = DatabaseHandler::getWaresOfType($wareTypeId);
         $this->view->generate('WaresView.php', 'CommonMarkupView.php', $balls);
     }
