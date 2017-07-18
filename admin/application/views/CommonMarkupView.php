@@ -157,7 +157,7 @@
                     </li>-->
                     <li>
                         <a href="http://localhost/Footballcity_Project/admin/wares"">
-                            <i class="fa fa-fw fa-arrows-v"></i>Wares<i class="fa fa-fw fa-caret-down"></i>
+                            <i class="fa fa-fw fa-arrows-v"></i>Все товары<i class="fa fa-fw fa-caret-down"></i>
                         </a>
                     </li>
                     <li>

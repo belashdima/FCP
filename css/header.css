@@ -81,7 +81,7 @@ nav {
 
 #cssmenu > ul > li:hover, #cssmenu ul li.header-active:hover, #cssmenu ul li.header-active, #cssmenu ul li.has-sub.header-active:hover {
     /*background-color: #edeef0 !important;*/
-    background-color: deeppink !important;
+    background-color: #448D00 !important;
     -webkit-transition: background .3s ease;
     -ms-transition: background .3s ease;
     transition: background .3s ease;
@@ -155,7 +155,7 @@ nav {
     padding: 11px 15px;
     /*width: 170px;*/
     white-space: nowrap;
-    background-color: deeppink;
+    background-color: #448D00;
     /*font-size: 12px;*/
     font-size: 16px;
     text-decoration: none;
