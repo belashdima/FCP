@@ -1,0 +1,156 @@
+<menu>
+    <menuItem>
+        <wareTypeName></wareTypeName>
+        <rus>Обувь</rus>
+        <relativeUrl>boots</relativeUrl>
+        <menuSubItems>
+            <menuSubItem>
+                <wareTypeName></wareTypeName>
+                <rus>Футбольные бутсы</rus>
+                <relativeUrl>football_boots</relativeUrl>
+            </menuSubItem>
+            <menuSubItem>
+                <wareTypeName></wareTypeName>
+                <rus>Обувь для зала</rus>
+                <relativeUrl>indoor_boots</relativeUrl>
+            </menuSubItem>
+            <menuSubItem>
+                <wareTypeName></wareTypeName>
+                <rus>Шиповки</rus>
+                <relativeUrl>outdoor_boots</relativeUrl>
+            </menuSubItem>
+        </menuSubItems>
+    </menuItem>
+
+    <menuItem>
+        <wareTypeName></wareTypeName>
+        <rus>Мячи</rus>
+        <relativeUrl>balls</relativeUrl>
+        <menuSubItems>
+            <menuSubItem>
+                <wareTypeName></wareTypeName>
+                <rus>Футбольные мячи</rus>
+                <relativeUrl>football_balls</relativeUrl>
+            </menuSubItem>
+            <menuSubItem>
+                <wareTypeName></wareTypeName>
+                <rus>Футзальные мячи</rus>
+                <relativeUrl>futsal_balls</relativeUrl>
+            </menuSubItem>
+        </menuSubItems>
+    </menuItem>
+
+    <menuItem>
+        <wareTypeName></wareTypeName>
+        <rus>Форма</rus>
+        <relativeUrl>#</relativeUrl>
+        <menuSubItems>
+            <menuSubItem>
+                <wareTypeName></wareTypeName>
+                <rus>Майки</rus>
+                <relativeUrl>game_t-shirts</relativeUrl>
+            </menuSubItem>
+            <menuSubItem>
+                <wareTypeName></wareTypeName>
+                <rus>Шорты</rus>
+                <relativeUrl>game_shorts</relativeUrl>
+            </menuSubItem>
+            <menuSubItem>
+                <wareTypeName></wareTypeName>
+                <rus>Гетры</rus>
+                <relativeUrl>game_socks</relativeUrl>
+            </menuSubItem>
+        </menuSubItems>
+    </menuItem>
+
+    <menuItem>
+        <wareTypeName></wareTypeName>
+        <rus>Тренировочная одежда</rus>
+        <relativeUrl>#</relativeUrl>
+        <menuSubItems>
+            <menuSubItem>
+                <wareTypeName></wareTypeName>
+                <rus>Термомайки</rus>
+                <relativeUrl>warm_tops</relativeUrl>
+            </menuSubItem>
+            <menuSubItem>
+                <wareTypeName></wareTypeName>
+                <rus>Термоштаны</rus>
+                <relativeUrl>warm_pants</relativeUrl>
+            </menuSubItem>
+            <menuSubItem>
+                <wareTypeName></wareTypeName>
+                <rus>Куртки и ветровки</rus>
+                <relativeUrl>jackets</relativeUrl>
+            </menuSubItem>
+            <menuSubItem>
+                <wareTypeName></wareTypeName>
+                <rus>Носки</rus>
+                <relativeUrl>socks</relativeUrl>
+            </menuSubItem>
+            <menuSubItem>
+                <wareTypeName></wareTypeName>
+                <rus>Шарфы и шапки</rus>
+                <relativeUrl>caps_scarfs</relativeUrl>
+            </menuSubItem>
+            <menuSubItem>
+                <wareTypeName></wareTypeName>
+                <rus>Перчатки</rus>
+                <relativeUrl>gloves</relativeUrl>
+            </menuSubItem>
+        </menuSubItems>
+    </menuItem>
+
+    <menuItem>
+        <wareTypeName></wareTypeName>
+        <rus>Сумки и рюкзаки</rus>
+        <relativeUrl>bags</relativeUrl>
+        <menuSubItems></menuSubItems>
+    </menuItem>
+
+    <menuItem>
+        <wareTypeName></wareTypeName>
+        <rus>Вратарская экипировка</rus>
+        <relativeUrl>#</relativeUrl>
+        <menuSubItems>
+            <menuSubItem>
+                <wareTypeName></wareTypeName>
+                <rus>Перчатки</rus>
+                <relativeUrl>goalkeeper_gloves</relativeUrl>
+            </menuSubItem>
+            <menuSubItem>
+                <wareTypeName></wareTypeName>
+                <rus>Свитера</rus>
+                <relativeUrl>goalkeeper_jackets</relativeUrl>
+            </menuSubItem>
+            <menuSubItem>
+                <wareTypeName></wareTypeName>
+                <rus>Майки</rus>
+                <relativeUrl>goalkeeper_t-shirts</relativeUrl>
+            </menuSubItem>
+            <menuSubItem>
+                <wareTypeName></wareTypeName>
+                <rus>Шорты</rus>
+                <relativeUrl>goalkeeper_shorts</relativeUrl>
+            </menuSubItem>
+        </menuSubItems>
+    </menuItem>
+
+    <menuItem>
+        <wareTypeName></wareTypeName>
+        <rus>Прочее</rus>
+        <relativeUrl>#</relativeUrl>
+        <menuSubItems>
+            <menuSubItem>
+                <wareTypeName></wareTypeName>
+                <rus>Щитки</rus>
+                <relativeUrl>shin_pads</relativeUrl>
+            </menuSubItem>
+            <menuSubItem>
+                <wareTypeName></wareTypeName>
+                <rus>Насосы</rus>
+                <relativeUrl>pumps</relativeUrl>
+            </menuSubItem>
+        </menuSubItems>
+    </menuItem>
+</menu>
