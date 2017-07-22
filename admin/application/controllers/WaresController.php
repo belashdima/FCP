@@ -91,4 +91,13 @@ class WaresController extends Controller
 
         DatabaseHandler::deleteDiscount($brand, $model);
     }
+
+    public function addDiscount()
+    {
+        $brand = $_GET['brand'];
+        $model = $_GET['model'];
+        $discountPercent = $_GET['discountPercent'];
+
+        DatabaseHandler::addDiscount($brand, $model, $discountPercent);
+    }
 }

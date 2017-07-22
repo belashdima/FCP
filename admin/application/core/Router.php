@@ -21,6 +21,11 @@ class Router
             (new WaresController())->deleteDiscount();
             $chosen = true;
         }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/discount/add?') !== false && !$chosen) {
+            require_once 'application/controllers/WaresController.php';
+            (new WaresController())->addDiscount();
+            $chosen = true;
+        }
 
 
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/discounts_json') !== false) {

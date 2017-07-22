@@ -7,7 +7,7 @@ $(document).ready(function () {
 
         var url = "http://localhost/Footballcity_Project/admin/discount/set?" + "brand=" + brand + "&model=" + model + "&discountPercent=" + discountPercent;
 
-            $.get(url, function(data, status) {
+        $.get(url, function(data, status) {
             //alert("Data: " + data + "\nStatus: " + status);
         });
     });
@@ -15,9 +15,20 @@ $(document).ready(function () {
     $('.deleteDiscountButton').click(function () {
         var brand = $(this).parent().parent().find('.brandHolder').text();
         var model = $(this).parent().parent().find('.modelHolder').text();
-        var discountPercent = $(this).val();
 
         var url = "http://localhost/Footballcity_Project/admin/discount/delete?" + "brand=" + brand + "&model=" + model;
+
+        $.get(url, function(data, status) {
+            location.reload();
+        });
+    });
+
+    $('#addNewDiscountButton').click(function () {
+        var brand = $(this).parent().parent().find('.brandModalHolder').val();
+        var model = $(this).parent().parent().find('.modelModalHolder').val();
+        var discountPercent = $(this).parent().parent().find('.discountPercentModalHolder').val();
+
+        var url = "http://localhost/Footballcity_Project/admin/discount/add?" + "brand=" + brand + "&model=" + model + "&discountPercent=" + discountPercent;
 
         $.get(url, function(data, status) {
             location.reload();

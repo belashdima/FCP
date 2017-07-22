@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="http://localhost/Footballcity_Project/css/sb-admin.css">
     <!--<link rel="stylesheet" type="text/css" href="../css/dashboard.css">-->
     <link rel="stylesheet" type="text/css" href="http://localhost/Footballcity_Project/css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost/Footballcity_Project/css/admin.css">
 
     <!-- Morris Charts CSS -->
     <!--<link href="css/plugins/morris.css" rel="stylesheet">-->

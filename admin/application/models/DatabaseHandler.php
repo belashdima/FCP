@@ -766,4 +766,10 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
 
         return true;
     }
+
+    public static function addDiscount($brand, $model, $discountPercent)
+    {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("INSERT INTO discounts_table (brand, model, discount_percent) VALUES ('".$brand."','".$model."','".$discountPercent."');");
+    }
 }
