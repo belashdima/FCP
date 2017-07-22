@@ -715,17 +715,18 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
     private static function getDiscountByWareId($wareId)
     {
         $databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("SELECT * FROM properties JOIN property_to_ware_type ON properties.property_id = property_to_ware_type.property WHERE property_to_ware_type.ware_type=1 AND properties.url_presentation<>'price' AND properties.url_presentation<>'description' AND properties.url_presentation<>'image';");
+
+        $result = $databaseConnection->query("SELECT values_table.value_v FROM ware_property_value JOIN values_table ON ware_property_value.value_v=values_table.value_id WHERE ware_property_value.property=4 AND ware_property_value.ware=".$wareId.";");
         $result->setFetchMode(PDO::FETCH_ASSOC);
+        $row = $result->fetch();
+        $brand = $row["value_v"];
 
-        while ($row = $result->fetch()) {
-            $propertyId = $row["property_id"];
-            $propertyName = $row["property_name"];
-            $urlPresentation = $row["url_presentation"];
-            $properties[] = new Property($propertyId, $propertyName, $urlPresentation);
-        }
+        $result = $databaseConnection->query("SELECT values_table.value_v FROM ware_property_value JOIN values_table ON ware_property_value.value_v=values_table.value_id WHERE ware_property_value.property=5 AND ware_property_value.ware=".$wareId.";");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $row = $result->fetch();
+        $model = $row["value_v"];
 
-        return $properties;
+        return self::getDiscount($brand, $model);
     }
 
     public static function getDiscounts()
@@ -742,6 +743,18 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         }
 
         return $discounts;
+    }
+
+    public static function getDiscount($brand, $model)
+    {
+        $databaseConnection = self::getConnection();
+
+        $result = $databaseConnection->query("SELECT discounts_table.discount_percent FROM discounts_table WHERE discounts_table.brand='".$brand."' AND discounts_table.model='".$model."';");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $row = $result->fetch();
+        $discountPercent = $row["discount_percent"];
+
+        return $discountPercent;
     }
 
     public static function setDiscount($brand, $model, $discountPercent)
