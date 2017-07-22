@@ -30,6 +30,12 @@ $xmlMenuItems = simplexml_load_file('http://localhost/Footballcity_Project/xml/m
             </li>
         <?php $i++;
         } ?>
+
+        <li>
+            <a href="http://localhost/Footballcity_Project/admin/discounts"">
+            <i class="fa fa-fw fa-arrows-v"></i>Скидки<i class="fa fa-fw fa-caret-down"></i>
+            </a>
+        </li>
     </ul>
 </div>
 <!-- /.navbar-collapse -->

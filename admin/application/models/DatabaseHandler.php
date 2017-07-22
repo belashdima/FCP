@@ -16,6 +16,7 @@ require_once "Ware.php";
 require_once "Value.php";
 require_once "PropertyValue.php";
 require_once "Filter.php";
+require_once "Discount.php";
 
 /*DatabaseHandler::getConnection();
 print_r(DatabaseHandler::getBrands());
@@ -316,10 +317,14 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         //print_r( $wareTypes);
 
         $properties = self::getPropertiesToValuesForWare($wareId);
+
+        //print_r($properties);
         
         $images = self::getImagesForWareById($wareId);
 
-        $ware = new Ware($wareId, $wareTypes, $properties, $images);
+        $discount = self::getDiscountByWareId($wareId);
+
+        $ware = new Ware($wareId, $wareTypes, $properties, $images, $discount);
 
         return $ware;
     }
@@ -705,5 +710,60 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         }
 
         return $properties;
+    }
+
+    private static function getDiscountByWareId($wareId)
+    {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM properties JOIN property_to_ware_type ON properties.property_id = property_to_ware_type.property WHERE property_to_ware_type.ware_type=1 AND properties.url_presentation<>'price' AND properties.url_presentation<>'description' AND properties.url_presentation<>'image';");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        while ($row = $result->fetch()) {
+            $propertyId = $row["property_id"];
+            $propertyName = $row["property_name"];
+            $urlPresentation = $row["url_presentation"];
+            $properties[] = new Property($propertyId, $propertyName, $urlPresentation);
+        }
+
+        return $properties;
+    }
+
+    public static function getDiscounts()
+    {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM discounts_table;");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        while ($row = $result->fetch()) {
+            $brand = $row["brand"];
+            $model = $row["model"];
+            $discountPercent = $row["discount_percent"];
+            $discounts[] = new Discount($brand, $model, $discountPercent);
+        }
+
+        return $discounts;
+    }
+
+    public static function setDiscount($brand, $model, $discountPercent)
+    {
+        $databaseConnection = self::getConnection();
+
+        /*$valueId = self::getValueIdByValue($value->getValue());
+        if ($valueId == null) {
+            $databaseConnection->query("INSERT INTO discounts_table (value_v) VALUES ('".$value->getValue()."');");
+            $valueId = self::getValueIdByValue($value->getValue());
+        }*/
+
+        $databaseConnection->query("UPDATE discounts_table SET discounts_table.discount_percent=".$discountPercent." WHERE discounts_table.brand='".$brand."' AND discounts_table.model='".$model."';");
+
+        return true;
+    }
+
+    public static function deleteDiscount($brand, $model)
+    {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("DELETE FROM discounts_table WHERE discounts_table.brand='".$brand."' AND discounts_table.model='".$model."';");
+
+        return true;
     }
 }

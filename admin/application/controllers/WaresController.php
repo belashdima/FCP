@@ -66,4 +66,29 @@ class WaresController extends Controller
 
         //$this->view->generate('PropertiesView.php', 'CommonMarkupView.php');;
     }
+
+    public function getDiscounts() {
+        echo json_encode(DatabaseHandler::getDiscounts());
+    }
+
+    public function showDiscounts() {
+        $discounts = DatabaseHandler::getDiscounts();
+
+        $this->view->generate('DiscountsView.php', 'CommonMarkupView.php', $discounts);
+    }
+
+    public function setDiscount() {
+        $brand = $_GET['brand'];
+        $model = $_GET['model'];
+        $discountPercent = $_GET['discountPercent'];
+
+        DatabaseHandler::setDiscount($brand, $model, $discountPercent);
+    }
+
+    public function deleteDiscount() {
+        $brand = $_GET['brand'];
+        $model = $_GET['model'];
+
+        DatabaseHandler::deleteDiscount($brand, $model);
+    }
 }

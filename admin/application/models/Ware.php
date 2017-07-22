@@ -15,6 +15,7 @@ class Ware
     public $wareTypes;
     public $properties;
     public $images;
+    public $discount;
 
     /**
      * Ware constructor.
@@ -23,12 +24,13 @@ class Ware
      * @param $properties
      * @param $images
      */
-    public function __construct($wareId, $wareTypes, $properties, $images)
+    public function __construct($wareId, $wareTypes, $properties, $images, $discount = null)
     {
         $this->wareId = $wareId;
         $this->wareTypes = $wareTypes;
         $this->properties = $properties;
         $this->images = $images;
+        $this->discount = $discount;
     }
 
 
@@ -95,6 +97,23 @@ class Ware
     {
         $this->images = $images;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getDiscount()
+    {
+        return $this->discount;
+    }
+
+    /**
+     * @param mixed $discount
+     */
+    public function setDiscount($discount)
+    {
+        $this->discount = $discount;
+    }
+
 
 
 

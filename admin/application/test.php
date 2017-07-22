@@ -5,6 +5,6 @@ if (is_numeric('-+2'))
 else echo 'nein';*/
 require_once '../application/models/DatabaseHandler.php';
 
-$wares = DatabaseHandler::getAllForWare(8);
+$wares = DatabaseHandler::getDiscounts();
 
 print_r($wares);
