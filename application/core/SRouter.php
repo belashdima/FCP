@@ -103,6 +103,18 @@ class SRouter
             (new SWaresController())->wareAction();
             return;
         }
+
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/index.php') !== false) {
+            include 'application/controllers/SMainController.php';
+            (new SMainController())->indexAction();
+            return;
+        }
+
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project') !== false) {
+            include 'application/controllers/SMainController.php';
+            (new SMainController())->indexAction();
+            return;
+        }
     }
 
     function ErrorPage404()

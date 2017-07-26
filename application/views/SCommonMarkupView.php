@@ -78,7 +78,9 @@
         <div class="col-md-6">
             <div class="header-left">
                 <div class="image-container">
-                    <img src="images/logo/logo_52.png">
+                    <a href="http://localhost/Footballcity_Project/index.php">
+                        <img src="images/logo/logo_52.png">
+                    </a>
                 </div>
                 <!--<div>
                     <span>Магазин футбольной экипировки</span>
