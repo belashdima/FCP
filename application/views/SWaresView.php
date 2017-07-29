@@ -12,7 +12,7 @@ $wares = $data;?>
         foreach ($wares as $ware) {?>
             <div class="col-lg-3 col-md-4 col-sm-6 simple-card">
                 <div class="card h-100 page-block">
-                    <div class="image-holder">
+                    <div class="image-container">
                         <a href="http://localhost/Footballcity_Project/ware?<?php echo $ware->getLink(); ?>">
                             <img class="card-img-top img-fluid imageItem" src="<?php echo $ware->getMainImage(); ?>" alt="">
                         </a>

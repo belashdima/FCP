@@ -174,10 +174,6 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
 }
 
-.image-holder {
-    position: relative;
-}
-
 .discount-label {
     position: absolute;
     bottom: 0px;
@@ -190,4 +186,20 @@ h1, h2, h3, h4, h5, h6 {
     padding-right: 8px;
     padding-bottom: 4px;
     padding-left: 8px;
+}
+
+.category-block {
+    border-radius: 2px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    background-color: white;
+    padding: 8px;
+    /*margin-top: 15px;
+    margin-bottom: 15px;*/
+    margin: 8px !important;
+}
+
+.slider-container {
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-bottom: 8px;
 }
