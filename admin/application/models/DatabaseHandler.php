@@ -17,6 +17,7 @@ require_once "Value.php";
 require_once "PropertyValue.php";
 require_once "Filter.php";
 require_once "Discount.php";
+require_once "Category.php";
 
 /*DatabaseHandler::getConnection();
 print_r(DatabaseHandler::getBrands());
@@ -712,6 +713,7 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         return $properties;
     }
 
+    // discounts
     private static function getDiscountByWareId($wareId)
     {
         $databaseConnection = self::getConnection();
@@ -728,12 +730,13 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
 
         return self::getDiscount($brand, $model);
     }
-
     public static function getDiscounts()
     {
         $databaseConnection = self::getConnection();
         $result = $databaseConnection->query("SELECT * FROM discounts_table;");
         $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        $discounts = array();
 
         while ($row = $result->fetch()) {
             $brand = $row["brand"];
@@ -744,7 +747,6 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
 
         return $discounts;
     }
-
     public static function getDiscount($brand, $model)
     {
         $databaseConnection = self::getConnection();
@@ -756,7 +758,6 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
 
         return $discountPercent;
     }
-
     public static function setDiscount($brand, $model, $discountPercent)
     {
         $databaseConnection = self::getConnection();
@@ -771,7 +772,6 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
 
         return true;
     }
-
     public static function deleteDiscount($brand, $model)
     {
         $databaseConnection = self::getConnection();
@@ -779,10 +779,56 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
 
         return true;
     }
-
     public static function addDiscount($brand, $model, $discountPercent)
     {
         $databaseConnection = self::getConnection();
         $result = $databaseConnection->query("INSERT INTO discounts_table (brand, model, discount_percent) VALUES ('".$brand."','".$model."','".$discountPercent."');");
+    }
+    //
+
+    // popular categories
+    public static function addPopularCategory($name, $url, $image)
+    {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("INSERT INTO categories_table (category_name, category_url, category_image) VALUES ('".$name."','".$url."','".$image."');");
+    }
+    public static function deletePopularCategory($name, $url, $image)
+    {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("DELETE FROM categories_table WHERE categories_table.category_name='".$name."' AND categories_table.category_url='".$url."' AND categories_table.category_image='".$image."';");
+
+        return true;
+    }
+    public static function setPopularCategory($id, $name, $url, $image)
+    {
+        $databaseConnection = self::getConnection();
+
+        /*$valueId = self::getValueIdByValue($value->getValue());
+        if ($valueId == null) {
+            $databaseConnection->query("INSERT INTO discounts_table (value_v) VALUES ('".$value->getValue()."');");
+            $valueId = self::getValueIdByValue($value->getValue());
+        }*/
+
+        $databaseConnection->query("UPDATE categories_table SET categories_table.category_name='".$name."',  categories_table.category_url='".$url."', categories_table.category_image='".$image."' WHERE categories_table.category_id='".$id."';");
+
+        return true;
+    }
+    public static function getPopularCategories()
+    {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM categories_table;");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        $categories = array();
+
+        while ($row = $result->fetch()) {
+            $id = $row["category_id"];
+            $name = $row["category_name"];
+            $url = $row["category_url"];
+            $image = $row["category_image"];
+            $categories[] = new Category($id, $name, $url, $image);
+        }
+
+        return $categories;
     }
 }

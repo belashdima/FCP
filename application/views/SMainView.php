@@ -26,11 +26,26 @@
         </div>
     </div>
 
+    <div class="col-12 main-view-subheader">
+        <h3>Популярные категории</h3>
+    </div>
+
     <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="category-block">
             <a href="#">
                 <img class="card-img-top img-fluid imageItem" src="https://d2dqilexnm582f.cloudfront.net/bar_item/253/7d499078b27b.jpg" alt="">
             </a>
+            <h6 class="category-name">Бутсы Adidas</h6>
+        </div>
+    </div>
+
+
+    <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="category-block">
+            <a href="#">
+                <img class="card-img-top img-fluid imageItem" src="https://d2dqilexnm582f.cloudfront.net/bar_item/253/7d499078b27b.jpg" alt="">
+            </a>
+            <h6 class="category-name">Детские бутсы</h6>
         </div>
     </div>
     <div class="col-lg-4 col-md-6 col-sm-6">
@@ -54,13 +69,15 @@
             </a>
         </div>
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-6">
-        <div class="category-block">
-            <a href="#">
-                <img class="card-img-top img-fluid imageItem" src="https://d2dqilexnm582f.cloudfront.net/bar_item/253/7d499078b27b.jpg" alt="">
-            </a>
-        </div>
+
+    <div class="col-12 main-view-subheader">
+        <h3>Популярные товары</h3>
     </div>
+
+    <div class="col-12 main-view-subheader">
+        <h3>Наши видео</h3>
+    </div>
+
 </div>
 
 

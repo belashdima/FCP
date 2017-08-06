@@ -11,6 +11,7 @@ class Router
     {
         $chosen = false;
 
+        // discounts
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/discount/set?') !== false && !$chosen) {
             require_once 'application/controllers/WaresController.php';
             (new WaresController())->setDiscount();
@@ -26,19 +27,45 @@ class Router
             (new WaresController())->addDiscount();
             $chosen = true;
         }
-
-
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/discounts_json') !== false) {
             require_once 'application/controllers/WaresController.php';
             (new WaresController())->getDiscounts();
             $chosen = true;
         }
-
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/discounts') !== false && !$chosen) {
             require_once 'application/controllers/WaresController.php';
             (new WaresController())->showDiscounts();
             $chosen = true;
         }
+        //
+
+        // popular categories
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/popular_category/set') !== false && !$chosen) {
+            require_once 'application/controllers/PopularCategoriesController.php';
+            (new PopularCategoriesController())->setPopularCategory();
+            $chosen = true;
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/popular_category/delete') !== false && !$chosen) {
+            require_once 'application/controllers/PopularCategoriesController.php';
+            (new PopularCategoriesController())->deletePopularCategory();
+            $chosen = true;
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/popular_category/add') !== false && !$chosen) {
+            require_once 'application/controllers/PopularCategoriesController.php';
+            (new PopularCategoriesController())->addPopularCategory();
+            $chosen = true;
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/popular_categories_json') !== false && !$chosen) {
+            require_once 'application/controllers/PopularCategoriesController.php';
+            (new PopularCategoriesController())->getPopularCategories();
+            $chosen = true;
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/popular_categories') !== false && !$chosen) {
+            require_once 'application/controllers/PopularCategoriesController.php';
+            (new PopularCategoriesController())->showPopularCategories();
+            $chosen = true;
+        }
+        //
 
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/wares') !== false && count($_GET) == 0) {
             Router::showWaresOfType(1);

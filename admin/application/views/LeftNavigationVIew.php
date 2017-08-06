@@ -36,6 +36,12 @@ $xmlMenuItems = simplexml_load_file('http://localhost/Footballcity_Project/xml/m
             <i class="fa fa-fw fa-arrows-v"></i>Скидки<i class="fa fa-fw fa-caret-down"></i>
             </a>
         </li>
+
+        <li>
+            <a href="http://localhost/Footballcity_Project/admin/popular_categories"">
+            <i class="fa fa-fw fa-arrows-v"></i>Популярные категории<i class="fa fa-fw fa-caret-down"></i>
+            </a>
+        </li>
     </ul>
 </div>
 <!-- /.navbar-collapse -->

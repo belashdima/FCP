@@ -203,3 +203,13 @@ h1, h2, h3, h4, h5, h6 {
     margin-right: 8px;
     margin-bottom: 8px;
 }
+
+.category-name {
+    margin-top: 8px;
+    margin-bottom: 0px;
+}
+
+.main-view-subheader {
+    padding-left: 8px;
+    padding-right: 8px;
+}
