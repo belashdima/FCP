@@ -47,8 +47,9 @@
         <h3>Популярные товары</h3>
     </div>
 
-    <div class="col-12 main-view-subheader">
-        <h3>Наши видео</h3>
-    </div>
+    <?php $videos = $filters;
+    if (!empty($videos)) {
+        require_once 'application/views/VideosView.php';
+    } ?>
 
 </div>

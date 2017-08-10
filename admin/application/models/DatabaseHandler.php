@@ -831,4 +831,9 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
 
         return $categories;
     }
+
+    public static function getVideos()
+    {
+        return array();
+    }
 }

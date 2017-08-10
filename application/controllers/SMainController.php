@@ -8,7 +8,8 @@ class SMainController extends SController
     function indexAction()
     {
         $popularCategories = DatabaseHandler::getPopularCategories();
+        $videos = DatabaseHandler::getVideos();
 
-        $this->view->generate('SMainView.php', 'SCommonMarkupView.php', $popularCategories);
+        $this->view->generate('SMainView.php', 'SCommonMarkupView.php', $popularCategories, $videos);
     }
 }
