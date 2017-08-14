@@ -26,12 +26,37 @@ $ware = $data;?>
         </div>
 
         <div class="form-group">
-            <button id="addNewImageButton" class="btn btn-primary">Добавить новое изображение</button>
+            <!--<button id="addNewImageButton" class="btn btn-primary">Добавить новое изображение</button>-->
+            <button id="showAddNewImageDialogButton" class="btn btn-primary" data-toggle="modal" data-target="#addImageModal">Добавить новое изображение</button>
         </div>
 
         <button id="modifyItemSubmitButton" type="submit" class="btn btn-primary">Сохранить изменения</button>
         <button id="deleteItemButton" class="btn btn-danger" data-toggle="modal" data-target="#deleteSubmitModal">Удалить товар</button>
     </form>
+</div>
+
+<!-- Add image modal -->
+<div class="modal fade" id="addImageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Введите адрес или загрузите изображение</h5>
+            </div>
+            <div class="modal-body">
+
+                <input class="form-control" id="exampleInputEmail1" placeholder="New image">
+                <form action="http://localhost/Footballcity_Project/uploadFile" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="image" />
+                    <input type="submit"/>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                <button id="addImageSubmitButton" type="button" class="btn btn-success">Добавить</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Modal -->

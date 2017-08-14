@@ -20,7 +20,7 @@ $(document).ready(function () {
         angular.element($('#modifyItemDiv')).scope().deleteItem();
     });
 
-    $('#addNewImageButton').click(function() {
+    $('#addImageSubmitButton').click(function() {
         angular.element($('#modifyItemDiv')).scope().addNewImage();
         //$('#imagesContainer').append( "<div class='form-group'><input class='form-control' id='exampleInput' placeholder='Enter '></div>" );
     });

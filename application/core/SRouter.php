@@ -16,6 +16,19 @@ class SRouter
 
         $routes = explode('/', $_SERVER['REQUEST_URI']);
 
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/uploadFile') !== false) {
+            include 'application/controllers/SUploadController.php';
+            (new SUploadController())->upload();
+            return;
+        }
+
+        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/test') !== false) {
+            echo sys_get_temp_dir();
+            //phpinfo();
+            require_once 'application/views/TestView.php';
+            return;
+        }
+
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/boots') !== false) {
             SRouter::showWaresOfType(2);
             return;
