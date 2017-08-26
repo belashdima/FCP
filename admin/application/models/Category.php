@@ -4,22 +4,19 @@ class Category
 {
     public $id;
     public $name;
-    public $url;
-    public $image;
+    public $parentCategory;
 
     /**
      * Category constructor.
      * @param $id
      * @param $name
-     * @param $url
-     * @param $image
+     * @param $parentCategory
      */
-    public function __construct($id, $name, $url, $image)
+    public function __construct($id, $name, $parentCategory)
     {
         $this->id = $id;
         $this->name = $name;
-        $this->url = $url;
-        $this->image = $image;
+        $this->parentCategory = $parentCategory;
     }
 
     /**
@@ -57,32 +54,18 @@ class Category
     /**
      * @return mixed
      */
-    public function getUrl()
+    public function getParentCategory()
     {
-        return $this->url;
+        return $this->parentCategory;
     }
 
     /**
-     * @param mixed $url
+     * @param mixed $parentCategory
      */
-    public function setUrl($url)
+    public function setParentCAtegory($parentCategory)
     {
-        $this->url = $url;
+        $this->parentCategory = $parentCategory;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
 
-    /**
-     * @param mixed $image
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-    }
 }

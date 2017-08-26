@@ -10,14 +10,13 @@
 require_once "Brand.php";
 require_once "GroundType.php";
 require_once "ShoeSize.php";
-require_once "WareType.php";
+require_once "Category.php";
 require_once "Property.php";
 require_once "Ware.php";
 require_once "Value.php";
 require_once "PropertyValue.php";
 require_once "Filter.php";
 require_once "Discount.php";
-require_once "Category.php";
 
 /*DatabaseHandler::getConnection();
 print_r(DatabaseHandler::getBrands());
@@ -29,6 +28,12 @@ print_r(DatabaseHandler::getImagesByModelId(1));*/
 
 class DatabaseHandler
 {
+    public $TABLE_CATEGORIES_NAME = "categories";
+    public $TABLE_CATEGORIES_COLUMN_ID = "category_id";
+    public $TABLE_CATEGORIES_COLUMN_NAME = "category_name";
+    public $TABLE_CATEGORIES_COLUMN_PARENT = "parent_category";
+
+
     static private $connection;
 
     private function __construct()
@@ -71,21 +76,21 @@ class DatabaseHandler
         return $sizesList;
     }
 
-    public static function getAllWareTypes() {
+    public function getAllCategories() {
         $databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("SELECT * FROM ware_types ");
+        $result = $databaseConnection->query("SELECT * FROM ".$this->TABLE_CATEGORIES_NAME);
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
         while ($row = $result->fetch()) {
-            $wareTypesList[] = new WareType($row["ware_type_id"], $row["ware_type_name"], $row["parent_type"]);
+            $categoriesList[] = new Category($row[$this->TABLE_CATEGORIES_COLUMN_ID], $row[$this->TABLE_CATEGORIES_COLUMN_NAME], $row[$this->TABLE_CATEGORIES_COLUMN_PARENT]);
         }
 
-        return $wareTypesList;
+        return $categoriesList;
     }
 
-    public static function getAllUsedWareTypes() {
+    public function getAllUsedCategories() {
         $databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("SELECT * FROM ware_types ");
+        $result = $databaseConnection->query("SELECT * FROM ".$this->TABLE_CATEGORIES_NAME);
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
         $usedWareIds = array();
@@ -112,105 +117,95 @@ class DatabaseHandler
         array_push($usedWareIds, 38);
 
         while ($row = $result->fetch()) {
-            if (in_array($row["ware_type_id"], $usedWareIds)) {
-                $wareTypesList[] = new WareType($row["ware_type_id"], $row["ware_type_name"], $row["parent_type"]);
+            if (in_array($row[$this->TABLE_CATEGORIES_COLUMN_ID], $usedWareIds)) {
+                $categoriesList[] = new Category($row[$this->TABLE_CATEGORIES_COLUMN_ID], $row[$this->TABLE_CATEGORIES_NAME], $row[$this->TABLE_CATEGORIES_COLUMN_PARENT]);
             }
         }
 
-        return $wareTypesList;
+        return $categoriesList;
     }
 
-    public static function getPropertiesForWareType($wareTypeName)
+    public static function getPropertiesForCategory($categoryName)
     {
-        $wareTypesIds = self::getAllWareTypesIdsForWareTypeByName($wareTypeName);
+        $categoriesIds = self::getAllCategoriesIdsForCategoryByName($categoryName);
 
-        if (!empty($wareTypesIds)) {
-            return self::getPropertiesForWareTypes($wareTypesIds);
+        if (!empty($categoriesIds)) {
+            return self::getPropertiesForCategories($categoriesIds);
         } else {
             throw new Exception('EMPTY WARE TYPES ARRAY!!!');
         }
     }
 
-    public static function getAllWareTypesIdsForWareTypeById($wareTypeId)
+    public static function getAllCategoriesIdsForCategoryById($categoryId)
     {
         $parentsIds = array();
-        while ($wareTypeId != null) {
-            array_push($parentsIds, $wareTypeId);
-            $wareType = self::getParentTypeForWareTypeById($wareTypeId);
-            $wareTypeId = $wareType->getId();
+        while ($categoryId != null) {
+            array_push($parentsIds, $categoryId);
+            $category = self::getParentCategoryForCategoryById($categoryId);
+            $categoryId = $category->getId();
         }
 
         return $parentsIds;
     }
 
-    public static function getAllWareTypesForWareTypeById($wareTypeId)
+    public static function getAllCategoriesForCategoryById($categoryId)
     {
-        $wareType = self::getWareTypeById($wareTypeId);
+        $category = self::getCategoryById($categoryId);
 
         $parents = array();
-        while ($wareTypeId != null) {
-            array_push($parents, $wareType);
-            $wareType = self::getParentTypeForWareTypeById($wareTypeId);
-            $wareTypeId = $wareType->getId();
+        while ($categoryId != null) {
+            array_push($parents, $category);
+            $category = self::getParentCategoryForCategoryById($categoryId);
+            $categoryId = $category->getId();
         }
 
         return $parents;
     }
 
-    public static function getAllWareTypesIdsForWareTypeByName($wareTypeName)
+    public static function getAllCategoriesIdsForCategoryByName($categoryName)
     {
         $parentsIds = array();
-        $wareTypeId = self::getWareTypeIdForWareTypeByName($wareTypeName);
-        while ($wareTypeId != null) {
-            array_push($parentsIds, $wareTypeId);
-            $wareType = self::getParentTypeForWareTypeById($wareTypeId);
-            $wareTypeId = $wareType->getId();
+        $categoryId = self::getCategoryIdForCategoryByName($categoryName);
+        while ($categoryId != null) {
+            array_push($parentsIds, $categoryId);
+            $category = self::getParentCategoryForCategoryById($categoryId);
+            $categoryId = $category->getId();
         }
 
         return $parentsIds;
     }
 
-    public static function getWareTypeIdForWareTypeByName($wareTypeName)
+    public function getCategoryIdForCategoryByName($categoryName)
     {
         $databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("SELECT * FROM ware_types WHERE ware_type_name='$wareTypeName'");
+        $result = $databaseConnection->query("SELECT * FROM ".$this->TABLE_CATEGORIES_NAME." WHERE ".$this->TABLE_CATEGORIES_COLUMN_NAME."='$categoryName'");
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
         while ($row = $result->fetch()) {
-            $parentTypeId = $row["ware_type_id"];
+            $parentCategoryId = $row[$this->TABLE_CATEGORIES_COLUMN_ID];
         }
 
-        return $parentTypeId;
+        return $parentCategoryId;
     }
 
-    public static function getParentTypeForWareTypeById($wareTypeId)
+    public function getParentCategoryForCategoryById($categoryId)
     {
-        /*$databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("SELECT * FROM ware_types WHERE ware_type_id='$wareTypeId'");
-        $result->setFetchMode(PDO::FETCH_ASSOC);
-
-        while ($row = $result->fetch()) {
-            $parentTypeId = $row["parent_type"];
-        }
-
-        return $parentTypeId;*/
-
         $databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("SELECT * FROM ware_types WHERE ware_type_id='$wareTypeId'");
+        $result = $databaseConnection->query("SELECT * FROM ".$this->TABLE_CATEGORIES_NAME." WHERE ".$this->TABLE_CATEGORIES_COLUMN_ID."='$categoryId'");
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
         while ($row = $result->fetch()) {
-            $parentTypeId = $row["parent_type"];
+            $parentCategoryId = $row["parent_type"];
         }
 
-        $parentType = self::getWareTypeById($parentTypeId);
+        $parentCategory = self::getCategoryById($parentCategoryId);
 
-        return $parentType;
+        return $parentCategory;
     }
 
-    public static function getPropertiesForWareTypes($wareTypesIds)
+    public static function getPropertiesForCategories($categoriesIds)
     {
-        $inClause= implode(",", $wareTypesIds);
+        $inClause= implode(",", $categoriesIds);
 
         $databaseConnection = self::getConnection();
         $result = $databaseConnection->query("SELECT * FROM property_to_ware_type JOIN properties ON property_to_ware_type.property = properties.property_id
@@ -227,9 +222,9 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         return $properties;
     }
 
-    public static function getPropertiesNamesForWareTypes($wareTypesIds)
+    public static function getPropertiesNamesForCategories($categoriesIds)
     {
-        $inClause= implode(",", $wareTypesIds);
+        $inClause= implode(",", $categoriesIds);
 
         $databaseConnection = self::getConnection();
         $result = $databaseConnection->query("SELECT * FROM property_to_ware_type JOIN properties ON property_to_ware_type.property = properties.property_id
@@ -243,11 +238,11 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         return $propertiesList;
     }
 
-    public static function getJSONPropertiesForWareTypes($wareTypeName)
+    public static function getJSONPropertiesForCategories($categoryName)
     {
-        $wareTypesIds = self::getAllWareTypesIdsForWareTypeByName($wareTypeName);
+        $categoriesIds = self::getAllCategoriesIdsForCategoryByName($categoryName);
 
-        $inClause= implode(",", $wareTypesIds);
+        $inClause= implode(",", $categoriesIds);
 
         $databaseConnection = self::getConnection();
         $result = $databaseConnection->query("SELECT * FROM property_to_ware_type JOIN properties ON property_to_ware_type.property = properties.property_id
@@ -261,18 +256,18 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         return json_encode($propertiesList);
     }
 
-    public static function saveJSONPropertiesForWareType($wareTypeName, $properties, $images)
+    public function saveJSONPropertiesForCategory($categoryName, $properties, $images)
     {
         $databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("SELECT * FROM ware_types WHERE ware_types.ware_type_name='".$wareTypeName."';");
+        $result = $databaseConnection->query("SELECT * FROM ".$this->TABLE_CATEGORIES_NAME." WHERE ".$this->TABLE_CATEGORIES_COLUMN_NAME."='" .$categoryName."';");
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
         while ($row = $result->fetch()) {
-            $wareTypeId = $row["ware_type_id"];
+            $categoryId = $row[$this->TABLE_CATEGORIES_COLUMN_ID];
         }
 
         // insert into wares
-        $databaseConnection->query("INSERT INTO wares (ware_type) VALUES ('".$wareTypeId."');");
+        $databaseConnection->query("INSERT INTO wares (ware_type) VALUES ('".$categoryId."');");
 
         // get wareId
         $result = $databaseConnection->query("SELECT LAST_INSERT_ID();");
@@ -305,27 +300,25 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
     {
         $databaseConnection = self::getConnection();
 
-        // get wareType
+        // get category
         $result = $databaseConnection->query("SELECT * FROM wares WHERE wares.ware_id='".$wareId."';");
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
         while ($row = $result->fetch()) {
-            $wareTypeId = $row["ware_type"];
+            $categoryId = $row["ware_type"];
         }
 
         // get all types (objects) of ware
-        $wareTypes = self::getAllWareTypesForWareTypeById($wareTypeId);
-        //print_r( $wareTypes);
+        $categories = self::getAllCategoriesForWCategoryById($categoryId);
 
         $properties = self::getPropertiesToValuesForWare($wareId);
 
-        //print_r($properties);
         
         $images = self::getImagesForWareById($wareId);
 
         $discount = self::getDiscountByWareId($wareId);
 
-        $ware = new Ware($wareId, $wareTypes, $properties, $images, $discount);
+        $ware = new Ware($wareId, $categories, $properties, $images, $discount);
 
         return $ware;
     }
@@ -375,7 +368,7 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
     }
 
     public static function getWares() {
-        // wareId, wareTypeId, wareTypeName, array({property_id, property_name, valueId, value_v});
+        // wareId, categoryId, categoryName, array({property_id, property_name, valueId, value_v});
         $databaseConnection = self::getConnection();
         $result = $databaseConnection->query("SELECT * FROM wares");
         $result->setFetchMode(PDO::FETCH_ASSOC);
@@ -396,13 +389,13 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         return $wares;
     }
 
-    public static function getWaresOfType($wareTypeId, $showOnlyUnique = false)
+    public static function getWaresByCategory($categoryId, $showOnlyUnique = false)
     {
         // MUST CONSIDER ALL THE SUCCESSORS!!!
-        $wareTypesIds = self::getSuccessorWareTypesIds($wareTypeId);
-        array_push($wareTypesIds, $wareTypeId);
+        $categoriesIds = self::getSuccessorCategoriesIds($categoryId);
+        array_push($categoriesIds, $categoryId);
 
-        $inClause= implode(",", $wareTypesIds);
+        $inClause= implode(",", $categoriesIds);
 
         $databaseConnection = self::getConnection();
         $result = $databaseConnection->query("SELECT * FROM wares WHERE wares.ware_type IN (".$inClause.");");
@@ -431,31 +424,24 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         return $wares;
     }
 
-    public static function getSuccessorWareTypesIds($wareTypeId)
+    public function getSuccessorCategoriesIds($categoryId)
     {
         $databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("SELECT * FROM ware_types WHERE ware_types.parent_type='".$wareTypeId."';");
+        $result = $databaseConnection->query("SELECT * FROM ".$this->TABLE_CATEGORIES_NAME." WHERE ".$this->TABLE_CATEGORIES_COLUMN_PARENT."='" .$categoryId."';");
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
-        $waresTypesIds = array();
+        $categoriesIds = array();
         while ($row = $result->fetch()) {
-            $wareTypeId = $row["ware_type_id"];
-            array_push($waresTypesIds, $wareTypeId);
+            $categoryId = $row[$this->TABLE_CATEGORIES_COLUMN_ID];
+            array_push($categoriesIds, $categoryId);
         }
 
-        foreach ($waresTypesIds as $wareType) {
-            //echo 'wareType: '.$wareType."\r\n";
-            $childs = self::getSuccessorWareTypesIds($wareType);
-            /*echo 'childs for it: ';
-            echo print_r($childs);
-            echo "\r\n";*/
-            $waresTypesIds = array_merge($waresTypesIds, $childs);
-            /*echo 'Result array : ';
-            echo print_r($waresTypesIds);
-            echo "\r\n";*/
+        foreach ($categoriesIds as $categoriesId) {
+            $childs = self::getSuccessorCategoriesIds($categoriesId);
+            $categoriesIds = array_merge($categoriesIds, $childs);
         }
 
-        return $waresTypesIds;
+        return $categoriesIds;
     }
 
     public static function setPropertiesForWare($ware)
@@ -499,13 +485,13 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         return true;
     }
 
-    public static function getFiltersForWareType($wareTypeId) {
+    public static function getFiltersForCategory($categoryId) {
         $filters = array();
 
-        $wareTypesIds = self::getAllWareTypesIdsForWareTypeById($wareTypeId);
+        $categoriesIds = self::getAllCategoriesIdsForCategoryById($categoryId);
 
-        if (!empty($wareTypesIds)) {
-            $properties = self::getPropertiesForWareTypes($wareTypesIds);
+        if (!empty($categoriesIds)) {
+            $properties = self::getPropertiesForCategories($categoriesIds);
 
             foreach ($properties as $property) {
                 $possibleValuesOfProperty = self::getPossibleValuesForProperty($property);
@@ -560,19 +546,21 @@ WHERE property_to_ware_type.ware_type IN (".$inClause.");");
         return false;
     }
 
-    private static function getWareTypeById($wareTypeId)
+    private function getCategoryById($categoryId)
     {
         $databaseConnection = self::getConnection();
-        $result = $databaseConnection->query("SELECT * FROM ware_types WHERE ware_type_id='$wareTypeId'");
+        $result = $databaseConnection->query("SELECT * FROM ".$this->TABLE_CATEGORIES_NAME." WHERE ".$this->TABLE_CATEGORIES_COLUMN_ID."='$categoryId'");
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
+        $categoryName = "ware";
+        $parentTypeId = null;
         while ($row = $result->fetch()) {
-            $wareTypeId = $row["ware_type_id"];
-            $wareTypeName = $row["ware_type_name"];
-            $parentTypeId = $row["parent_type"];
+            $categoryId = $row[$this->TABLE_CATEGORIES_COLUMN_ID];
+            $categoryName = $row[$this->TABLE_CATEGORIES_NAME];
+            $parentCategory = $row[$this->TABLE_CATEGORIES_COLUMN_PARENT];
         }
 
-        return new WareType($wareTypeId, $wareTypeName, $parentTypeId);
+        return new Category($categoryId, $categoryName, $parentCategory);
     }
 
     public static function deleteWareById($wareId)
