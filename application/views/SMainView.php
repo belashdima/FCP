@@ -1,3 +1,8 @@
+<?php
+$popularCategories = $data->popularCategories;
+$popularItems = $data->popularItems;
+$videos = $data->videos;
+?>
 
 <div class="row">
     <div class="col-12">
@@ -26,28 +31,35 @@
         </div>
     </div>
 
-    <div class="col-12 main-view-subheader">
-        <h3>Популярные категории</h3>
+    <?php if (!empty($popularCategories)) { ?>
+        <div class="col-12">
+            <h3  class="main-view-subheader">Популярные категории</h3>
+        </div>
+        <?php
+        foreach ($popularCategories as $popularCategory) {?>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="category-block">
+                    <a href="<?php echo $popularCategory->getUrl()?>">
+                        <img class="card-img-top img-fluid imageItem" src="<?php echo $popularCategory->getImage()?>" alt="">
+                    </a>
+                    <h6 class="category-name"><?php echo $popularCategory->getName()?></h6>
+                </div>
+            </div>
+        <?php } ?>
+    <?php } ?>
+
+
+    <div class="col-12">
+        <h3 class="main-view-subheader">Популярные товары</h3>
+        <?php
+        $data = new stdClass();
+        $data->items = $popularItems;
+
+        include_once 'application/views/SWaresView.php';
+        ?>
     </div>
 
     <?php
-    $popularCategories = $data;
-    foreach ($popularCategories as $popularCategory) {?>
-        <div class="col-lg-4 col-md-6 col-sm-6">
-            <div class="category-block">
-                <a href="<?php echo $popularCategory->getUrl()?>">
-                    <img class="card-img-top img-fluid imageItem" src="<?php echo $popularCategory->getImage()?>" alt="">
-                </a>
-                <h6 class="category-name"><?php echo $popularCategory->getName()?></h6>
-            </div>
-        </div>
-    <?php } ?>
-
-    <div class="col-12 main-view-subheader">
-        <h3>Популярные товары</h3>
-    </div>
-
-    <?php $videos = $filters;
     if (!empty($videos)) {
         require_once 'application/views/VideosView.php';
     } ?>

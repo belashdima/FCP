@@ -6,6 +6,8 @@ class Property
     public $propertyName;
     public $urlPresentation;
 
+    public $rusPropertyName;
+
     /**
      * Property constructor.
      * @param $propertyId
@@ -17,6 +19,8 @@ class Property
         $this->propertyId = $propertyId;
         $this->propertyName = $propertyName;
         $this->urlPresentation = $urlPresentation;
+
+        $this->rusPropertyName = $this->getRusPropertyName();
     }
 
 
@@ -39,7 +43,7 @@ class Property
     /**
      * @return mixed
      */
-    public function getPropertyName()
+    public function getRusPropertyName()
     {
         //return $this->propertyName;
 
@@ -51,6 +55,8 @@ class Property
             return 'Размер';
         } else  if (strcmp($this->getUrlPresentation(), 'brand') == 0) {
             return 'Бренд';
+        } else  if (strcmp($this->getUrlPresentation(), 'collection') == 0) {
+            return 'Коллекция';
         } else  if (strcmp($this->getUrlPresentation(), 'model') == 0) {
             return 'Модель';
         } else  if (strcmp($this->getUrlPresentation(), 'description') == 0) {

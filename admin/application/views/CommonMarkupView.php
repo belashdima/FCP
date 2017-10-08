@@ -1,3 +1,8 @@
+<?php
+$siteData = simplexml_load_file('../xml/siteData.xml');
+$rootDirectory = $siteData->rootDirectory;
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -14,16 +19,16 @@
 
     <!-- Custom CSS -->
     <!--<link rel="stylesheet" type="text/css" href="../css/sb-admin.css">-->
-    <link rel="stylesheet" type="text/css" href="http://localhost/Footballcity_Project/css/sb-admin.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $rootDirectory;?>/css/sb-admin.css">
     <!--<link rel="stylesheet" type="text/css" href="../css/dashboard.css">-->
-    <link rel="stylesheet" type="text/css" href="http://localhost/Footballcity_Project/css/dashboard.css">
-    <link rel="stylesheet" type="text/css" href="http://localhost/Footballcity_Project/css/admin.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $rootDirectory;?>/css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $rootDirectory;?>/css/admin.css">
 
     <!-- Morris Charts CSS -->
     <!--<link href="css/plugins/morris.css" rel="stylesheet">-->
 
     <!-- Custom Fonts -->
-    <!--<link rel="stylesheet" type="text/css" href="http://localhost/Footballcity_Project/font-awesome/css/font-awesome.min.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="<?php echo $rootDirectory;?>/font-awesome/css/font-awesome.min.css">-->
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -33,7 +38,8 @@
 
     <!--My scripts-->
     <!--<script src="js/leftMenu.js"></script>-->
-    <script src="http://localhost/Footballcity_Project/js/leftMenu.js"></script>
+    <script src="<?php echo $rootDirectory;?>/js/site.js"></script>
+    <script src="<?php echo $rootDirectory;?>/js/leftMenu.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -56,7 +62,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://localhost/Footballcity_Project/admin">SB Admin</a>
+                <a class="navbar-brand" href="<?php echo $rootDirectory;?>/admin">SB Admin</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -152,11 +158,11 @@
             </ul>
 
 
-            <?php include '../admin/application/views/LeftNavigationView.php'; ?>
+            <?php include 'LeftNavigationView.php'; ?>
         </nav>
 
         <div id="page-wrapper" class="container">
-            <?php include '../admin/application/views/'.$contentView; ?>
+            <?php include $contentView; ?>
         </div>
         <!-- /#page-wrapper -->
 

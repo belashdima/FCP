@@ -5,7 +5,7 @@ $(document).ready(function () {
         var model = $(this).parent().parent().find('.modelHolder').text();
         var discountPercent = $(this).val();
 
-        var url = "http://localhost/Footballcity_Project/admin/discount/set?" + "brand=" + brand + "&model=" + model + "&discountPercent=" + discountPercent;
+        var url = rootDirectory + "/admin/discount/set?" + "brand=" + brand + "&model=" + model + "&discountPercent=" + discountPercent;
 
         $.get(url, function(data, status) {
             //alert("Data: " + data + "\nStatus: " + status);
@@ -16,7 +16,7 @@ $(document).ready(function () {
         var brand = $(this).parent().parent().find('.brandHolder').text();
         var model = $(this).parent().parent().find('.modelHolder').text();
 
-        var url = "http://localhost/Footballcity_Project/admin/discount/delete?" + "brand=" + brand + "&model=" + model;
+        var url = rootDirectory + "/admin/discount/delete?" + "brand=" + brand + "&model=" + model;
 
         $.get(url, function(data, status) {
             location.reload();
@@ -28,7 +28,7 @@ $(document).ready(function () {
         var model = $(this).parent().parent().find('.modelModalHolder').val();
         var discountPercent = $(this).parent().parent().find('.discountPercentModalHolder').val();
 
-        var url = "http://localhost/Footballcity_Project/admin/discount/add?" + "brand=" + brand + "&model=" + model + "&discountPercent=" + discountPercent;
+        var url = rootDirectory + "/admin/discount/add?" + "brand=" + brand + "&model=" + model + "&discountPercent=" + discountPercent;
 
         $.get(url, function(data, status) {
             location.reload();

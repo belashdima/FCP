@@ -3,15 +3,15 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner imageItem">
         <div class="item active">
-            <img class="imageItem" src="http://localhost/Footballcity_Project/images/<?php echo ($bootsModel->getImages()[0]);?>" alt="Los Angeles">
+            <img class="imageItem" src="<?php echo $rootDirectory;?>/images/<?php echo ($bootsModel->getImages()[0]);?>" alt="Los Angeles">
         </div>
 
         <div class="item">
-            <img class="imageItem" src="http://localhost/Footballcity_Project/images/<?php echo ($bootsModel->getImages()[1]);?>" alt="Chicago">
+            <img class="imageItem" src="<?php echo $rootDirectory;?>/images/<?php echo ($bootsModel->getImages()[1]);?>" alt="Chicago">
         </div>
 
         <div class="item">
-            <img class="imageItem" src="http://localhost/Footballcity_Project/images/<?php echo ($bootsModel->getImages()[2]);?>" alt="New York">
+            <img class="imageItem" src="<?php echo $rootDirectory;?>/images/<?php echo ($bootsModel->getImages()[2]);?>" alt="New York">
         </div>
     </div>
 

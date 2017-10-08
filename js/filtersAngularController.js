@@ -6,7 +6,7 @@ angular.module("filtersAngularApp", []).controller("filtersAngularController", f
     $scope.wareId = getUrlParameter("id");
 
     $scope.getPropertiesForWare = function getPropertiesForWare() {
-        var url = "http://localhost/Footballcity_Project/admin/wares/ware_json?ware_id=" + $scope.wareId;
+        var url = rootDirectory + "/admin/wares/ware_json?ware_id=" + $scope.wareId;
 
         $http.get(url).then(function(response) {
             $scope.ware = response.data;
@@ -14,11 +14,11 @@ angular.module("filtersAngularApp", []).controller("filtersAngularController", f
     };
 
     $scope.modifyItem = function () {
-        var url = "http://localhost/Footballcity_Project/admin/wares/modify";
+        var url = rootDirectory + "/admin/wares/modify";
         var ware = JSON.stringify($scope.ware);
         $http.post(url, ware).then(function () {
             // success
-            //window.location.href="http://localhost/Footballcity_Project/admin/wares";
+            //window.location.href = rootDirectory + "/admin/wares";
         }, function () {
             // error
             alert('Something went wrong');

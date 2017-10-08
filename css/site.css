@@ -1,11 +1,19 @@
+:root {
+    --green-color: #148328;
+    --light-color: #edeef0;
+    /*--light-hover-color: #e1e5eb;*/
+    --light-hover-color: #dbe0db;
+    --dark-color: #323232;
+}
+
 .navbar {
-    background-color: #323232 !important;
+    background-color: var(--dark-color) !important;
 }
 
 #footer {
     position: relative !important;
     bottom: 0px !important;
-    background-color: #323232 !important;
+    background-color: var(--dark-color) !important;
 }
 
 .container {
@@ -14,8 +22,10 @@
 }
 
 .list-group-item.active {
-    background-color: #5cb85c;
-    border-color: #5cb85c;
+    /*background-color: #5cb85c;*/
+    background-color: #148328;
+    /*border-color: #5cb85c;*/
+    border-color: #148328;
 }
 
 .black {
@@ -34,7 +44,6 @@
 }
 
 body {
-    /*background-image: url(http://localhost/Footballcity_Project/images/background/1.jpg);*/
     background-color: #edeef0;
 }
 
@@ -99,11 +108,11 @@ body {
     margin: 0px !important;
 }
 
-.main-row {
+.p-7 {
     padding: 7px;
 }
 
-.simple-row {
+.mlr-0 {
     margin-left: 0px;
     margin-right: 0px;
 }
@@ -111,10 +120,6 @@ body {
 .filter-field {
     margin-top: 0px;
     width: 100%;
-}
-
-.simple-card {
-    margin-bottom: 15px !important;
 }
 
 .form-control {
@@ -142,11 +147,11 @@ body {
 }
 
 .font-color {
-    color: #323232 !important;
+    color: var(--dark-color) !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #323232 !important;
+    color: var(--dark-color) !important;
 }
 
 .sub-header {
@@ -157,7 +162,7 @@ h1, h2, h3, h4, h5, h6 {
     -moz-osx-font-smoothing: grayscale;
     cursor: pointer;
     /*color: #656565;*/
-    color: #323232;
+    color: var(--dark-color);
     font-size: 24px;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -167,7 +172,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .header-left {
     margin-left: 15px;
-    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .image-container {
@@ -210,6 +216,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .main-view-subheader {
-    padding-left: 8px;
-    padding-right: 8px;
+    /*padding-left: 8px;
+    padding-right: 8px;*/
+    margin: 8px;
+}
+
+.mb-15 {
+    margin-bottom: 15px !important;
+}
+
+.mail-button {
+    /*background-color: #5cb85c;*/
+    background-color: #148328;
+    height: 24px;
+    color: white;
+    border-radius: 2px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-right: 9px;
+    padding-left: 9px;
+    font-size: 12px;
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: 400;
+    line-height: 12px;
 }

@@ -7,7 +7,7 @@ $(document).ready(function () {
         var categoryUrl = $(this).parent().parent().find('.categoryUrlHolder').val();
         var categoryImage = $(this).parent().parent().find('.categoryImageHolder').val();
 
-        var url = "http://localhost/Footballcity_Project/admin/popular_category/set";
+        var url = rootDirectory + "/admin/popular_category/set";
 
         $.post(url, {
             id: categoryId,
@@ -24,7 +24,7 @@ $(document).ready(function () {
         var categoryUrl = $(this).parent().parent().find('.categoryUrlHolder').val();
         var categoryImage = $(this).parent().parent().find('.categoryImageHolder').val();
 
-        var url = "http://localhost/Footballcity_Project/admin/popular_category/delete";
+        var url = rootDirectory + "/admin/popular_category/delete";
 
         $.post(url, {
             name: categoryName,
@@ -40,7 +40,7 @@ $(document).ready(function () {
         var categoryUrl = $(this).parent().parent().find('.urlModalHolder').val();
         var categoryImage = $(this).parent().parent().find('.imageModalHolder').val();
 
-        var url = "http://localhost/Footballcity_Project/admin/popular_category/add";
+        var url = rootDirectory + "/admin/popular_category/add";
 
         $.post(url, {
                 name: categoryName,

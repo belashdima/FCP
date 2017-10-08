@@ -1,45 +1,54 @@
 
 angular.module("modifyItemAngularApp", []).controller("modifyItemAngularController", function($scope, $http) {
 
-    $scope.wareId = getUrlParameter("id");
+    $scope.itemId = getUrlParameter("id");
 
-    $scope.images = [];
+    //$scope.finalPrice = "";
 
-    $scope.getPropertiesForWare = function getPropertiesForWare() {
-        var url = "http://localhost/Footballcity_Project/admin/wares/ware_json?ware_id=" + $scope.wareId;
+    $scope.newImage = '';
+
+    $scope.getPropertiesForItem = function getPropertiesForItem() {
+        var url = rootDirectory + "/admin/items/item_json?item_id=" + $scope.itemId;
 
         $http.get(url).then(function(response) {
-            $scope.ware = response.data;
-            $scope.images = toObjectsArray($scope.ware.images);
+            $scope.item = response.data;
+        });
+    };
+
+    $scope.createItemOfCategory = function createItemOfCategory(categoryId) {
+        var url = rootDirectory + "/admin/items/create_new?category_id=" + categoryId;
+
+        $http.get(url).then(function(response) {
+            return response.data;
         });
     };
 
     $scope.modifyItem = function (button) {
-        var url = "http://localhost/Footballcity_Project/admin/wares/modify";
+        var url = rootDirectory + "/admin/items/modify";
 
-        $scope.ware.images = toArray($scope.images);
-
-        var ware = JSON.stringify($scope.ware);
+        var item = JSON.stringify($scope.item);
 
         var originalText = button.text();
 
-        $http.post(url, ware).then(function () {
-            // success
+        $http.post(url, item).then(function (response) {
+            if (response.data == 1) {
+                // success
 
-            // set btn to green to indicate success
-            button.toggleClass('btn-primary');
-            button.toggleClass('btn-success');
-            button.text('Изменения успешно сохранены');
-            button.prop('disabled', true);
-
-            // set blue back
-            setTimeout(function(){
+                // set btn to green to indicate success
                 button.toggleClass('btn-primary');
                 button.toggleClass('btn-success');
-                button.text(originalText);
-                button.prop('disabled', false);
-            }, 1000);
-            //window.location.href="http://localhost/Footballcity_Project/admin/wares";
+                button.text('Изменения успешно сохранены');
+                button.prop('disabled', true);
+
+                // set blue back
+                setTimeout(function(){
+                    button.toggleClass('btn-primary');
+                    button.toggleClass('btn-success');
+                    button.text(originalText);
+                    button.prop('disabled', false);
+                }, 1000);
+                //window.location.href = rootDirectory + "/admin/items";
+            }
         }, function () {
             // error
 
@@ -59,55 +68,43 @@ angular.module("modifyItemAngularApp", []).controller("modifyItemAngularControll
     };
 
     $scope.deleteItem = function () {
-        //alert('deleted');
-        var wareId = $scope.ware.wareId;
-        var url = "http://localhost/Footballcity_Project/admin/wares/delete?ware_id=" + wareId;
+        var itemId = $scope.item.id;
+        var url = rootDirectory + "/admin/items/delete?item_id=" + itemId;
 
         $http.get(url).then(function(response) {
             if (response.data === 'deleted') {
                 window.history.back();
             }
-
-            //$scope.ware = response.data;
         });
-        /*var url = "http://localhost/Footballcity_Project/admin/wares/delete";
-        var ware = JSON.stringify($scope.ware);
-
-        var originalText = button.text();
-
-        $http.post(url, ware).then(function () {
-            // success
-
-            // set btn to green to indicate success
-            button.toggleClass('btn-primary');
-            button.toggleClass('btn-success');
-            button.text('Изменения успешно сохранены');
-
-            // set blue back
-            setTimeout(function(){
-                button.toggleClass('btn-primary');
-                button.toggleClass('btn-success');
-                button.text(originalText);
-            }, 500);
-            //window.location.href="http://localhost/Footballcity_Project/admin/wares";
-        }, function () {
-            // error
-
-            button.toggleClass('btn-primary');
-            button.toggleClass('btn-danger');
-
-            // set blue back
-            setTimeout(function(){
-                button.toggleClass('btn-primary');
-                button.toggleClass('btn-danger');
-                button.text(originalText);
-            }, 500);
-            alert('Something went wrong');
-        });*/
     };
 
-    $scope.addNewImage = function () {
-        $scope.images.push({path: ''});
+    $scope.addNewItemImage = function addNewItemImage() {
+        var $scope = angular.element($('#modifyItemDiv')).scope();
+        newImage = angular.element($('#modifyItemDiv')).scope().newImage;
+        if ($scope.item.images.indexOf(newImage) === -1) {
+            $scope.item.images.push(newImage);
+        }
+    };
+
+    $scope.deleteItemImage = function deleteItemImage(imagePath) {
+        //alert(imagePath);
+        var $scope = angular.element($('#modifyItemDiv')).scope();
+        var i = $scope.item.images.indexOf(imagePath);
+        if(i != -1) {
+            $scope.item.images.splice(i, 1);
+        }
+    };
+
+    /*$scope.setFinalPrice = function setFinalPrice(data) {
+        var $scope = angular.element($('#modifyItemDiv')).scope();
+        var price = data.properties[0].value.value;
+        var discountPercent = data.discountPercent;
+        $scope.finalPrice = price - price * discountPercent / 100;
+    };*/
+
+    $scope.updateFinalPrice = function updateFinalPrice() {
+        var price = $('#PriceId').val();
+        $scope.item.finalPrice = price - price * ($scope.item.discountPercent) / 100;
     };
 });
 
@@ -125,25 +122,3 @@ var getUrlParameter = function getUrlParameter(sParam) {
         }
     }
 };
-
-function toArray(images) {
-    imagesArr = [];
-
-    images.forEach(function(item, i, images) {
-        if (item.path.indexOf('http') !== -1) {
-            imagesArr.push(item.path);
-        }
-    });
-
-    return imagesArr;
-}
-
-function toObjectsArray(images) {
-    imagesArr = [];
-
-    images.forEach(function(item, i, images) {
-        imagesArr.push({path: item});
-    });
-
-    return imagesArr;
-}

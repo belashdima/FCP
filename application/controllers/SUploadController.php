@@ -4,17 +4,20 @@ class SUploadController
 {
     function upload()
     {
-        if(isset($_FILES['image'])){
+        $siteData = simplexml_load_file('xml/siteData.xml');
+        $rootDirectory = $siteData->rootDirectory;
+
+        if(isset($_FILES['file'])){
             $errors= array();
-            $file_name = $_FILES['image']['name'];
-            $file_size =$_FILES['image']['size'];
-            $file_tmp =$_FILES['image']['tmp_name'];
-            $file_type=$_FILES['image']['type'];
-            $file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
+            $file_name = $_FILES['file']['name'];
+            $file_size =$_FILES['file']['size'];
+            $file_tmp =$_FILES['file']['tmp_name'];
+            $file_type=$_FILES['file']['type'];
+            $file_ext=strtolower(end(explode('.',$_FILES['file']['name'])));
 
-            $expensions= array("jpeg","jpg","png");
+            $extensions= array("jpeg","jpg","png","gif");
 
-            if (in_array($file_ext,$expensions)=== false) {
+            if (in_array($file_ext,$extensions)=== false) {
                 $errors[]="extension not allowed, please choose a JPEG or PNG file.";
             }
 
@@ -22,9 +25,14 @@ class SUploadController
                 $errors[]='File size must be less than 2 MB';
             }
 
-            if (empty($errors)==true) {
+            if (empty($errors) == true) {
+                //echo 'file moved';
                 move_uploaded_file($file_tmp,"uploadedImages/".$file_name);
-                echo "Success";
+
+                //(new DatabaseHandler())->saveUploadedImage($file_name);
+
+                //echo "Success";
+                echo $rootDirectory."/uploadedImages/".$file_name;
             } else {
                 print_r($errors);
             }

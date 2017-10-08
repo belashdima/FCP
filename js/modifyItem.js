@@ -1,13 +1,13 @@
 $(document).ready(function () {
-    /*$('.wareTypeNames').click(function() {
-        angular.element($('#newItemDiv')).scope().wareTypeName = $(this).text().trim();
+    /*$('.itemTypeNames').click(function() {
+        angular.element($('#newItemDiv')).scope().itemTypeName = $(this).text().trim();
 
-        angular.element($('#newItemDiv')).scope().getPropertiesForWareType();
+        angular.element($('#newItemDiv')).scope().getPropertiesForItemType();
     });*/
 
     //alert(getUrlParameter("id"));
 
-    angular.element($('#modifyItemDiv')).scope().getPropertiesForWare();
+    angular.element($('#modifyItemDiv')).scope().getPropertiesForItem();
 
     $('#modifyItemSubmitButton').click(function () {
         // pass button as argument to set result color and text
@@ -20,8 +20,16 @@ $(document).ready(function () {
         angular.element($('#modifyItemDiv')).scope().deleteItem();
     });
 
-    $('#addImageSubmitButton').click(function() {
-        angular.element($('#modifyItemDiv')).scope().addNewImage();
+    /*$('#addImageSubmitButton').click(function() {
+        var imagePath = $('#new-image-path').val();
+        angular.element($('#modifyItemDiv')).scope().addNewImage(imagePath);
+
+
+        $("#addImageModal").modal('hide');
         //$('#imagesContainer').append( "<div class='form-group'><input class='form-control' id='exampleInput' placeholder='Enter '></div>" );
-    });
+    });*/
+
+    function clearAddImageModal() {
+        $('#new-image-path').val('');
+    }
 });

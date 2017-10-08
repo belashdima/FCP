@@ -1,4 +1,4 @@
-<script src="http://localhost/Footballcity_Project/js/discounts.js"></script>
+<script src="<?php echo $rootDirectory;?>/js/discounts.js"></script>
 
 <?php $discounts = $data; ?>
 

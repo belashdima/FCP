@@ -35,12 +35,14 @@
 }
 .breadcrumb-arrow li a {
     position: relative;
-    color: #fff;
+    /*color: #fff; not selected arrow text color*/
+    color: var(--green-color);
+
     text-decoration: none;
-    /*background-color: #3bafda;*/
-    background-color: #448D00;
-    /*border: 1px solid #3bafda*/
-    border: 1px solid #448D00
+
+    background-color: var(--light-color);
+
+    border: 1px solid var(--light-color)
 }
 .breadcrumb-arrow li:first-child a {
     padding-left: 10px
@@ -57,35 +59,40 @@
 .breadcrumb-arrow li a:before {
     right: -10px;
     z-index: 3;
-    /*border-left-color: #3bafda;*/
-    border-left-color: #448D00;
+    /* right triangle in arrow color*/
+    border-left-color: var(--light-color);
     border-left-style: solid;
     border-left-width: 11px
 }
 .breadcrumb-arrow li a:after {
     right: -11px;
     z-index: 2;
-    border-left: 11px solid #2494be
+    /* arrows delimiter color*/
+    border-left: 11px solid var(--green-color)
 }
 .breadcrumb-arrow li a:focus, .breadcrumb-arrow li a:hover {
-    /*background-color: #4fc1e9;*/
-    background-color: #4fc1e9;
-    /*border: 1px solid #4fc1e9*/
-    border: 1px solid #4fc1e9
+    /* arrow background hover color*/
+    background-color: var(--light-hover-color);
+    /*border: 1px solid #4fc1e9 arrow border hover color*/
+    border: 1px solid var(--light-hover-color)
 }
 .breadcrumb-arrow li a:focus:before, .breadcrumb-arrow li a:hover:before {
-    /*border-left-color: #4fc1e9*/
-    border-left-color: #4fc1e9
+    /* selected right triangle in arrow hover color*/
+    border-left-color: var(--light-hover-color)
 }
 .breadcrumb-arrow li a:active {
-    background-color: #2494be;
-    border: 1px solid #2494be
+    /* click arrow background color */
+    background-color: var(--light-hover-color);
+    /* click arrow border colors */
+    border: 1px solid var(--light-hover-color);
 }
 .breadcrumb-arrow li a:active:after, .breadcrumb-arrow li a:active:before {
-    border-left-color: #2494be
+    /* click right triangle in arrow color */
+    border-left-color: var(--light-hover-color)
 }
 .breadcrumb-arrow li span {
-    color: #434a54
+    /* selected arrow text color*/
+    color: var(--green-color);
 }
 
 .breadcrumb {
@@ -94,5 +101,5 @@
 }
 
 .breadcrumb-arrow {
-    background-color: #edeef0;
+    background-color: var(--light-color);
 }

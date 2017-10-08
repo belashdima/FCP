@@ -1,5 +1,7 @@
 <?php
 
+require_once "Size.php";
+
 /**
  * @package     ${NAMESPACE}
  * @subpackage
@@ -7,24 +9,25 @@
  * @copyright   A copyright
  * @license     A "Slug" license name e.g. GPL2
  */
-class ShoeSize
+class ShoeSize extends Size
 {
-    private $sizeID;
-    private $sizeEu;
-    private $sizeUk;
-    private $sizeUs;
+    public $sizeEu;
+    public $sizeUk;
+    public $sizeUs;
 
-    public function __construct($sizeID, $sizeEu, $sizeUk, $sizeUs)
+    public function __construct($sizeId, $sizeEu, $sizeUk, $sizeUs)
     {
-        $this->sizeID = $sizeID;
+        $this->sizeId = $sizeId;
         $this->sizeEu = $sizeEu;
         $this->sizeUk = $sizeUk;
         $this->sizeUs = $sizeUs;
+
+        $this->sizeName = "UK: ".$this->sizeUk."   EU: ".$this->sizeEu."   US: ".$this->sizeUs;
     }
 
-    public function getSizeId()
+    public static function getShoeSizeById($sizeId)
     {
-        return $this->sizeID;
+        return (new DatabaseHandler())->getShoeSizeById($sizeId);
     }
 
     public function getSizeEu()
@@ -45,5 +48,22 @@ class ShoeSize
     function __toString()
     {
         return "UK: ".$this->sizeUk."   EU: ".$this->sizeEu."   US: ".$this->sizeUs;
+    }
+
+    public static function decodeSizesFromString($sizesString) {
+        $sizesList = array();
+        foreach (json_decode($sizesString) as $size) {
+            array_push($sizesList, new ShoeSize($size->sizeId, $size->sizeEu, $size->sizeUk, $size->sizeUs));
+        }
+        return $sizesList;
+    }
+
+    public static function encodeSizesToString($sizesArray) {
+        return json_encode($sizesArray);
+    }
+
+    public static function getSizes()
+    {
+        return (new DatabaseHandler())->getShoeSizes();
     }
 }

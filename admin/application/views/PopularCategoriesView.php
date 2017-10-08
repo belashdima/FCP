@@ -1,4 +1,4 @@
-<script src="http://localhost/Footballcity_Project/js/popularCategories.js"></script>
+<script src="<?php echo $rootDirectory;?>/js/popularCategories.js"></script>
 
 <?php $categories = $data; ?>
 

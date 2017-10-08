@@ -7,14 +7,14 @@ class PopularCategoriesController extends Controller
 {
     public function showPopularCategories()
     {
-        $popularCategories = DatabaseHandler::getPopularCategories();
+        $popularCategories = (new DatabaseHandler)->getPopularCategories();
 
         $this->view->generate('PopularCategoriesView.php', 'CommonMarkupView.php', $popularCategories);
     }
 
     public function getPopularCategories()
     {
-        echo json_encode(DatabaseHandler::getPopularCategories());
+        echo json_encode((new DatabaseHandler)->getPopularCategories());
     }
 
     public function addPopularCategory()
@@ -23,7 +23,7 @@ class PopularCategoriesController extends Controller
         $url = $_POST['url'];
         $image = $_POST['image'];
 
-        DatabaseHandler::addPopularCategory($name, $url, $image);
+        (new DatabaseHandler)->addPopularCategory($name, $url, $image);
     }
 
     public function deletePopularCategory()
@@ -32,7 +32,7 @@ class PopularCategoriesController extends Controller
         $url = $_POST['url'];
         $image = $_POST['image'];
 
-        DatabaseHandler::deletePopularCategory($name, $url, $image);
+        (new DatabaseHandler)->deletePopularCategory($name, $url, $image);
     }
 
     public function setPopularCategory()
@@ -42,6 +42,6 @@ class PopularCategoriesController extends Controller
         $url = $_POST['url'];
         $image = $_POST['image'];
 
-        DatabaseHandler::setPopularCategory($id, $name, $url, $image);
+        (new DatabaseHandler)->setPopularCategory($id, $name, $url, $image);
     }
 }

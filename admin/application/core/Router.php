@@ -2,172 +2,178 @@
 
 class Router
 {
-    static function showWaresOfType($wareTypeId) {
-        require_once 'application/controllers/WaresController.php';
-        (new WaresController())->showWaresOfTypeAction($wareTypeId);
+    static function showItemsOfCategory($categoryId) {
+        require_once 'application/controllers/ItemsController.php';
+        (new ItemsController())->showItemsOfCategoryAction($categoryId);
     }
 
     static function start()
     {
         $chosen = false;
 
+        /*if (strpos($_SERVER['REQUEST_URI'], '/items/') !== false && !$chosen) {
+            require_once 'application/controllers/ItemsController.php';
+            (new ItemsController())->create_newAction();
+            $chosen = true;
+        }*/
+
         // discounts
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/discount/set?') !== false && !$chosen) {
-            require_once 'application/controllers/WaresController.php';
-            (new WaresController())->setDiscount();
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/discount/set?') !== false && !$chosen) {
+            require_once 'application/controllers/ItemsController.php';
+            (new ItemsController())->setDiscount();
             $chosen = true;
         }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/discount/delete?') !== false && !$chosen) {
-            require_once 'application/controllers/WaresController.php';
-            (new WaresController())->deleteDiscount();
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/discount/delete?') !== false && !$chosen) {
+            require_once 'application/controllers/ItemsController.php';
+            (new ItemsController())->deleteDiscount();
             $chosen = true;
         }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/discount/add?') !== false && !$chosen) {
-            require_once 'application/controllers/WaresController.php';
-            (new WaresController())->addDiscount();
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/discount/add?') !== false && !$chosen) {
+            require_once 'application/controllers/ItemsController.php';
+            (new ItemsController())->addDiscount();
             $chosen = true;
         }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/discounts_json') !== false) {
-            require_once 'application/controllers/WaresController.php';
-            (new WaresController())->getDiscounts();
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/discounts_json') !== false) {
+            require_once 'application/controllers/ItemsController.php';
+            (new ItemsController())->getDiscounts();
             $chosen = true;
         }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/discounts') !== false && !$chosen) {
-            require_once 'application/controllers/WaresController.php';
-            (new WaresController())->showDiscounts();
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/discounts') !== false && !$chosen) {
+            require_once 'application/controllers/ItemsController.php';
+            (new ItemsController())->showDiscounts();
             $chosen = true;
         }
         //
 
         // popular categories
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/popular_category/set') !== false && !$chosen) {
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/popular_category/set') !== false && !$chosen) {
             require_once 'application/controllers/PopularCategoriesController.php';
             (new PopularCategoriesController())->setPopularCategory();
             $chosen = true;
         }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/popular_category/delete') !== false && !$chosen) {
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/popular_category/delete') !== false && !$chosen) {
             require_once 'application/controllers/PopularCategoriesController.php';
             (new PopularCategoriesController())->deletePopularCategory();
             $chosen = true;
         }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/popular_category/add') !== false && !$chosen) {
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/popular_category/add') !== false && !$chosen) {
             require_once 'application/controllers/PopularCategoriesController.php';
             (new PopularCategoriesController())->addPopularCategory();
             $chosen = true;
         }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/popular_categories_json') !== false && !$chosen) {
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/popular_categories_json') !== false && !$chosen) {
             require_once 'application/controllers/PopularCategoriesController.php';
             (new PopularCategoriesController())->getPopularCategories();
             $chosen = true;
         }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/popular_categories') !== false && !$chosen) {
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/popular_categories') !== false && !$chosen) {
             require_once 'application/controllers/PopularCategoriesController.php';
             (new PopularCategoriesController())->showPopularCategories();
             $chosen = true;
         }
         //
 
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/wares') !== false && count($_GET) == 0) {
-            Router::showWaresOfType(1);
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/wares') !== false && count($_GET) == 0) {
+            Router::showItemsOfCategory(1);
             $chosen = true;
         }
 
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/boots') !== false) {
-            Router::showWaresOfType(2);
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/boots') !== false) {
+            Router::showItemsOfCategory(2);
             $chosen = true;
         }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/football_boots') !== false) {
-            Router::showWaresOfType(4);
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/football_boots') !== false) {
+            Router::showItemsOfCategory(4);
             $chosen = true;
         }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/indoor_boots') !== false) {
-            Router::showWaresOfType(5);
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/indoor_boots') !== false) {
+            Router::showItemsOfCategory(5);
             $chosen = true;
         }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/outdoor_boots') !== false) {
-            Router::showWaresOfType(6);
-            $chosen = true;
-        }
-
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/balls') !== false) {
-            Router::showWaresOfType(3);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/football_balls') !== false) {
-            Router::showWaresOfType(7);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/futsal_balls') !== false) {
-            Router::showWaresOfType(8);
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/outdoor_boots') !== false) {
+            Router::showItemsOfCategory(6);
             $chosen = true;
         }
 
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/game_t-shirts') !== false) {
-            Router::showWaresOfType(23);
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/balls') !== false) {
+            Router::showItemsOfCategory(3);
             $chosen = true;
         }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/game_shorts') !== false) {
-            Router::showWaresOfType(27);
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/football_balls') !== false) {
+            Router::showItemsOfCategory(7);
             $chosen = true;
         }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/game_socks') !== false) {
-            Router::showWaresOfType(21);
-            $chosen = true;
-        }
-
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/warm_tops') !== false) {
-            Router::showWaresOfType(28);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/warm_pants') !== false) {
-            Router::showWaresOfType(29);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/jackets') !== false) {
-            Router::showWaresOfType(24);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/socks') !== false) {
-            Router::showWaresOfType(20);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/caps_scarfs') !== false) {
-            Router::showWaresOfType(30);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/gloves') !== false) {
-            Router::showWaresOfType(31);
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/futsal_balls') !== false) {
+            Router::showItemsOfCategory(8);
             $chosen = true;
         }
 
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/bags') !== false) {
-            Router::showWaresOfType(32);
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/game_t-shirts') !== false) {
+            Router::showItemsOfCategory(23);
+            $chosen = true;
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/game_shorts') !== false) {
+            Router::showItemsOfCategory(27);
+            $chosen = true;
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/game_socks') !== false) {
+            Router::showItemsOfCategory(21);
             $chosen = true;
         }
 
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/goalkeeper_gloves') !== false) {
-            Router::showWaresOfType(34);
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/warm_tops') !== false) {
+            Router::showItemsOfCategory(28);
             $chosen = true;
         }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/goalkeeper_jackets') !== false) {
-            Router::showWaresOfType(33);
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/warm_pants') !== false) {
+            Router::showItemsOfCategory(29);
             $chosen = true;
         }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/goalkeeper_t-shirts') !== false) {
-            Router::showWaresOfType(36);
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/jackets') !== false) {
+            Router::showItemsOfCategory(24);
             $chosen = true;
         }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/goalkeeper_shorts') !== false) {
-            Router::showWaresOfType(35);
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/socks') !== false) {
+            Router::showItemsOfCategory(20);
+            $chosen = true;
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/caps_scarfs') !== false) {
+            Router::showItemsOfCategory(30);
+            $chosen = true;
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/gloves') !== false) {
+            Router::showItemsOfCategory(31);
             $chosen = true;
         }
 
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/shin_pads') !== false) {
-            Router::showWaresOfType(37);
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/bags') !== false) {
+            Router::showItemsOfCategory(32);
             $chosen = true;
         }
-        if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project/admin/pumps') !== false) {
-            Router::showWaresOfType(38);
+
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/goalkeeper_gloves') !== false) {
+            Router::showItemsOfCategory(34);
+            $chosen = true;
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/goalkeeper_jackets') !== false) {
+            Router::showItemsOfCategory(33);
+            $chosen = true;
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/goalkeeper_t-shirts') !== false) {
+            Router::showItemsOfCategory(36);
+            $chosen = true;
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/goalkeeper_shorts') !== false) {
+            Router::showItemsOfCategory(35);
+            $chosen = true;
+        }
+
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/shin_pads') !== false) {
+            Router::showItemsOfCategory(37);
+            $chosen = true;
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/pumps') !== false) {
+            Router::showItemsOfCategory(38);
             $chosen = true;
         }
 
@@ -178,6 +184,7 @@ class Router
         $actionName = 'index';
 
         $routes = explode('/', $_SERVER['REQUEST_URI']);
+
         $routes[4] = explode('?', $routes[4])[0];
 
         //print_r($routes);
@@ -212,7 +219,8 @@ class Router
             echo "no file";
             //правильно было бы кинуть здесь исключение,
             //но для упрощения сразу сделаем редирект на страницу 404
-            Router::ErrorPage404();
+            self::ErrorPage404();
+            return;
         }
 
         // create controller

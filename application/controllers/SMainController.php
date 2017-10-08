@@ -7,9 +7,16 @@ class SMainController extends SController
 {
     function indexAction()
     {
-        $popularCategories = DatabaseHandler::getPopularCategories();
+        $databaseHandler = new DatabaseHandler();
+        $popularCategories = $databaseHandler->getPopularCategories();
+        $popularItems = $databaseHandler->getMostPopularItems(2);
         $videos = DatabaseHandler::getVideos();
 
-        $this->view->generate('SMainView.php', 'SCommonMarkupView.php', $popularCategories, $videos);
+        $data = new stdClass();
+        $data->popularCategories = $popularCategories;
+        $data->popularItems = $popularItems;
+        $data->videos = $videos;
+
+        $this->view->generate('SMainView.php', 'SCommonMarkupView.php', $data);
     }
 }

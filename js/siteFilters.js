@@ -1,7 +1,12 @@
 jQuery.extend({
 
-    getQueryParameters : function(str) {
-        return (str || document.location.search).replace(/(^\?)/,'').split("&").map(function(n){return n = n.split("="),this[n[0]] = n[1],this}.bind({}))[0];
+    getQueryParameters : function() {
+        var _get = {};
+        var re = /[?&]([^=&]+)(=?)([^&]*)/g;
+        while (m = re.exec(location.search))
+            _get[decodeURIComponent(m[1])] = (m[2] == '=' ? decodeURIComponent(m[3]) : true);
+        return _get;
+        //return (str || document.location.search).replace(/(^\?)/,'').split("&").map(function(n){return n = n.split("="),this[n[0]] = n[1],this}.bind({}))[0];
     }
 
 });
@@ -88,14 +93,14 @@ $(document).ready(function () {
         } else {
             if (isNaN(lowerPriceLimit) && !isNaN(upperPriceLimit)) {
                 // limited upper
-                params.price = '0-' + upperPriceLimit;
-                //refresh();
+                params.price = 'nolimit-' + upperPriceLimit;
+                refresh();
             }
 
             if (!isNaN(lowerPriceLimit) && isNaN(upperPriceLimit)) {
                 // limited lower
-                params.price = lowerPriceLimit + '-100500';
-                //refresh();
+                params.price = lowerPriceLimit + '-nolimit';
+                refresh();
             }
 
             if (isNaN(lowerPriceLimit) && isNaN(upperPriceLimit)) {
@@ -115,6 +120,10 @@ $(document).ready(function () {
     function refresh () {
         var query = $.param(params);
         var currentAction = (window.location.href).split('?');
-        window.location.href = currentAction[0] + '?' + query;
+        var link = currentAction[0];
+        if (!$.isEmptyObject(params)) {
+            link = link + '?' + query;
+        }
+        window.location.href = link;
     }
 });

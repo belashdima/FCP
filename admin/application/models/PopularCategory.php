@@ -1,27 +1,32 @@
 <?php
 
-class Category
+/**
+ * @package     ${NAMESPACE}
+ * @subpackage
+ *
+ * @copyright   A copyright
+ * @license     A "Slug" license name e.g. GPL2
+ */
+class PopularCategory
 {
     public $id;
     public $name;
-    public $parentCategory;
     public $urlPresentation;
-    public $shown;
+    public $image;
 
     /**
-     * Category constructor.
+     * PopularCategory constructor.
      * @param $id
      * @param $name
-     * @param $parentCategory
      * @param $urlPresentation
+     * @param $image
      */
-    public function __construct($id, $name, $parentCategory, $urlPresentation, $shown)
+    public function __construct($id, $name, $urlPresentation, $image)
     {
         $this->id = $id;
         $this->name = $name;
-        $this->parentCategory = $parentCategory;
         $this->urlPresentation = $urlPresentation;
-        $this->shown = $shown;
+        $this->image = $image;
     }
 
     /**
@@ -59,22 +64,6 @@ class Category
     /**
      * @return mixed
      */
-    public function getParentCategory()
-    {
-        return $this->parentCategory;
-    }
-
-    /**
-     * @param mixed $parentCategory
-     */
-    public function setParentCAtegory($parentCategory)
-    {
-        $this->parentCategory = $parentCategory;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getUrlPresentation()
     {
         return $this->urlPresentation;
@@ -91,16 +80,16 @@ class Category
     /**
      * @return mixed
      */
-    public function getShown()
+    public function getImage()
     {
-        return $this->shown;
+        return $this->image;
     }
 
     /**
-     * @param mixed $shown
+     * @param mixed $image
      */
-    public function setShown($shown)
+    public function setImage($image)
     {
-        $this->shown = $shown;
+        $this->image = $image;
     }
 }

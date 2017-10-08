@@ -1,3 +1,8 @@
+<?php
+$siteData = simplexml_load_file('xml/siteData.xml');
+$rootDirectory = $siteData->rootDirectory;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,9 +22,10 @@
     <!-- Bootstrap Core CSS -->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">-->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css">-->
-    <link rel="stylesheet" href="http://localhost/Footballcity_Project/css/bootstrap.css">
+    <link rel="stylesheet" href="<?php echo $rootDirectory;?>/css/bootstrap.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="http://localhost/Footballcity_Project/css/site.css">
+    <link rel="stylesheet" href="<?php echo $rootDirectory;?>/css/site.css">
+    <link rel="stylesheet" href="<?php echo $rootDirectory;?>/css/carousel.css">
 
     <!--JS-->
     <!-- jQuery Version 3.1.1 -->
@@ -28,75 +34,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-    <script src="http://localhost/Footballcity_Project/js/header.js"></script>
+    <script src="<?php echo $rootDirectory;?>/js/site.js"></script>
+    <script src="<?php echo $rootDirectory;?>/js/header.js"></script>
+    <script src="<?php echo $rootDirectory;?>/js/carousel.js"></script>
 
 </head>
 
 <body class="font-color">
 
-<!-- Navigation -->
-<!--<nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse" role="navigation">
-
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="container">
-
-        <div class="navbar-brand">
-            <img src="images/logo/logo.png">
-        </div>
-
-        <div class="collapse navbar-collapse" id="navbarExample">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="http://localhost/Footballcity_Project/football_boots">Обувь</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/Footballcity_Project/balls">Мячи</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Форма</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Тренировочная одежда</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Вратарская экипировка</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="location">Наш адрес</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-</nav>-->
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="header-left">
-                <div class="image-container">
-                    <a href="http://localhost/Footballcity_Project/index.php">
-                        <img src="images/logo/logo_52.png">
-                    </a>
-                </div>
-                <!--<div>
-                    <span>Магазин футбольной экипировки</span>
-                </div>-->
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="page-block">
-                fwerger
-            </div>
-        </div>
-    </div>
-</div>
-
     <?php require_once 'application/views/SHeaderView.php'; ?>
+
+    <?php require_once 'application/views/SMenuView.php'; ?>
 
     <!-- Page Content -->
     <div id="content" class="container">

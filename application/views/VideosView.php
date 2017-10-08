@@ -1,3 +1,3 @@
-<div class="col-12 main-view-subheader">
-    <h3>Наши видео</h3>
+<div class="col-12">
+    <h3 class="main-view-subheader">Наши видео</h3>
 </div>
