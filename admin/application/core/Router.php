@@ -73,108 +73,14 @@ class Router
         }
         //
 
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/wares') !== false && count($_GET) == 0) {
-            Router::showItemsOfCategory(1);
-            $chosen = true;
-        }
-
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/boots') !== false) {
-            Router::showItemsOfCategory(2);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/football_boots') !== false) {
-            Router::showItemsOfCategory(4);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/indoor_boots') !== false) {
-            Router::showItemsOfCategory(5);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/outdoor_boots') !== false) {
-            Router::showItemsOfCategory(6);
-            $chosen = true;
-        }
-
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/balls') !== false) {
-            Router::showItemsOfCategory(3);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/football_balls') !== false) {
-            Router::showItemsOfCategory(7);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/futsal_balls') !== false) {
-            Router::showItemsOfCategory(8);
-            $chosen = true;
-        }
-
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/game_t-shirts') !== false) {
-            Router::showItemsOfCategory(23);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/game_shorts') !== false) {
-            Router::showItemsOfCategory(27);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/game_socks') !== false) {
-            Router::showItemsOfCategory(21);
-            $chosen = true;
-        }
-
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/warm_tops') !== false) {
-            Router::showItemsOfCategory(28);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/warm_pants') !== false) {
-            Router::showItemsOfCategory(29);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/jackets') !== false) {
-            Router::showItemsOfCategory(24);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/socks') !== false) {
-            Router::showItemsOfCategory(20);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/caps_scarfs') !== false) {
-            Router::showItemsOfCategory(30);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/gloves') !== false) {
-            Router::showItemsOfCategory(31);
-            $chosen = true;
-        }
-
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/bags') !== false) {
-            Router::showItemsOfCategory(32);
-            $chosen = true;
-        }
-
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/goalkeeper_gloves') !== false) {
-            Router::showItemsOfCategory(34);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/goalkeeper_jackets') !== false) {
-            Router::showItemsOfCategory(33);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/goalkeeper_t-shirts') !== false) {
-            Router::showItemsOfCategory(36);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/goalkeeper_shorts') !== false) {
-            Router::showItemsOfCategory(35);
-            $chosen = true;
-        }
-
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/shin_pads') !== false) {
-            Router::showItemsOfCategory(37);
-            $chosen = true;
-        }
-        if (strpos($_SERVER['REQUEST_URI'], '/admin/pumps') !== false) {
-            Router::showItemsOfCategory(38);
-            $chosen = true;
+        require_once 'application/models/DatabaseHandler.php';
+        $categories = (new DatabaseHandler())->getAllCategories();
+        foreach ($categories as $category) {
+            $urlPart = '/admin/'.$category->getUrlPresentation();
+            if (strpos($_SERVER['REQUEST_URI'], $urlPart) !== false && count($_GET) == 0) {
+                Router::showItemsOfCategory($category->getId());
+                $chosen = true;
+            }
         }
 
         if ($chosen) return;

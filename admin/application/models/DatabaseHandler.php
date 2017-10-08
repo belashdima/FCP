@@ -168,13 +168,14 @@ class DatabaseHandler
         $result = $databaseConnection->query("SELECT * FROM ".self::$TABLE_CATEGORIES_NAME);
         $result->setFetchMode(PDO::FETCH_ASSOC);
 
+        $categoriesList = array();
         while ($row = $result->fetch()) {
             $categoriesList[] = new Category(
                 $row[self::$TABLE_CATEGORIES_COLUMN_ID],
                 $row[self::$TABLE_CATEGORIES_COLUMN_NAME],
                 $row[self::$TABLE_CATEGORIES_COLUMN_PARENT],
-                $row[self::$TABLE_CATEGORIES_COLUMN_SHOWN],
-                $row[self::$TABLE_CATEGORIES_COLUMN_URL_PRESENTATION]);
+                $row[self::$TABLE_CATEGORIES_COLUMN_URL_PRESENTATION],
+                $row[self::$TABLE_CATEGORIES_COLUMN_SHOWN]);
         }
 
         return $categoriesList;
