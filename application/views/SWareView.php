@@ -1,5 +1,6 @@
 <?php
 $item = $data->item;
+$added = $data->added;
 
 $originalPrice = $item->getPropertyValueByUrlPresentation('price');
 $discountPrice = null;
@@ -28,6 +29,13 @@ if ($discountExists) {
 
                 <li class="active"><span><?php echo $item->getPropertyValueByUrlPresentation('brand').' '.$item->getPropertyValueByUrlPresentation('model') ?></span></li>
             </ol>
+        </div>
+    </div>
+
+    <div class="col-12" <?php if(!$added) {echo "hidden";} ?>>
+        <div class="page-block text-center">
+            <span class="site-green">Товар успешно добавлен в вашу </span>
+            <a href="<?php echo $rootDirectory."/basket"; ?>"><span class="site-green underlined">корзину</span></a>
         </div>
     </div>
 
@@ -173,21 +181,37 @@ if ($discountExists) {
         <div class="page-block">
             <table class="table">
                 <tbody>
-                    <tr>
-                        <td class="borderless">Размеры в наличии:</td>
-                    </tr>
-                    <?php
-                    if ($item->sizes != null || !empty($item->sizes)) {
-                        foreach ($item->sizes as $size) { ?>
-
-                        <tr <?php if ($size == null || strcmp($size->quantity, "0") == 0) echo "hidden"?>>
-                            <td><?php echo $size->size->sizeName; ?></td>
-                        </tr>
-                    <?php }
-                    } ?>
+                <tr>
+                    <td class="borderless">Размеры в наличии:</td>
+                </tr>
+                <tr>
+                    <td class="borderless">
+                        <select id="size-select" class="custom-select w-100">
+                            <?php
+                            if ($item->sizes != null && !empty($item->sizes)) {
+                                foreach ($item->sizes as $size) {
+                                    if ($size != null && strcmp($size->quantity, "0") != 0) { ?>
+                                    <option >
+                                        <?php echo $size->size->sizeName; ?>
+                                    </option>
+                                <?php }
+                                }
+                            } ?>
+                        </select>
+                    </td>
+                </tr>
                 </tbody>
             </table>
+
         </div>
+
+        <div class="page-block site-green-background text-center">
+            <div class="add-to-basket-button color-white">Добавить в корзину</div>
+        </div>
+
+        <!--<div class="page-block site-red-background text-center">
+            <div class="delete-from-basket-button">Удалить из корзины</div>
+        </div>-->
 
         <div class="page-block">
             <span>Связаться с нами для покупки:</span>

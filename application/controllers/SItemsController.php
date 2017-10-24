@@ -20,8 +20,13 @@ class SItemsController extends SController
     }
 
     public function itemAction() {
-        $params = $_GET;
-        $itemId = $params['id'];
+        $itemId = $_GET['id'];
+        if (key_exists('added', $_GET) && strcmp($_GET['added'], "true") == 0) {
+            $added = true;
+        } else {
+            $added = false;
+        }
+
 
         $databaseHandler = new DatabaseHandler();
         $item = $databaseHandler->getAllForItem($itemId);
@@ -30,6 +35,7 @@ class SItemsController extends SController
 
         $data = new stdClass();
         $data->item = $item;
+        $data->added = $added;
 
         $this->view->generate('SWareView.php', 'SCommonMarkupView.php', $data);
     }

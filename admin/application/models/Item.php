@@ -250,30 +250,30 @@ class Item
 
         if ($sizePropertyUrlPresentation == null) {
             $this->sizes = array(); // empty array
-        } else if (strcmp($sizePropertyUrlPresentation, "shoe_size") == 0) {
-            $this->sizes = array(); // empty array
+        } else {
             $sizePropertyValue = $this->getPropertyValueByUrlPresentation($sizePropertyUrlPresentation);
-            //echo $sizePropertyValue;
-            if ($sizePropertyValue == null) {
-                $this->sizes = SizeOfItem::getEmptyShoeSizes();
-            } else {
-                $this->sizes = json_decode($sizePropertyValue);
-            }
-        } else if (strcmp($sizePropertyUrlPresentation, "clothing_size") == 0) {
-            $this->sizes = array(); // empty array
-            $sizePropertyValue = $this->getPropertyValueByUrlPresentation($sizePropertyUrlPresentation);
-            if ($sizePropertyValue == null) {
-                $this->sizes = SizeOfItem::getEmptyClothingSizes();
-            } else {
-                $this->sizes = json_decode($sizePropertyValue);
-            }
-        } else if (strcmp($sizePropertyUrlPresentation, "ball_size") == 0) {
-            $this->sizes = array(); // empty array
-            $sizePropertyValue = $this->getPropertyValueByUrlPresentation($sizePropertyUrlPresentation);
-            if ($sizePropertyValue == null) {
-                $this->sizes = SizeOfItem::getEmptyBallSizes();
-            } else {
-                $this->sizes = json_decode($sizePropertyValue);
+            if (strcmp($sizePropertyUrlPresentation, "shoe_size") == 0) {
+                $this->sizes = array(); // empty array
+                //echo $sizePropertyValue;
+                if ($sizePropertyValue == null) {
+                    $this->sizes = SizeOfItem::getEmptyShoeSizes();
+                } else {
+                    $this->sizes = json_decode($sizePropertyValue);
+                }
+            } else if (strcmp($sizePropertyUrlPresentation, "clothing_size") == 0) {
+                $this->sizes = array(); // empty array
+                if ($sizePropertyValue == null) {
+                    $this->sizes = SizeOfItem::getEmptyClothingSizes();
+                } else {
+                    $this->sizes = json_decode($sizePropertyValue);
+                }
+            } else if (strcmp($sizePropertyUrlPresentation, "ball_size") == 0) {
+                $this->sizes = array(); // empty array
+                if ($sizePropertyValue == null) {
+                    $this->sizes = SizeOfItem::getEmptyBallSizes();
+                } else {
+                    $this->sizes = json_decode($sizePropertyValue);
+                }
             }
         }
     }

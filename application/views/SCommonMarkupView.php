@@ -37,6 +37,7 @@ $rootDirectory = $siteData->rootDirectory;
     <script src="<?php echo $rootDirectory;?>/js/site.js"></script>
     <script src="<?php echo $rootDirectory;?>/js/header.js"></script>
     <script src="<?php echo $rootDirectory;?>/js/carousel.js"></script>
+    <script src="<?php echo $rootDirectory;?>/js/basket.js"></script>
 
 </head>
 

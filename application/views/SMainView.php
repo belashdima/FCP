@@ -33,7 +33,7 @@ $videos = $data->videos;
 
     <?php if (!empty($popularCategories)) { ?>
         <div class="col-12">
-            <h3  class="main-view-subheader">Популярные категории</h3>
+            <h3  class="m-8">Популярные категории</h3>
         </div>
         <?php
         foreach ($popularCategories as $popularCategory) {?>
@@ -50,7 +50,7 @@ $videos = $data->videos;
 
 
     <div class="col-12">
-        <h3 class="main-view-subheader">Популярные товары</h3>
+        <h3 class="m-8">Популярные товары</h3>
         <?php
         $data = new stdClass();
         $data->items = $popularItems;

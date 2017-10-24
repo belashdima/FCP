@@ -10,6 +10,9 @@ class SRouter
 
     static function start()
     {
+        session_start();
+        //session_destroy();
+
         $_SERVER['REQUEST_URI'];
         if (strcmp($_SERVER['REQUEST_URI'], '/') == 0) {
             include 'application/controllers/SMainController.php';
@@ -29,6 +32,31 @@ class SRouter
             return;
         }
 
+        if (strpos($_SERVER['REQUEST_URI'], '/basket_add') !== false) {
+            include 'application/controllers/SBasketController.php';
+            (new SBasketController())->add();
+            return;
+        }
+
+        if (strpos($_SERVER['REQUEST_URI'], '/basket_delete') !== false) {
+            include 'application/controllers/SBasketController.php';
+            (new SBasketController())->delete();
+            return;
+        }
+
+        /*if (strpos($_SERVER['REQUEST_URI'], '/session_continue.php') !== false) {
+            session_start();
+            echo $_SESSION['foo'];
+            return;
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/sessip') !== false) {
+            session_start();
+            $_SESSION['foo'] = 'bar'; ?>
+            <a href="session_continue.php">session_continue.php</a>
+            <?php
+            return;
+        }*/
+
         require_once 'admin/application/models/DatabaseHandler.php';
         $categories = (new DatabaseHandler())->getAllCategories();
         //print_r($categories);
@@ -38,6 +66,12 @@ class SRouter
                 SRouter::showWaresOfCategory($category->getId());
                 return;
             }
+        }
+
+        if (strpos($_SERVER['REQUEST_URI'], '/basket') !== false) {
+            include 'application/controllers/SBasketController.php';
+            (new SBasketController())->showBasket();
+            return;
         }
 
         if (strpos($_SERVER['REQUEST_URI'], '/location') !== false) {
@@ -60,7 +94,8 @@ class SRouter
 
         if (strpos($_SERVER['REQUEST_URI'], '/Footballcity_Project') !== false) {
             //echo $_SERVER['REQUEST_URI'];
-            $url = header($_SERVER['REQUEST_URI']);
+            $url = '/Footballcity_Project/index.php';
+            //$url = header($_SERVER['REQUEST_URI']);
             header('Location: '.$url);
             include 'application/controllers/SMainController.php';
             (new SMainController())->indexAction();
