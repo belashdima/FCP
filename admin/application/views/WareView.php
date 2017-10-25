@@ -17,10 +17,28 @@ $item = $data;?>
             <input class="form-control" id="finalPriceId" ng-model="item.finalPrice" placeholder="Final price" disabled>
         </div>
 
-        <div class="form-group" ng-repeat="prop in item.properties" ng-if="prop.property.urlPresentation.indexOf('size') === -1">
+        <div class="form-group" ng-repeat="prop in item.properties">
+            <div ng-if="(prop.property.urlPresentation.indexOf('size') === -1) && (prop.property.urlPresentation.localeCompare('ground_type') != 0)">
+                <label for="exampleInputEmail1">{{prop.property.rusPropertyName}}</label>
+                <input class="form-control" id="{{prop.property.propertyName}}Id" ng-change="updateFinalPrice()" ng-model="prop.value.value" placeholder="Enter {{prop.value.value.toLowerCase()}}">
+            </div>
+
+            <div ng-if="prop.property.urlPresentation.localeCompare('ground_type') == 0">
+                <label for="exampleInputEmail1">{{prop.property.rusPropertyName}}</label>
+
+                <select id="{{prop.property.propertyName}}Id" class=" form-control custom-select" ng-model="prop.value.value" placeholder="Enter {{prop.value.value.toLowerCase()}}">
+                    <option>AG</option>
+                    <option>FG</option>
+                    <option>SG</option>
+                </select>
+            </div>
+        </div>
+
+
+        <!--<div class="form-group" ng-repeat="prop in item.properties" ng-if="prop.property.urlPresentation.localeCompare('ground_type') == 0">
             <label for="exampleInputEmail1">{{prop.property.rusPropertyName}}</label>
             <input class="form-control" id="{{prop.property.propertyName}}Id" ng-change="updateFinalPrice()" ng-model="prop.value.value" placeholder="Enter {{prop.value.value.toLowerCase()}}">
-        </div>
+        </div>-->
 
         <label>Размеры</label>
         <table class="table borderless" ng-if="item.sizes.length > 0">
