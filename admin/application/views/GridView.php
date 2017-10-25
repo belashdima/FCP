@@ -2,7 +2,7 @@
 foreach ($bootsModels as $bootsModel) {
     $bootsModel->init();?>
     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-        <div class="card h-100">
+        <div class="card h-100 card-hoverable">
             <a href="boots/<?php echo $bootsModel->getModelId(); ?>">
                 <img class="card-img-top img-fluid imageItem" src="../images/<?php echo $bootsModel->getImages()[0]; ?>" alt="">
             </a>

@@ -84,7 +84,7 @@
     <h3 class="m-8">Данные покупателя</h3>
 
     <div class="col-12 mb-15">
-        <div class="card page-block">
+        <div class="page-block p-8 borderless">
             <table class="table">
                 <tbody>
                 <tr>

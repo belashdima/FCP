@@ -95,7 +95,12 @@ body {
     border: none;
 }
 
-.card:hover {
+/*.card:hover {
+    background-color: #f3f3f3;
+    border: 2px;
+}*/
+
+.card-hoverable:hover {
     background-color: #f3f3f3;
     border: 2px;
 }

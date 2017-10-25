@@ -22,7 +22,7 @@ $items = $data->items;?>
             }
             ?>
             <div class="col-lg-3 col-md-4 col-sm-6 mb-15">
-                <div class="card h-100 page-block">
+                <div class="card h-100 page-block card-hoverable">
                     <div class="image-container">
                         <a href="<?php echo $rootDirectory."/item?".$item->getLink(); ?>">
                             <img class="card-img-top img-fluid imageItem" src="<?php echo $item->getMainImage(); ?>" alt="">
