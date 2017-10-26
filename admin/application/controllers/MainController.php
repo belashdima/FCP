@@ -10,7 +10,15 @@ class MainController extends Controller
 
         //echo 'cnd';
 
-        $this->view->generate('MainView.php', 'CommonMarkupView.php');
+        //$this->view->generate('MainView.php', 'CommonMarkupView.php');
+
+        $category = 0;
+
+        $items = (new DatabaseHandler())->getItemsByCategory($category);
+        $data = new stdClass();
+        $data->items = $items;
+        $data->category = $category;
+        $this->view->generate('WaresView.php', 'CommonMarkupView.php', $data);
     }
 
     function newAction()
@@ -19,6 +27,14 @@ class MainController extends Controller
 
         //echo 'cnd';
 
-        $this->view->generate('MainView.php', 'CommonMarkupView.php');
+        //$this->view->generate('MainView.php', 'CommonMarkupView.php');
+
+        $category = 0;
+
+        $items = (new DatabaseHandler())->getItemsByCategory($category);
+        $data = new stdClass();
+        $data->items = $items;
+        $data->category = $category;
+        $this->view->generate('WaresView.php', 'CommonMarkupView.php', $data);
     }
 }

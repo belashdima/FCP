@@ -11,12 +11,6 @@ class Router
     {
         $chosen = false;
 
-        /*if (strpos($_SERVER['REQUEST_URI'], '/items/') !== false && !$chosen) {
-            require_once 'application/controllers/ItemsController.php';
-            (new ItemsController())->create_newAction();
-            $chosen = true;
-        }*/
-
         // discounts
         if (strpos($_SERVER['REQUEST_URI'], '/admin/discount/set?') !== false && !$chosen) {
             require_once 'application/controllers/ItemsController.php';
@@ -83,72 +77,51 @@ class Router
             }
         }
 
+        // items
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/items/items_json') !== false && !$chosen) {
+            require_once 'application/controllers/ItemsController.php';
+            (new ItemsController())->items_jsonAction();
+            $chosen = true;
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/items/item_json') !== false && !$chosen) {
+            require_once 'application/controllers/ItemsController.php';
+            (new ItemsController())->item_jsonAction();
+            $chosen = true;
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/items/item') !== false && !$chosen) {
+            require_once 'application/controllers/ItemsController.php';
+            (new ItemsController())->itemAction();
+            $chosen = true;
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/items/create_new') !== false && !$chosen) {
+            require_once 'application/controllers/ItemsController.php';
+            (new ItemsController())->create_newAction();
+            $chosen = true;
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/items/modify') !== false && !$chosen) {
+            require_once 'application/controllers/ItemsController.php';
+            (new ItemsController())->modifyAction();
+            $chosen = true;
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/items/delete') !== false && !$chosen) {
+            require_once 'application/controllers/ItemsController.php';
+            (new ItemsController())->deleteAction();
+            $chosen = true;
+        }
+        //
+
+        // the rest
+        if (strpos($_SERVER['REQUEST_URI'], '/admin') !== false && !$chosen) {
+            /*$siteData = simplexml_load_file('xml/siteData.xml');
+            $rootDirectory = $siteData->rootDirectory;*/
+            /*header('Location: '.roo);
+            exit();*/
+
+            Router::showItemsOfCategory(1);
+            $chosen = true;
+        }
+
         if ($chosen) return;
-
-        // default controller and action
-        $controllerName = 'Main';
-        $actionName = 'index';
-
-        $routes = explode('/', $_SERVER['REQUEST_URI']);
-
-        $routes[4] = explode('?', $routes[4])[0];
-
-        //print_r($routes);
-
-        // get controller name
-        if ( !empty($routes[3]) )
-        {
-            $controllerName = $routes[3];
-        }
-
-        // get action name
-        if ( !empty($routes[4]) )
-        {
-            $actionName = $routes[4];
-        }
-
-        // add prefixes
-        $modelName = 'BootsModel' .ucfirst($controllerName);
-        $controllerName = ucfirst($controllerName).'Controller';
-        $actionName = explode('.', $actionName)[0];// used to separate from get params
-        $actionName = ucfirst($actionName).'Action';
-
-        // pick up controller file
-        $controllerFileName = $controllerName.'.php';
-        $controllerPath = 'application/controllers/'.$controllerFileName;
-        if(file_exists($controllerPath))
-        {
-            include 'application/controllers/'.$controllerFileName;
-        }
-        else
-        {
-            echo "no file";
-            //правильно было бы кинуть здесь исключение,
-            //но для упрощения сразу сделаем редирект на страницу 404
-            self::ErrorPage404();
-            return;
-        }
-
-        // create controller
-        $controller = new $controllerName;
-        $action = lcfirst($actionName);
-
-        if(method_exists($controller, $action))
-        {
-            // вызываем действие контроллера
-            $controller->$action();
-        }
-        else
-        {
-            //echo $routes[4];
-            if(is_numeric($routes[4])) {
-                $controller->itemAction($routes[4]);
-            } else {
-                echo 'no method';
-                // здесь также разумнее было бы кинуть исключение
-                Router::ErrorPage404();
-            }
-        }
     }
 
     function ErrorPage404()

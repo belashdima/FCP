@@ -62,7 +62,7 @@ $rootDirectory = $siteData->rootDirectory;
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php echo $rootDirectory;?>/admin">SB Admin</a>
+                <a class="navbar-brand" href="<?php echo $rootDirectory;?>/admin">FC Admin</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
