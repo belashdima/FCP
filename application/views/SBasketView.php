@@ -77,48 +77,45 @@
                 </div>
             </div>
             <?php
-        }
-    }?>
+        } ?>
+        <h3 class="m-8">Данные покупателя</h3>
 
+        <div class="col-12 mb-15">
+            <div class="page-block p-8 borderless">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td class="borderless">ФИО</td>
+                        <td class="borderless">
+                            <input class="form-control" placeholder="Ваше ФИО">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>E-mail</td>
+                        <td>
+                            <input class="form-control" placeholder="Ваш E-mail">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Номер телефона</td>
+                        <td>
+                            <input class="form-control" placeholder="Ваш номер телефона">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Дополнительная информация</td>
+                        <td>
+                            <textarea class="form-control" rows="3" placeholder="Укажите интересующую вас информацию"></textarea>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
 
-    <h3 class="m-8">Данные покупателя</h3>
-
-    <div class="col-12 mb-15">
-        <div class="page-block p-8 borderless">
-            <table class="table">
-                <tbody>
-                <tr>
-                    <td class="borderless">ФИО</td>
-                    <td class="borderless">
-                        <input class="form-control" placeholder="Ваше ФИО">
-                    </td>
-                </tr>
-                <tr>
-                    <td>E-mail</td>
-                    <td>
-                        <input class="form-control" placeholder="Ваш E-mail">
-                    </td>
-                </tr>
-                <tr <?php if ($item->getModel() == null || strlen($item->getModel()) == 0) echo "hidden"?>>
-                    <td>Номер телефона</td>
-                    <td>
-                        <input class="form-control" placeholder="Ваш номер телефона">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Дополнительная информация</td>
-                    <td>
-                        <textarea class="form-control" rows="3" placeholder="Укажите интересующую вас информацию"></textarea>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-            <div class="page-block site-green-background text-center">
-                <div id="confirm-order-button" class="color-white">Подтвердить заказ</div>
+                <div class="page-block site-green-background text-center">
+                    <div id="confirm-order-button" class="color-white">Подтвердить заказ</div>
+                </div>
             </div>
         </div>
-    </div>
-
-
+    <?php
+    }?>
 </div>

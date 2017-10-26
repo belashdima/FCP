@@ -559,7 +559,11 @@ class DatabaseHandler
                 } else {
                     $items[] = $item;
                 }*/
-                $items[] = $item;
+
+                // remove imageless items
+                if (!empty($item->getImages())) {
+                    $items[] = $item;
+                }
             }
         } else {
             return null;
