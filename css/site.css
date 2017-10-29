@@ -7,6 +7,7 @@
     /*--light-hover-color: #e1e5eb;*/
     --light-hover-color: #dbe0db;
     --dark-color: #323232;
+    --disabled-color: #AAAAAA;
 }
 
 .navbar {
@@ -278,6 +279,10 @@ h1, h2, h3, h4, h5, h6 {
     background-color: var(--green-lighter-color) !important;
 }
 
+.site-green-background:disabled {
+    background-color: var(--disabled-color) !important;
+}
+
 .site-red {
     color: var(--red-color) !important;
 }
@@ -309,4 +314,16 @@ h1, h2, h3, h4, h5, h6 {
     bottom: 0;
     background-repeat: no-repeat;
     background-size: contain;
+}
+
+
+.new-button {
+    border-radius: 2px;
+    border-width: 0px;
+    width: 100%;
+    padding: 15px;
+}
+
+.m-8 {
+    margin: 8px;
 }

@@ -7,6 +7,7 @@
     /*--light-hover-color: #e1e5eb;*/
     --light-hover-color: #dbe0db;
     --dark-color: #323232;
+    --disabled-color: #AAAAAA;
 }
 
 
@@ -71,6 +72,17 @@
     background-color: var(--red-lighter-color) !important;
 }
 
+.site-red-background:disabled {
+    background-color: var(--disabled-color) !important;
+}
+
 .color-white {
     color: white;
+}
+
+.new-button {
+    border-radius: 2px;
+    border-width: 0px;
+    width: 100%;
+    padding: 15px;
 }

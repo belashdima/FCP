@@ -111,9 +111,7 @@
                     </tbody>
                 </table>
 
-                <div class="page-block site-green-background text-center">
-                    <div id="confirm-order-button" class="color-white">Подтвердить заказ</div>
-                </div>
+                <button id="confirm-order-button" class="color-white site-green-background new-button">Подтвердить заказ</div>
             </div>
         </div>
     <?php

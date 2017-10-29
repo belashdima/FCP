@@ -205,8 +205,8 @@ if ($discountExists) {
 
         </div>
 
-        <div class="page-block site-green-background text-center">
-            <div class="add-to-basket-button color-white">Добавить в корзину</div>
+        <div class="m-8">
+            <button class="add-to-basket-button color-white site-green-background new-button">Добавить в корзину</button>
         </div>
 
         <!--<div class="page-block site-red-background text-center">

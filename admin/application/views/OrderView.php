@@ -50,10 +50,8 @@
         </div>
     </div>
 
-    <div class="page-block site-red-background text-center">
-        <div class="delete-order-button color-white" data-order-id="<?php echo $order->getId();?>" data-toggle="modal" data-target="#deleteOrderModal">Удалить заказ</div>
-    </div>
-</div>
+    <button class="delete-order-button color-white site-red-background new-button" data-order-id="<?php echo $order->getId();?>" data-toggle="modal" data-target="#deleteOrderModal">Удалить заказ</div>
+</button>
 
 <!-- Modal -->
 <div class="modal fade" id="deleteOrderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
