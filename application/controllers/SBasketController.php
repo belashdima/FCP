@@ -5,6 +5,24 @@ require_once 'admin/application/models/DatabaseHandler.php';
 
 class SBasketController extends SController
 {
+    public function getBasket_json() {
+        /*$items = (new DatabaseHandler())->getItemsByCategory($categoryId);
+        $items = self::filterUsingParams($items, $_GET);
+
+        $filters = (new DatabaseHandler())->getFiltersForCategory($categoryId);*/
+
+        //session_start();
+        //print_r($_SESSION);
+        $basketItems = array();
+        if (!empty($_SESSION['basket_items'])) {
+            $basketItems = $_SESSION['basket_items'];
+        }
+        $data = new stdClass();
+        $data->basketItems = $basketItems;
+
+        echo json_encode($basketItems);
+    }
+
     public function showBasket() {
         /*$items = (new DatabaseHandler())->getItemsByCategory($categoryId);
         $items = self::filterUsingParams($items, $_GET);
@@ -61,5 +79,25 @@ class SBasketController extends SController
         //print_r($_SESSION);
         //echo $_SESSION['foo'];
         return;
+    }
+
+    public function completeOrder()
+    {
+        /*$fio = "";
+        $email = "";
+        $phone = "";
+        $additional = "";
+        $basketItems = "";*/
+
+        $fio = $_GET['fio'];
+        $email = $_GET['email'];
+        $phone = $_GET['phone'];
+        $additional = $_GET['additional'];
+        $basketItems = $_SESSION['basket_items'];
+
+        /*echo $fio; print_r(strlen($fio));
+        echo $email; print_r($fio);*/
+        $result = (new DatabaseHandler())->createOrder($fio, $email, $phone, $additional, $basketItems);
+        if ($result) echo 'success';
     }
 }

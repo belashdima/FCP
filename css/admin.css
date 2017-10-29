@@ -1,3 +1,15 @@
+:root {
+    --green-color: #148328;
+    --green-lighter-color: #309944;
+    --red-color: #c9302c;
+    --red-lighter-color: #d9534f;
+    --light-color: #edeef0;
+    /*--light-hover-color: #e1e5eb;*/
+    --light-hover-color: #dbe0db;
+    --dark-color: #323232;
+}
+
+
 .discountPercentModalContainer {
     margin-bottom: 15px;
 }
@@ -12,4 +24,53 @@
 
 .pl-0 {
     padding-left: 0px;
+}
+
+.background-color {
+    background-color: #edeef0 !important;
+}
+
+.page-block {
+    border-radius: 2px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    background-color: white;
+    padding: 15px;
+    margin: 8px;
+}
+
+.page-block h3 {
+    padding: 0px;
+    margin: 0px;
+    /*margin: 8px;*/
+}
+
+.card {
+    padding: 8px;
+    border: none;
+}
+
+.card-hoverable:hover {
+    background-color: #f3f3f3;
+    border: 2px;
+}
+
+.order-title {
+    padding: 0px;
+    margin-bottom: 8px !important;
+}
+
+.site-red {
+    color: var(--red-color) !important;
+}
+
+.site-red-background {
+    background-color: var(--red-color) !important;
+}
+
+.site-red-background:hover {
+    background-color: var(--red-lighter-color) !important;
+}
+
+.color-white {
+    color: white;
 }

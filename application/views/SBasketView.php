@@ -87,25 +87,25 @@
                     <tr>
                         <td class="borderless">ФИО</td>
                         <td class="borderless">
-                            <input class="form-control" placeholder="Ваше ФИО">
+                            <input id="fio-input" class="form-control" placeholder="Ваше ФИО">
                         </td>
                     </tr>
                     <tr>
                         <td>E-mail</td>
                         <td>
-                            <input class="form-control" placeholder="Ваш E-mail">
+                            <input id="email-input" class="form-control" placeholder="Ваш E-mail">
                         </td>
                     </tr>
                     <tr>
                         <td>Номер телефона</td>
                         <td>
-                            <input class="form-control" placeholder="Ваш номер телефона">
+                            <input id="phone-input" class="form-control" placeholder="Ваш номер телефона">
                         </td>
                     </tr>
                     <tr>
                         <td>Дополнительная информация</td>
                         <td>
-                            <textarea class="form-control" rows="3" placeholder="Укажите интересующую вас информацию"></textarea>
+                            <textarea id="additional-input" class="form-control" rows="3" placeholder="Укажите интересующую вас информацию"></textarea>
                         </td>
                     </tr>
                     </tbody>

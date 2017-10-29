@@ -36,6 +36,11 @@ $xmlMenuItems = simplexml_load_file($rootDirectory.'/xml/menu.xml');
             <i class="fa fa-fw fa-arrows-v"></i>Популярные категории<i class="fa fa-fw fa-caret-down"></i>
             </a>
         </li>
+        <li>
+            <a href="<?php echo $rootDirectory;?>/admin/orders"">
+            <i class="fa fa-fw fa-arrows-v"></i>Заказы<i class="fa fa-fw fa-caret-down"></i>
+            </a>
+        </li>
     </ul>
 </div>
 <!-- /.navbar-collapse -->

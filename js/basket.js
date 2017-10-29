@@ -26,6 +26,30 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('#confirm-order-button').click(function () {
+        let fio = $('#fio-input').val();
+        let email = $('#email-input').val();
+        let phone = $('#phone-input').val();
+        let additional = $('#additional-input').val();
+        let url = rootDirectory + "/completeOrder?fio=" + fio + "&email=" + email + "&phone=" + phone + "&additional=" + additional;
+
+        $.get(url, function(data, status) {
+            if (data.localeCompare('success')) {
+                fireSuccess($('#confirm-order-button'))
+            }
+            //location.reload();
+            //let basketItems = data;
+            //window.location.href = window.location.href;
+        });
+
+        /*var url = rootDirectory + "/getBasket_json";
+        $.get(url, function(data, status) {
+            //location.reload();
+            let basketItems = data;
+            //window.location.href = window.location.href;
+        });*/
+    });
 });
 
 var getUrlParameter = function getUrlParameter(sParam) {
@@ -41,4 +65,24 @@ var getUrlParameter = function getUrlParameter(sParam) {
             return sParameterName[1] === undefined ? true : sParameterName[1];
         }
     }
+};
+
+let fireSuccess = function (button) {
+    button.text('Заказ успешно оформлен');
+    button.prop('disabled', true);
+};
+
+let fireError = function fireError(button, originalText, errorMessage) {
+    button.toggleClass('btn-primary');
+    button.toggleClass('btn-danger');
+    button.prop('disabled', true);
+
+    // set blue back
+    setTimeout(function(){
+        button.toggleClass('btn-primary');
+        button.toggleClass('btn-danger');
+        button.text(originalText);
+        button.prop('disabled', false);
+    }, 1000);
+    alert('Ошибка ' + errorMessage);
 };

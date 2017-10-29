@@ -68,6 +68,16 @@ class SRouter
             }
         }
 
+        if (strpos($_SERVER['REQUEST_URI'], '/completeOrder') !== false) {
+            include 'application/controllers/SBasketController.php';
+            (new SBasketController())->completeOrder();
+            return;
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/getBasket_json') !== false) {
+            include 'application/controllers/SBasketController.php';
+            (new SBasketController())->getBasket_json();
+            return;
+        }
         if (strpos($_SERVER['REQUEST_URI'], '/basket') !== false) {
             include 'application/controllers/SBasketController.php';
             (new SBasketController())->showBasket();

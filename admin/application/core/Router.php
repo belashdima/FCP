@@ -11,6 +11,19 @@ class Router
     {
         $chosen = false;
 
+        // orders
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/order_delete') !== false && !$chosen) {
+            require_once 'application/controllers/OrdersController.php';
+            (new OrdersController())->deleteOrder();
+            $chosen = true;
+        }
+        if (strpos($_SERVER['REQUEST_URI'], '/admin/orders') !== false && !$chosen) {
+            require_once 'application/controllers/OrdersController.php';
+            (new OrdersController())->showOrders();
+            $chosen = true;
+        }
+        //
+
         // discounts
         if (strpos($_SERVER['REQUEST_URI'], '/admin/discount/set?') !== false && !$chosen) {
             require_once 'application/controllers/ItemsController.php';

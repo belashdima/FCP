@@ -17,6 +17,8 @@ require_once "Value.php";
 require_once "PropertyValue.php";
 require_once "Filter.php";
 require_once "PopularCategory.php";
+require_once "Order.php";
+require_once "OrderItem.php";
 
 /*DatabaseHandler::getConnection();
 print_r(DatabaseHandler::getBrands());
@@ -88,6 +90,18 @@ class DatabaseHandler
     public static $TABLE_SHOE_SIZES_COLUMN_EU = "size_eu";
     public static $TABLE_SHOE_SIZES_COLUMN_UK = "size_uk";
     public static $TABLE_SHOE_SIZES_COLUMN_US = "size_us";
+
+    public static $TABLE_ORDER_TO_ITEM_NAME = "order_to_item";
+    public static $TABLE_ORDER_TO_ITEM_COLUMN_ORDER = "order_o";
+    public static $TABLE_ORDER_TO_ITEM_COLUMN_ITEM = "item";
+    public static $TABLE_ORDER_TO_ITEM_COLUMN_SIZE = "size";
+
+    public static $TABLE_ORDERS_NAME = "orders";
+    public static $TABLE_ORDERS_COLUMN_ID = "order_id";
+    public static $TABLE_ORDERS_COLUMN_FIO = "fio";
+    public static $TABLE_ORDERS_COLUMN_EMAIL = "email";
+    public static $TABLE_ORDERS_COLUMN_PHONE_NUMBER = "phone_number";
+    public static $TABLE_ORDERS_COLUMN_ADDITIONAL_INFO = "additional_info";
 
 
     static private $connection;
@@ -1182,6 +1196,144 @@ class DatabaseHandler
             self::$TABLE_ITEMS_NAME.".".self::$TABLE_ITEMS_COLUMN_VISITS_COUNT." + 1".
             " WHERE "
             .self::$TABLE_ITEMS_NAME.".".self::$TABLE_ITEMS_COLUMN_ID."='".$itemId."';");
+
+        return true;
+    }
+
+    public function createOrder($fio, $email, $phone, $additional, $basketItems)
+    {
+        print_r($basketItems);
+
+        $databaseConnection = self::getConnection();
+        $databaseConnection->query("INSERT INTO ".self::$TABLE_ORDERS_NAME." ("
+            .self::$TABLE_ORDERS_COLUMN_FIO
+            .", "
+            .self::$TABLE_ORDERS_COLUMN_EMAIL
+            .", "
+            .self::$TABLE_ORDERS_COLUMN_PHONE_NUMBER
+            .", "
+            .self::$TABLE_ORDERS_COLUMN_ADDITIONAL_INFO
+            .") VALUES ('"
+            .$fio
+            ."','"
+            .$email
+            ."','"
+            .$phone
+            ."','"
+            .$additional
+            ."');");
+
+
+        $orderId = -1;
+        $result = $databaseConnection->query("SELECT LAST_INSERT_ID();");
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        while ($row = $result->fetch()) {
+            $orderId = $row["LAST_INSERT_ID()"];
+        }
+
+
+        foreach ($basketItems as $basketItem) {
+            $databaseConnection->query("INSERT INTO ".self::$TABLE_ORDER_TO_ITEM_NAME." (".
+                self::$TABLE_ORDER_TO_ITEM_COLUMN_ORDER.", ".
+                self::$TABLE_ORDER_TO_ITEM_COLUMN_ITEM.", ".
+                self::$TABLE_ORDER_TO_ITEM_COLUMN_SIZE.") VALUES (".
+                $orderId.
+                ",".
+                $basketItem->itemId.
+                ",'".
+                $basketItem->size.
+                "');");
+        }
+
+        return true;
+    }
+
+    public function getOrders()
+    {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM ".
+            self::$TABLE_ORDERS_NAME.
+            ";"
+        );
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $ordersList = array();
+        while ($row = $result->fetch()) {
+            $orderId = $row[self::$TABLE_ORDERS_COLUMN_ID];
+            $fio = $row[self::$TABLE_ORDERS_COLUMN_FIO];
+            $email = $row[self::$TABLE_ORDERS_COLUMN_EMAIL];
+            $phoneNumber = $row[self::$TABLE_ORDERS_COLUMN_PHONE_NUMBER];
+            $additionalInfo = $row[self::$TABLE_ORDERS_COLUMN_ADDITIONAL_INFO];
+            $orderItems = self::getOrderItemsById($orderId);
+            $order = new Order($orderId, $fio, $email, $phoneNumber, $additionalInfo, $orderItems);
+            $ordersList[] = $order;
+        }
+
+        return $ordersList;
+    }
+
+    public function getOrderItemsById($orderId)
+    {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM ".
+            self::$TABLE_ORDER_TO_ITEM_NAME.
+            " WHERE ".
+            self::$TABLE_ORDER_TO_ITEM_NAME.".".self::$TABLE_ORDER_TO_ITEM_COLUMN_ORDER.
+            "=".
+            $orderId.
+            ";"
+        );
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $ordersItemList = array();
+        while ($row = $result->fetch()) {
+            //$orderId = $row[self::$TABLE_ORDER_TO_ITEM_COLUMN_ORDER];
+            $itemId = $row[self::$TABLE_ORDER_TO_ITEM_COLUMN_ITEM];
+            $item = self::getAllForItem($itemId);
+            $size = $row[self::$TABLE_ORDER_TO_ITEM_COLUMN_SIZE];
+
+            $ordersItemList[] = new OrderItem($item, $size);
+        }
+
+        return $ordersItemList;
+    }
+
+    public function getOrderById($orderId)
+    {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("SELECT * FROM ".
+            self::$TABLE_ORDERS_NAME.
+            " WHERE ".
+            self::$TABLE_ORDERS_NAME.".".self::$TABLE_ORDERS_COLUMN_ID.
+            "=".
+            $orderId.
+            ";"
+        );
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $order = null;
+        while ($row = $result->fetch()) {
+            $orderId = $row[self::$TABLE_ORDERS_COLUMN_ID];
+            $fio = $row[self::$TABLE_ORDERS_COLUMN_FIO];
+            $email = $row[self::$TABLE_ORDERS_COLUMN_EMAIL];
+            $phoneNumber = $row[self::$TABLE_ORDERS_COLUMN_PHONE_NUMBER];
+            $additionalInfo = $row[self::$TABLE_ORDERS_COLUMN_ADDITIONAL_INFO];
+            $orderItems = self::getOrderItemsById($orderId);
+            $order = new Order($orderId, $fio, $email, $phoneNumber, $additionalInfo, $orderItems);
+        }
+
+        return $order;
+    }
+
+    public function deleteOrderById($orderId)
+    {
+        $databaseConnection = self::getConnection();
+        $result = $databaseConnection->query("DELETE FROM "
+            .self::$TABLE_ORDER_TO_ITEM_NAME
+            ." WHERE "
+            .self::$TABLE_ORDER_TO_ITEM_NAME.".".self::$TABLE_ORDER_TO_ITEM_COLUMN_ORDER."='$orderId'");
+
+        $result = $databaseConnection->query("DELETE FROM "
+            .self::$TABLE_ORDERS_NAME
+            ." WHERE "
+            .self::$TABLE_ORDERS_NAME.".".self::$TABLE_ORDERS_COLUMN_ID."='$orderId'");
 
         return true;
     }
