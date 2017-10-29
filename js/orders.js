@@ -6,12 +6,11 @@ $(document).ready(function () {
     });
 
     $('#delete-order-submit-button').click(function () {
-        //alert('Order ' + orderToDeleteId + ' deleted!');
         var url = rootDirectory + "/admin/order_delete?order_id=" + orderToDeleteId;
 
         $.get(url, function(data, status) {
             //window.location.href = rootDirectory + '/balls';
-            if (data.localeCompare("deleted")) {
+            if (data.localeCompare("deleted") == 0) {
                 $('#deleteOrderModal').hide();
                 location.reload();
             }
