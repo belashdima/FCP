@@ -1,31 +1,3 @@
-:root {
-    --green-color: #148328;
-    --green-lighter-color: #309944;
-    --red-color: #c9302c;
-    --red-lighter-color: #d9534f;
-    --light-color: #edeef0;
-    /*--light-hover-color: #e1e5eb;*/
-    --light-hover-color: #dbe0db;
-    --dark-color: #323232;
-    --disabled-color: #AAAAAA;
-}
-
-
-.discountPercentModalContainer {
-    margin-bottom: 15px;
-}
-
-.mb-7 {
-    margin-bottom: 7px;
-}
-
-.mb-15 {
-    margin-bottom: 15px;
-}
-
-.pl-0 {
-    padding-left: 0px;
-}
 
 .background-color {
     background-color: #edeef0 !important;
@@ -58,31 +30,4 @@
 .order-title {
     padding: 0px;
     margin-bottom: 8px !important;
-}
-
-.site-red {
-    color: var(--red-color) !important;
-}
-
-.site-red-background {
-    background-color: var(--red-color) !important;
-}
-
-.site-red-background:hover {
-    background-color: var(--red-lighter-color) !important;
-}
-
-.site-red-background:disabled {
-    background-color: var(--disabled-color) !important;
-}
-
-.color-white {
-    color: white;
-}
-
-.new-button {
-    border-radius: 2px;
-    border-width: 0px;
-    width: 100%;
-    padding: 15px;
 }

@@ -9,7 +9,7 @@ $items = $data->items;?>
 
     <?php
     if ($items == null || empty($items)) { ?>
-        <div class="col-12">
+        <div class="col-12 text-center p-8">
             <label>Нет товаров, удовлетворяющих заданным условиям</label>
         </div>
     <?php } else {

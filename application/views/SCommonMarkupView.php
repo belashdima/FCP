@@ -24,6 +24,7 @@ $rootDirectory = $siteData->rootDirectory;
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css">-->
     <link rel="stylesheet" href="<?php echo $rootDirectory;?>/css/bootstrap.css">
     <!-- Custom CSS -->
+    <link rel="stylesheet" href="<?php echo $rootDirectory;?>/css/common.css">
     <link rel="stylesheet" href="<?php echo $rootDirectory;?>/css/site.css">
     <link rel="stylesheet" href="<?php echo $rootDirectory;?>/css/carousel.css">
 

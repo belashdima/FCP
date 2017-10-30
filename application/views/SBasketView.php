@@ -51,9 +51,7 @@
                             </span>
                             <span> бел. руб.</span>
 
-                            <div class="site-button site-red-background text-center">
-                                <div class="delete-from-basket-button color-white">Удалить из корзины</div>
-                            </div>
+                            <button class="delete-from-basket-button color-white site-red-background new-button">Удалить из корзины</div>
                         </div>
                     </div>
 

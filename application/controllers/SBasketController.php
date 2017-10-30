@@ -6,13 +6,6 @@ require_once 'admin/application/models/DatabaseHandler.php';
 class SBasketController extends SController
 {
     public function getBasket_json() {
-        /*$items = (new DatabaseHandler())->getItemsByCategory($categoryId);
-        $items = self::filterUsingParams($items, $_GET);
-
-        $filters = (new DatabaseHandler())->getFiltersForCategory($categoryId);*/
-
-        //session_start();
-        //print_r($_SESSION);
         $basketItems = array();
         if (!empty($_SESSION['basket_items'])) {
             $basketItems = $_SESSION['basket_items'];
@@ -24,13 +17,6 @@ class SBasketController extends SController
     }
 
     public function showBasket() {
-        /*$items = (new DatabaseHandler())->getItemsByCategory($categoryId);
-        $items = self::filterUsingParams($items, $_GET);
-
-        $filters = (new DatabaseHandler())->getFiltersForCategory($categoryId);*/
-
-        //session_start();
-        //print_r($_SESSION);
         $basketItems = array();
         if (!empty($_SESSION['basket_items'])) {
             $basketItems = $_SESSION['basket_items'];
@@ -39,7 +25,6 @@ class SBasketController extends SController
         $data->basketItems = $basketItems;
 
         $this->view->generate('SBasketView.php', 'SCommonMarkupView.php', $data);
-        //$this->view->generate('BasketView2.php', 'SCommonMarkupView.php', $data);
     }
 
     public function add()
@@ -51,9 +36,6 @@ class SBasketController extends SController
             $_SESSION['basket_items'] = array();
         }
         array_push($_SESSION['basket_items'], $basketItem);
-        //array_push($_SESSION, $basketItem);
-        print_r($_SESSION);
-        //echo $_SESSION['foo'];
         return;
     }
 
@@ -66,7 +48,6 @@ class SBasketController extends SController
             $_SESSION['basket_items'] = array();
         } else {
             $index = array_search($basketItem, $_SESSION['basket_items']);
-            //if (in_array($basketItem, $_SESSION['basket_items'])) {
             if (in_array($basketItem, $_SESSION['basket_items'])) {
                 echo "deleted";
                 unset($_SESSION['basket_items'][$index]);
@@ -75,28 +56,17 @@ class SBasketController extends SController
                 echo "undeleted";
             }
         }
-        //array_push($_SESSION, $basketItem);
-        //print_r($_SESSION);
-        //echo $_SESSION['foo'];
         return;
     }
 
     public function completeOrder()
     {
-        /*$fio = "";
-        $email = "";
-        $phone = "";
-        $additional = "";
-        $basketItems = "";*/
-
         $fio = $_GET['fio'];
         $email = $_GET['email'];
         $phone = $_GET['phone'];
         $additional = $_GET['additional'];
         $basketItems = $_SESSION['basket_items'];
 
-        /*echo $fio; print_r(strlen($fio));
-        echo $email; print_r($fio);*/
         $result = (new DatabaseHandler())->createOrder($fio, $email, $phone, $additional, $basketItems);
         if ($result) echo 'success';
     }

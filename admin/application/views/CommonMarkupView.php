@@ -22,6 +22,7 @@ $rootDirectory = $siteData->rootDirectory;
     <link rel="stylesheet" type="text/css" href="<?php echo $rootDirectory;?>/css/sb-admin.css">
     <!--<link rel="stylesheet" type="text/css" href="../css/dashboard.css">-->
     <link rel="stylesheet" type="text/css" href="<?php echo $rootDirectory;?>/css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $rootDirectory;?>/css/common.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $rootDirectory;?>/css/admin.css">
 
     <!-- Morris Charts CSS -->

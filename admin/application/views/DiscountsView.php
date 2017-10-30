@@ -34,17 +34,17 @@
                 <h5 class="modal-title" id="exampleModalLabel">Введите бренд и модель товара</h5>
             </div>
             <div class="modal-body">
-                <div class="input-group discountPercentModalContainer">
+                <div class="input-group mb-15">
                     <span class="input-group-addon">Бренд</span>
                     <input class="form-control brandModalHolder" type="text" placeholder="Введите бренд">
                 </div>
 
-                <div class="input-group discountPercentModalContainer">
+                <div class="input-group mb-15">
                     <span class="input-group-addon">Модель</span>
                     <input class="form-control modelModalHolder" type="text" placeholder="Введите название модели">
                 </div>
 
-                <div class="input-group discountPercentModalContainer">
+                <div class="input-group mb-15">
                     <span class="input-group-addon">Скидка (%)</span>
                     <input class="form-control discountPercentModalHolder" type="number" placeholder="Введите скидку">
                 </div>
