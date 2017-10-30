@@ -40,14 +40,6 @@ body {
     background-color: #edeef0;
 }
 
-.page-block {
-    border-radius: 2px;
-    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
-    background-color: white;
-    padding: 15px;
-    margin: 8px;
-}
-
 .site-button {
     border-radius: 2px;
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
@@ -69,30 +61,9 @@ body {
     text-overflow:ellipsis;
 }
 
-.page-block h3 {
-    padding: 0px;
-    margin: 0px;
-    /*margin: 8px;*/
-}
-
-.card {
-    padding: 8px;
-    border: none;
-}
-
 .filter-card {
     padding: 15px;
     border: none;
-}
-
-/*.card:hover {
-    background-color: #f3f3f3;
-    border: 2px;
-}*/
-
-.card-hoverable:hover {
-    background-color: #f3f3f3;
-    border: 2px;
 }
 
 .card-block {

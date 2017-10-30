@@ -104,6 +104,34 @@
 
 
 
+.page-block {
+    border-radius: 2px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    background-color: white;
+    padding: 15px;
+    margin: 8px;
+}
+.page-block h3 {
+    padding: 0px;
+    margin: 0px;
+    /*margin: 8px;*/
+}
+
+
+
+
+.card {
+    padding: 8px;
+    border: none;
+}
+.card-hoverable:hover {
+    background-color: #f3f3f3;
+    border: 2px;
+}
+
+
+
+
 .new-button {
     border-radius: 2px;
     border-width: 0px;
