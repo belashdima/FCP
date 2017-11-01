@@ -4,8 +4,23 @@ $items = $data->items;?>
 
 
 <!--<div class="container-fluid">-->
+<script src="<?php echo $rootDirectory;?>/js/sItemsView.js"></script>
 
 <div id="mainContent" class="row mlr-0">
+
+    <div class="col-12">
+        <div class="page-block">
+            <div class="d-inline-block mtb-4">
+                <span>Сортировать по:</span>
+            </div>
+            <select id="sort-select" class="custom-select">
+                <option value="popularity" data-option="popularity">Популярности</option>
+                <option value="price_low_to_high" data-option="price_low_to_high">Цене (сначала дешевле)</option>
+                <option value="price_high_to_low" data-option="price_high_to_low">Цене (сначала дороже)</option>
+                <!--<option value="date" data-option="date">Дате добавления</option>-->
+            </select>
+        </div>
+    </div>
 
     <?php
     if ($items == null || empty($items)) { ?>
@@ -21,7 +36,7 @@ $items = $data->items;?>
                 $discountPrice = $originalPrice - ($originalPrice * $item->getDiscountPercent()) / 100;
             }
             ?>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-15">
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-15">
                 <div class="card h-100 page-block card-hoverable">
                     <div class="image-container">
                         <a href="<?php echo $rootDirectory."/item?".$item->getLink(); ?>">

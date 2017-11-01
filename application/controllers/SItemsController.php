@@ -9,6 +9,7 @@ class SItemsController extends SController
     public function categoryAction($categoryId) {
         $items = (new DatabaseHandler())->getItemsByCategory($categoryId);
         $items = self::filterUsingParams($items, $_GET);
+        $items = self::sort($items);
 
         $filters = (new DatabaseHandler())->getFiltersForCategory($categoryId);
 
@@ -103,6 +104,60 @@ class SItemsController extends SController
         } else {
             return $items;
         }
+    }
+
+    private static function sort($items)
+    {
+        if (key_exists('sort', $_GET)) {
+
+            $sortOption = $_GET['sort'];
+
+            if (strcmp($sortOption, 'price_low_to_high') == 0) {
+                function cmp($a, $b)
+                {
+                    if ($a->finalPrice == $b->finalPrice) {
+                        return 0;
+                    }
+                    return ($a->finalPrice < $b->finalPrice) ? -1 : 1;
+                }
+            } else if (strcmp($sortOption, 'price_high_to_low') == 0) {
+                function cmp($a, $b)
+                {
+                    if ($a->finalPrice == $b->finalPrice) {
+                        return 0;
+                    }
+                    return ($a->finalPrice > $b->finalPrice) ? -1 : 1;
+                }
+            } else if (strcmp($sortOption, 'popularity') == 0) {
+                function cmp($a, $b)
+                {
+                    if ($a->getVisitsCount() == $b->getVisitsCount()) {
+                        return 0;
+                    }
+                    return ($a->getVisitsCount() > $b->getVisitsCount()) ? -1 : 1;
+                }
+            } /*else if (strcmp($sortOption, 'date') == 0) {
+                function cmp($a, $b)
+                {
+                    if ($a->getDate() == $b->getDate()) {
+                        return 0;
+                    }
+                    return ($a->getDate() > $b->getDate()) ? -1 : 1;
+                }
+            }*/
+        } else {
+            function cmp($a, $b)
+            {
+                if ($a->getVisitsCount() == $b->getVisitsCount()) {
+                    return 0;
+                }
+                return ($a->getVisitsCount() > $b->getVisitsCount()) ? -1 : 1;
+            }
+        }
+
+        usort($items, "cmp");
+        //print_r($items);
+        return $items;
     }
 
     /*private static function getUniqueSizes($wares)

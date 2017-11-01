@@ -89,6 +89,20 @@
     margin-right: 0px;
 }
 
+.mtb-4 {
+    margin-top: 8px !important;
+    margin-bottom: 8px !important;
+}
+
+/*.mlr-8 {
+    margin-left: 8px !important;
+    margin-right: 8px !important;
+}*/
+
+.pb-15 {
+    padding-bottom: 15px;
+}
+
 .p-7 {
     padding: 7px;
 }

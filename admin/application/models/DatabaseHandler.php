@@ -445,6 +445,7 @@ class DatabaseHandler
         while ($row = $result->fetch()) {
             $categoryId = $row[self::$TABLE_ITEMS_COLUMN_CATEGORY];
             $discountPercent = $row[self::$TABLE_ITEMS_COLUMN_DISCOUNT_PERCENT];
+            $visitsCount = $row[self::$TABLE_ITEMS_COLUMN_VISITS_COUNT];
         }
 
         // get all types (objects) of item
@@ -460,7 +461,7 @@ class DatabaseHandler
 
             //$discount = self::getDiscountByItemId($itemId);
 
-            $item = new Item($itemId, $categories, $properties, $images, $discountPercent);
+            $item = new Item($itemId, $categories, $properties, $images, $discountPercent, $visitsCount);
 
             return $item;
         }

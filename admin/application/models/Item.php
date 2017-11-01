@@ -20,6 +20,7 @@ class Item
     public $properties;
     public $images;
     public $discountPercent;
+    public $visitsCount;
     public $finalPrice;
 
 
@@ -38,7 +39,7 @@ class Item
      * @param $properties
      * @param $images
      */
-    public function __construct($id, $categories, $properties, $images, $discountPercent = null)
+    public function __construct($id, $categories, $properties, $images, $discountPercent = null, $visitsCount)
     {
         $this->id = $id;
         $this->categories = $categories;
@@ -46,6 +47,7 @@ class Item
         $this->images = $images;
 
         $this->discountPercent = $discountPercent;
+        $this->visitsCount = $visitsCount;
         $price = $this->getPropertyValueByUrlPresentation('price');
         $this->finalPrice = $price - $price * $discountPercent / 100;
 
@@ -136,6 +138,22 @@ class Item
     public function setDiscountPercent($discountPercent)
     {
         $this->discountPercent = $discountPercent;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVisitsCount()
+    {
+        return $this->visitsCount;
+    }
+
+    /**
+     * @param mixed $visitsCount
+     */
+    public function setVisitsCount($visitsCount)
+    {
+        $this->visitsCount = $visitsCount;
     }
 
 
