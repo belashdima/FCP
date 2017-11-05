@@ -15,7 +15,7 @@ if ($discountExists) {
 
 <div class="row">
     <div class="col-12">
-        <div class="page-block">
+        <div class="page-block breadcrumb-container">
             <ol class="breadcrumb breadcrumb-arrow">
                 <?php
                 $categoriesUI = $item->getCategories();

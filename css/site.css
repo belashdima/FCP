@@ -224,4 +224,14 @@ h1, h2, h3, h4, h5, h6 {
         width: 100px;
         height: 100px;
     }
+
+    .map-container {
+        display: none;
+    }
+}
+
+@media (max-width: 381px) {
+    .breadcrumb-container {
+        display: none;
+    }
 }

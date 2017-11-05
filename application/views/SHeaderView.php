@@ -41,7 +41,7 @@
         </div>
 
         <div class="col-lg-5 h-100">
-            <div class="page-block">
+            <div class="page-block map-container">
                 <div class="col-lg-6" style="display: inline; width: 50%">
                     <iframe id="mapIFrame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1036.9046079587044!2d27.588732761825078!3d53.91768004342265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x6622282dabf5ccb7!2sFootballcity!5e0!3m2!1sru!2sby!4v1490899779874" width="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
                 </div>
