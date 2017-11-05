@@ -184,24 +184,44 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 12px;
 }
 
-.basketImageWrapper {
-    float: left;
-    width:200px;
-    height:200px;
-    margin:auto;
-    position: relative;
-}
-.basketImage {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-repeat: no-repeat;
-    background-size: contain;
+.basket-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    align-content: stretch;
 }
 
-.sort-container {
+.basket-item-data {
     display: flex;
-    align-items: flex-start;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    align-content: stretch;
+}
+
+.basket-image-wrapper {
+    display: inline-block;
+}
+
+.basket-image {
+    width: 200px;
+    height: 200px;
+}
+
+.basket-item-info {
+    width: 100%;
+}
+
+.delete-from-basket-button {
+    width: auto;
+}
+
+@media (max-width: 991px) {
+    .basket-image {
+        width: 100px;
+        height: 100px;
+    }
 }

@@ -72,6 +72,10 @@
     margin: 8px !important;
 }
 
+.mt-8 {
+    margin-top: 8px;
+}
+
 .mb-15 {
     margin-bottom: 15px !important;
 }
